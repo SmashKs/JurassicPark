@@ -22,5 +22,6 @@
  * SOFTWARE.
  */
 
-rootProject.name='jurassicpark'
-include ':app', ':ext', ':ktx', ':domain', ':widget', ':data'
+package taiwan.no.one.domain
+
+class MyClass
