@@ -38,8 +38,6 @@ object Deps {
         const val coroutine =
             "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Kotlin.kotlinCoroutine}"
 
-        const val rxJava2 = "io.reactivex.rxjava2:rxjava:${Versions.RxDep.rxJava2}"
-
         const val shaver = "com.devrapid.jieyi:kotlinshaver:${Versions.KotlinAndroidExt.kinfer}"
 
         const val kodeinJVM = "org.kodein.di:kodein-di-generic-jvm:${Versions.DI.kodein}"
@@ -48,7 +46,6 @@ object Deps {
             "org.kodein.di:kodein-di-framework-android-x:${Versions.DI.kodein}"
 
         const val gson = "com.google.code.gson:gson:${Versions.Parser.gson}"
-        const val jsoup = "org.jsoup:jsoup:${Versions.Parser.jsoup}"
     }
 
     /**
@@ -95,23 +92,24 @@ object Deps {
         const val dexTool = "androidx.multidex:multidex:${Versions.KotlinAndroidExt.dex}"
         const val androidCoroutine =
             "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.Kotlin.kotlinCoroutine}"
-        // Jieyi Utils
+        //region Jieyi Utils
         const val knifer = "com.devrapid.jieyi:kotlinknifer:${Versions.KotlinAndroidExt.kinfer}"
-        // Rx
+        //endregion
+        //region Rx
         const val rxBus = "com.hwangjr.rxbus:rxbus:${Versions.RxDep.rxBus}"
-        const val rxPermission =
-            "com.tbruyelle.rxpermissions2:rxpermissions:${Versions.RxDep.rxPermission2}"
-        // Internet
+        //endregion
+        //region Internet
         const val retrofit2 = Data.retrofit2
         const val retrofit2Gson = Data.retrofit2ConverterGson
-        const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.Network.okhttp3}"
+        const val okhttp = Data.okhttp
         const val okhttpLogging =
             "com.squareup.okhttp3:logging-interceptor:${Versions.Network.okhttp3}"
-        const val jsoup = "org.jsoup:jsoup:${Versions.Network.jsoup}"
-        // Internet for image
-        const val glide = "com.github.bumptech.glide:glide:${Versions.Network.glide}"
+        const val jsoup = Data.jsoup
+        //endregion
+        //region Internet for image
         const val coil = "io.coil-kt:coil:${Versions.Network.coil}"
-        // Storage (cloud & local)
+        //endregion
+        //region Storage (cloud & local)
         const val firebaseCore = "com.google.firebase:firebase-core:${Versions.Firebase.core}"
         const val firebaseDB = "com.google.firebase:firebase-database:${Versions.Firebase.database}"
         const val firebaseAuth = "com.google.firebase:firebase-auth:${Versions.Firebase.auth}"
@@ -120,9 +118,10 @@ object Deps {
         const val firebaseCrashlytics =
             "com.crashlytics.sdk.android:crashlytics:${Versions.Firebase.crashlytics}"
         const val cloudinary = "com.cloudinary:cloudinary-android:${Versions.CloudStore.cloudinary}"
-        const val mmkv = "com.tencent:mmkv-static:${Versions.Database.mmkv}"
+        const val mmkv = Data.mmkv
         const val room = Data.room
-        // UI extensions
+        //endregion
+        //region UI extensions
         const val arv =
             "com.devrapid.jieyi:adaptiverecyclerview:${Versions.ViewComponent.adaptiveRecyclerView}"
         const val quickDialog = "com.devrapid.jieyi:dialogbuilder:${Versions.ViewComponent.dialog}"
@@ -133,7 +132,8 @@ object Deps {
         const val lottie = "com.airbnb.android:lottie:${Versions.ViewComponent.lottie}"
         const val easyPermission =
             "pub.devrel:easypermissions:${Versions.ViewComponent.easyPermission}"
-        // Android Jetpack
+        //endregion
+        //region Android Jetpack
         const val materialDesign =
             "com.google.android.material:material:${Versions.AndroidComponent.material}"
         const val appcompat = "androidx.appcompat:appcompat:${Versions.AndroidComponent.appCompat}"
@@ -145,12 +145,14 @@ object Deps {
             "androidx.constraintlayout:constraintlayout:${Versions.AndroidComponent.constraintLayout}"
         const val coordinatorLayout =
             "androidx.coordinatorlayout:coordinatorlayout:${Versions.AndroidComponent.coordinatorLayout}"
-        // ViewModel and LiveData
+        //endregion
+        //region ViewModel and LiveData
         const val lifecycle =
             "androidx.lifecycle:lifecycle-extensions:${Versions.AndroidArchitectureComponent.aacLifecycle}"
         const val lifecycleCompiler =
             "android.arch.lifecycle:compiler:${Versions.AndroidArchitectureComponent.aacLifecycle}"
-        // Android Ktx
+        //endregion
+        //region Android Ktx
         const val ktx = "androidx.core:core-ktx:${Versions.KotlinAndroidExt.ktx}"
         const val fragmentKtx =
             "androidx.fragment:fragment-ktx:${Versions.KotlinAndroidExt.fragmentKtx}"
@@ -173,9 +175,11 @@ object Deps {
         const val workerKtx = "androidx.work:work-runtime-ktx:${Versions.KotlinAndroidExt.workKtx}"
         const val dynAnimKtx =
             "androidx.dynamicanimation-ktx:${Versions.KotlinAndroidExt.dynAnimKtx}"
-        // Testing stub
+        //endregion
+        //region Testing stub
         const val idlingEspresso =
             "androidx.test.espresso:espresso-idling-resource:${Versions.Test.espresso}"
+        //endregion
     }
 
     /**
@@ -207,20 +211,25 @@ object Deps {
      * The necessary libs only for the data layer.
      */
     object Data {
-        // Internet
+        //region Internet
+        const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.Network.okhttp3}"
         const val retrofit2 = "com.squareup.retrofit2:retrofit:${Versions.Network.retrofit2}"
         const val retrofit2ConverterGson =
             "com.squareup.retrofit2:converter-gson:${Versions.Network.retrofit2}"
-        // Database
+        //endregion
+        //region Database
         const val room = "androidx.room:room-runtime:${Versions.AndroidArchitectureComponent.room}"
         const val roomKtx = "androidx.room:room-ktx:${Versions.AndroidArchitectureComponent.room}"
         const val roomAnnotation =
             "androidx.room:room-compiler:${Versions.AndroidArchitectureComponent.room}"
         const val firebaseDB = Presentation.firebaseDB
-        // MMKV
-        const val mmkv = Presentation.mmkv
-        // Jsoup
-        const val jsoup = Presentation.jsoup
+        //endregion
+        //region MMKV
+        const val mmkv = "com.tencent:mmkv-static:${Versions.Database.mmkv}"
+        //endregion
+        //region Jsoup
+        const val jsoup = "org.jsoup:jsoup:${Versions.Parser.jsoup}"
+        //endregion
 
         const val appcompat = Presentation.appcompat
     }
@@ -263,11 +272,4 @@ object Deps {
      */
     object ExtTest
     //endregion
-
-    object Exoplayer {
-        const val exoplayer =
-            "com.google.android.exoplayer:exoplayer-core:${Versions.Player.exoplayer}"
-        const val exoplyerUi =
-            "com.google.android.exoplayer:exoplayer-ui:${Versions.Player.exoplayer}"
-    }
 }

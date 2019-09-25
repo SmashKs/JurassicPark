@@ -72,9 +72,4 @@ object Dependencies {
         "analytics" to Deps.Presentation.firebaseAnalytics
 //        "crashlytics" to Deps.Presentation.firebaseCrashlytics
     )
-
-    val player = hashMapOf(
-        "exoplayer" to Deps.Exoplayer.exoplayer,
-        "exoplyerUi" to Deps.Exoplayer.exoplyerUi
-    )
 }

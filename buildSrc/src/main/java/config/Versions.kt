@@ -144,8 +144,6 @@ object Versions {
      * Related reactive lib version.
      */
     object RxDep {
-        const val rxJava2 = "2.2.1"
-        const val rxPermission2 = "0.9.5@aar"
         const val rxBus = "2.0.1"
     }
 
