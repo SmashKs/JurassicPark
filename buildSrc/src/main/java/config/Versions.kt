@@ -32,8 +32,8 @@ object Versions {
      * Gradle android version.
      */
     object Android {
-        const val minSdk = 21
-        const val targetSdk = 28
+        const val minSdk = 23
+        const val targetSdk = 29
         const val buiildTool = "28.0.3"
         const val compileSdk = targetSdk
     }
@@ -133,7 +133,7 @@ object Versions {
     object Network {
         const val glide = "4.9.0"
         const val coil = "0.7.0"
-        const val retrofit2 = "2.6.1"
+        const val retrofit2 = "2.6.2"
         const val okhttp3 = "4.2.0"
         const val okhttpProfiler = "1.0.5"
         const val activityLauncher = "1.0.2"
