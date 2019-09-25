@@ -41,7 +41,7 @@ buildscript {
 //        classpath "org.jacoco:org.jacoco.core:0.8.4"
         classpath("android.arch.navigation:navigation-safe-args-gradle-plugin:1.0.0")
         classpath("com.google.gms:google-services:${config.Versions.Firebase.googleService}")
-        classpath("io.fabric.tools:gradle:1.31.1")
+//        classpath("io.fabric.tools:gradle:1.31.1")
     }
 }
 
@@ -65,7 +65,7 @@ subprojects {
             "app" -> {
                 plugin("com.android.application")
                 plugin("kotlin-android")
-                plugin("io.fabric")
+//                plugin("io.fabric")
             }
         }
         if (name == "data" || name == "app") {
