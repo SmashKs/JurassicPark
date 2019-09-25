@@ -22,35 +22,11 @@
  * SOFTWARE.
  */
 
-apply plugin: 'java-library'
-apply plugin: 'kotlin'
+@file:Suppress("NOTHING_TO_INLINE")
 
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-}
+package taiwan.no.one.ext.exceptions
 
-sourceCompatibility = "7"
-targetCompatibility = "7"
-buildscript {
-    ext.kotlin_version = '1.3.50'
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
-repositories {
-    mavenCentral()
-}
-compileKotlin {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}
-compileTestKotlin {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}
+inline fun UnsupportedOperation(): Nothing = throw UnsupportedOperationException()
+
+inline fun UnsupportedOperation(reason: String): Nothing =
+    throw UnsupportedOperationException(reason)

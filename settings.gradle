@@ -22,5 +22,4 @@
  * SOFTWARE.
  */
 
-rootProject.name='jurassicpark'
-include ':app', ':ext', ':ktx', ':domain', ':widget', ':data'
+include ':app', ':ext', ':ktx', ':domain', ':widget', ':data', ':device'
