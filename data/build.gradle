@@ -69,10 +69,22 @@ kapt {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation([project(":domain"), project(":ext")])
-    implementation(Dependencies.commonAndroidx.values())
+    implementation(Dependencies.kotlinAndroid.values())
+    //region Room
+    kapt(Deps.Data.roomAnnotation)
+    implementation(Deps.Data.room)
+    implementation(Deps.Data.roomKtx)
+    //endregion
+    //region Storage
     implementation(Deps.Data.mmkv)
-
+    //endregion
     //region Internet & ImageData loading
     implementation(Deps.Data.retrofit2)
+    //endregion
+    //region Web Parser
+    implementation(Deps.Data.jsoup)
+    //endregion
+    //region Json Parser
+    implementation(Deps.Global.gson)
     //endregion
 }
