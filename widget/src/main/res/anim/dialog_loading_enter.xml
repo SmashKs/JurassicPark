@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="utf-8"?>
+<!--
   ~ MIT License
   ~
   ~ Copyright (c) 2019 SmashKs
@@ -22,7 +23,8 @@
   ~ SOFTWARE.
   -->
 
-<set xmlns:android="http://schemas.android.com/apk/res/android"
+<set
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:duration="@integer/anim_dialog_duration"
     android:shareInterpolator="@anim/music_easing_interpolator">
     <scale
@@ -31,8 +33,8 @@
         android:pivotX="50%"
         android:pivotY="50%"
         android:toXScale="1.0"
-        android:toYScale="1.0" />
+        android:toYScale="1.0"/>
     <alpha
         android:fromAlpha="0"
-        android:toAlpha="1" />
+        android:toAlpha="1"/>
 </set>

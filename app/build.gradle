@@ -65,7 +65,6 @@ android {
         }
     }
     dexOptions {
-        javaMaxHeapSize = "4g"
         jumboMode = true
         preDexLibraries = true
         threadCount = 8
@@ -100,6 +99,12 @@ kapt {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation([project(":domain"), project(":data"), project(":ktx"), project(":device")])
+    //region Androidx SDK
+    implementation(Dependencies.commonAndroidx.values() + Dependencies.preziAndroidx.values())
+    kapt(Deps.Presentation.lifecycleCompiler)
+    // Android Ktx
+    implementation(Dependencies.preziKtx.values())
+    //endregion
     //region Kotlin
     implementation(Dependencies.kotlinAndroid.values())
     implementation(Deps.Presentation.androidCoroutine)

@@ -26,6 +26,7 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 import taiwan.no.one.widget.R
+import taiwan.no.one.widget.components.TypeFaceProvider
 
 /**
  * It's able to set a font from imported resource font.

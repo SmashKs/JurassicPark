@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="utf-8"?>
+<!--
   ~ MIT License
   ~
   ~ Copyright (c) 2019 SmashKs
@@ -22,7 +23,8 @@
   ~ SOFTWARE.
   -->
 
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cv_toast_base"
@@ -31,7 +33,8 @@
     android:layout_margin="@dimen/md_one_unit"
     app:cardBackgroundColor="@color/shark"
     app:cardCornerRadius="@dimen/md_one_half_unit"
-    app:cardElevation="@dimen/md_one_half_unit">
+    app:cardElevation="@dimen/md_one_half_unit"
+    >
 
     <com.no1.taiwan.stationmusicfm.widget.components.textview.FontTextView
         android:id="@+id/ftv_toast_msg"
@@ -39,6 +42,7 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/md_two_unit"
         android:textColor="@android:color/white"
-        tools:text="This is toast msg!!" />
+        tools:text="This is toast msg!!"
+        />
 </androidx.cardview.widget.CardView>
 

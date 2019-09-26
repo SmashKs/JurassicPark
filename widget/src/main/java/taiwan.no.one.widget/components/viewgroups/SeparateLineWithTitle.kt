@@ -22,6 +22,9 @@
  * SOFTWARE.
  */
 
+package taiwan.no.one.widget.components.viewgroups
+
+import FontTextView
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet

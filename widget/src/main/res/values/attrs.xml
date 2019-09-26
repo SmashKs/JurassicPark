@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="utf-8"?>
+<!--
   ~ MIT License
   ~
   ~ Copyright (c) 2019 SmashKs
@@ -25,17 +26,17 @@
 <resources>
     <!-- Customize Font Text View -->
     <declare-styleable name="FontTextView">
-        <attr name="textFont" format="string" />
+        <attr name="textFont" format="string"/>
     </declare-styleable>
 
     <!-- Customize Separate Line -->
     <declare-styleable name="SeparateLineWithTitle">
-        <attr name="sltTitle" format="string" />
-        <attr name="sltTitleSize" format="dimension" />
-        <attr name="sltTitleColor" format="color" />
-        <attr name="sltTextFont" format="string" />
-        <attr name="sltBetween" format="dimension" />
-        <attr name="sltLineColor" format="color" />
-        <attr name="sltLineHeight" format="dimension" />
+        <attr name="sltTitle" format="string"/>
+        <attr name="sltTitleSize" format="dimension"/>
+        <attr name="sltTitleColor" format="color"/>
+        <attr name="sltTextFont" format="string"/>
+        <attr name="sltBetween" format="dimension"/>
+        <attr name="sltLineColor" format="color"/>
+        <attr name="sltLineHeight" format="dimension"/>
     </declare-styleable>
 </resources>

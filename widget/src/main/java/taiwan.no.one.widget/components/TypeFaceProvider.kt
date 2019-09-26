@@ -22,6 +22,8 @@
  * SOFTWARE.
  */
 
+package taiwan.no.one.widget.components
+
 import android.content.Context
 import android.graphics.Typeface
 import java.util.Hashtable

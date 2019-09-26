@@ -29,9 +29,26 @@
     <option name="HTML_ELEMENTS_TO_INSERT_NEW_LINE_BEFORE" value="div,p,form,h1,h2,h3,html,body,thead,tbody,tfoot,li" />
     <option name="HTML_DO_NOT_INDENT_CHILDREN_OF" value="" />
     <AndroidXmlCodeStyleSettings>
+      <option name="LAYOUT_SETTINGS">
+        <value>
+          <option name="INSERT_BLANK_LINE_BEFORE_TAG" value="false" />
+          <option name="INSERT_LINE_BREAK_BEFORE_NAMESPACE_DECLARATION" value="true" />
+          <option name="INSERT_LINE_BREAK_AFTER_LAST_ATTRIBUTE" value="true" />
+        </value>
+      </option>
+      <option name="MANIFEST_SETTINGS">
+        <value>
+          <option name="INSERT_LINE_BREAK_BEFORE_NAMESPACE_DECLARATION" value="true" />
+        </value>
+      </option>
       <option name="VALUE_RESOURCE_FILE_SETTINGS">
         <value>
           <option name="WRAP_ATTRIBUTES" value="1" />
+        </value>
+      </option>
+      <option name="OTHER_SETTINGS">
+        <value>
+          <option name="INSERT_LINE_BREAK_BEFORE_NAMESPACE_DECLARATION" value="true" />
         </value>
       </option>
     </AndroidXmlCodeStyleSettings>
@@ -96,7 +113,9 @@
     </MarkdownNavigatorCodeStyleSettings>
     <XML>
       <option name="XML_ATTRIBUTE_WRAP" value="2" />
+      <option name="XML_KEEP_LINE_BREAKS" value="true" />
       <option name="XML_KEEP_BLANK_LINES" value="1" />
+      <option name="XML_SPACE_INSIDE_EMPTY_TAG" value="false" />
       <option name="XML_LEGACY_SETTINGS_IMPORTED" value="true" />
     </XML>
     <codeStyleSettings language="HTML">
