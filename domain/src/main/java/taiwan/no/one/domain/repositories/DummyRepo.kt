@@ -22,10 +22,11 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.domain.contracts
+package taiwan.no.one.domain.repositories
 
-// Generic with Type Parameters
+import taiwan.no.one.domain.contracts.Repository
+import taiwan.no.one.domain.models.Dummy
 
-typealias Params = HashMap<String, String>
-typealias AnyParams = HashMap<String, Any>
-typealias Fields = HashMap<String, String>
+interface DummyRepo : Repository {
+    fun fetchDummy(): Dummy
+}

@@ -22,15 +22,10 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.domain.contracts
+package taiwan.no.one.data.contracts.sub
 
-import taiwan.no.one.domain.core.AnyParams
-import taiwan.no.one.domain.core.Params
+import taiwan.no.one.domain.models.Dummy
 
-/**
- * The interface fo a data class's variables changes to the [HashMap].
- */
-interface ParameterContract {
-    fun toApiParam(): Params
-    fun toApiAnyParam(): AnyParams
+interface DummySub {
+    fun getDummy(): Dummy
 }

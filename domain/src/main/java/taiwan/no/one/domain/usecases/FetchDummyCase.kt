@@ -22,6 +22,18 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.domain
+package taiwan.no.one.domain.usecases
 
-class MyClass
+import taiwan.no.one.domain.contracts.Usecase
+import taiwan.no.one.domain.core.DeferredUsecase
+import taiwan.no.one.domain.models.Dummy
+import taiwan.no.one.domain.repositories.DummyRepo
+
+class FetchDummyCase(
+    private val dummyRepo: DummyRepo
+) : DeferredUsecase<Dummy, FetchDummyCase.Request>() {
+    override suspend fun acquireCase(parameter: Request?) =
+        Result.success(dummyRepo.fetchDummy())
+
+    data class Request(val id: Int) : Usecase.RequestValues
+}

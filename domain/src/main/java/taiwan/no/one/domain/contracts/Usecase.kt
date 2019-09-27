@@ -36,12 +36,8 @@ package taiwan.no.one.domain.contracts
  * vary data.
  *
  * @param R The parameters from Presentation layer to Data layer.
- * @property requestValues An interface for base class.
  */
-interface Usecase<R : Usecase.RequestValues> {
-    /** Provide a common parameter variable for the children class. */
-    var requestValues: R?
-
+interface Usecase<in R : Usecase.RequestValues> {
     /** Interface for wrap a data for passing to a request.*/
     interface RequestValues
 }

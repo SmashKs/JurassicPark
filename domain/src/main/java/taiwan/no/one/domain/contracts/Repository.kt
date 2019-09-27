@@ -24,13 +24,4 @@
 
 package taiwan.no.one.domain.contracts
 
-import taiwan.no.one.domain.core.AnyParams
-import taiwan.no.one.domain.core.Params
-
-/**
- * The interface fo a data class's variables changes to the [HashMap].
- */
-interface ParameterContract {
-    fun toApiParam(): Params
-    fun toApiAnyParam(): AnyParams
-}
+interface Repository

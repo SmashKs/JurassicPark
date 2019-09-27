@@ -22,15 +22,10 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.domain.contracts
+package taiwan.no.one.domain.core
 
-import taiwan.no.one.domain.core.AnyParams
-import taiwan.no.one.domain.core.Params
+// Generic with Type Parameters
 
-/**
- * The interface fo a data class's variables changes to the [HashMap].
- */
-interface ParameterContract {
-    fun toApiParam(): Params
-    fun toApiAnyParam(): AnyParams
-}
+typealias Params = HashMap<String, String>
+typealias AnyParams = HashMap<String, Any>
+typealias Fields = HashMap<String, String>

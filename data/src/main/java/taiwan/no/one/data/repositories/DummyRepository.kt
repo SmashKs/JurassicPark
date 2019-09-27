@@ -22,25 +22,13 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.domain.contracts
+package taiwan.no.one.data.repositories
 
-/**
- * The super class response from the data layer. There're three result of the response [Loading],
- * [Success], and [Error] for HTTP result.
- */
-sealed class ResponseState<T> constructor(val data: T? = null) {
-    /**
-     * A request is still processing from a remote/local service.
-     */
-    class Loading<T>(data: T? = null) : ResponseState<T>(data)
+import taiwan.no.one.data.contracts.DataStore
+import taiwan.no.one.domain.repositories.DummyRepo
 
-    /**
-     * A request success getting a result from a remote/local service.
-     */
-    class Success<T>(data: T? = null) : ResponseState<T>(data)
-
-    /**
-     * A request sent then a remote/local service has happened an error.
-     */
-    class Error<T>(data: T? = null, val msg: String = "") : ResponseState<T>(data)
+class DummyRepository(
+    private val local: DataStore
+) : DummyRepo {
+    override fun fetchDummy() = local.getDummy()
 }

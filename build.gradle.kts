@@ -136,7 +136,8 @@ allprojects {
                     "-Xuse-experimental=kotlin.Experimental",
                     "-Xuse-experimental=kotlin.ExperimentalStdlibApi",
                     "-Xuse-experimental=kotlin.ExperimentalContracts",
-                    "-Xuse-experimental=org.mylibrary.ExperimentalMarker"
+                    "-Xuse-experimental=org.mylibrary.ExperimentalMarker",
+                    "-Xallow-result-return-type"
                 )
             }
         }

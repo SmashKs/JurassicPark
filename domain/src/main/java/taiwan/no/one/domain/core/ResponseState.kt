@@ -22,15 +22,25 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.domain.contracts
-
-import taiwan.no.one.domain.core.AnyParams
-import taiwan.no.one.domain.core.Params
+package taiwan.no.one.domain.core
 
 /**
- * The interface fo a data class's variables changes to the [HashMap].
+ * The super class response from the data layer. There're three result of the response [Loading],
+ * [Success], and [Error] for HTTP result.
  */
-interface ParameterContract {
-    fun toApiParam(): Params
-    fun toApiAnyParam(): AnyParams
+sealed class ResponseState<out T> constructor(val data: T? = null) {
+    /**
+     * A request is still processing from a remote/local service.
+     */
+    class Loading<T>(data: T? = null) : ResponseState<T>(data)
+
+    /**
+     * A request success getting a result from a remote/local service.
+     */
+    class Success<T>(data: T? = null) : ResponseState<T>(data)
+
+    /**
+     * A request sent then a remote/local service has happened an error.
+     */
+    class Error<T>(data: T? = null, val msg: String = "") : ResponseState<T>(data)
 }

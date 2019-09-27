@@ -22,15 +22,11 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.domain.contracts
+package taiwan.no.one.data.stores
 
-import taiwan.no.one.domain.core.AnyParams
-import taiwan.no.one.domain.core.Params
+import taiwan.no.one.data.contracts.DataStore
+import taiwan.no.one.ext.exceptions.UnsupportedOperation
 
-/**
- * The interface fo a data class's variables changes to the [HashMap].
- */
-interface ParameterContract {
-    fun toApiParam(): Params
-    fun toApiAnyParam(): AnyParams
+class RemoteStore : DataStore {
+    override fun getDummy() = UnsupportedOperation()
 }

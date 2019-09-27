@@ -22,15 +22,17 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.domain.contracts
+package taiwan.no.one.domain.core
 
-import taiwan.no.one.domain.core.AnyParams
-import taiwan.no.one.domain.core.Params
+import taiwan.no.one.domain.contracts.Usecase
+import taiwan.no.one.domain.contracts.Usecase.RequestValues
 
 /**
- * The interface fo a data class's variables changes to the [HashMap].
+ * A base abstract class for wrapping a coroutine [DeferredUsecase] object and do the
+ * error handling when an error or cancellation happened.
  */
-interface ParameterContract {
-    fun toApiParam(): Params
-    fun toApiAnyParam(): AnyParams
+abstract class DeferredUsecase<out T : Any, in R : RequestValues> : Usecase<R> {
+    internal abstract suspend fun acquireCase(parameter: R? = null): Result<T>
+
+    open suspend fun execute(parameter: R? = null) = acquireCase(parameter)
 }
