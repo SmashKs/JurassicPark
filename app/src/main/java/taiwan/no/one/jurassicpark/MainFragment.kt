@@ -24,13 +24,11 @@
 
 package taiwan.no.one.jurassicpark
 
-import taiwan.no.one.jurassicpark.core.BaseActivity
-import taiwan.no.one.jurassicpark.databinding.ActivityMainBinding
+import taiwan.no.one.jurassicpark.core.BaseFragment
 
-class MainActivity : BaseActivity() {
-    override val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+class MainFragment : BaseFragment<MainActivity>() {
+    override fun provideInflateView() = R.layout.activity_main
 
     override fun viewComponentBinding() {
-        binding.tvMsg.text = "123"
     }
 }
