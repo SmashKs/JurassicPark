@@ -35,19 +35,18 @@ buildscript {
     }
     dependencies {
         classpath("com.android.tools.build:gradle:3.6.0-alpha12")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${config.Versions.Kotlin.kotlinLib}")
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+        classpath(config.GradleDependency.SAFE_ARGS)
+        classpath(config.GradleDependency.GOOGLE_SERVICE)
 //        classpath "org.jacoco:org.jacoco.core:0.8.4"
-        classpath("android.arch.navigation:navigation-safe-args-gradle-plugin:1.0.0")
-        classpath("com.google.gms:google-services:${config.Versions.Firebase.googleService}")
 //        classpath("io.fabric.tools:gradle:1.31.1")
     }
 }
 
 plugins {
-    id("io.gitlab.arturbosch.detekt").version(config.Versions.Plugin.detekt)
-    id("com.github.ben-manes.versions").version(config.Versions.Plugin.versionUpdater)
+    id(config.GradleDependency.DETEKT).version(config.GradleDependency.Version.DETEKT)
+    id(config.GradleDependency.GRADLE_VERSION_UPDATER).version(config.GradleDependency.Version.VERSION_UPDATER)
 }
 
 subprojects {
@@ -72,13 +71,13 @@ subprojects {
             plugin("kotlin-android-extensions")
             plugin("org.jetbrains.kotlin.kapt")
         }
-        plugin("io.gitlab.arturbosch.detekt")
+        plugin(config.GradleDependency.DETEKT)
 //        plugin("org.jlleitschuh.gradle.ktlint")
     }
     //endregion
 
     //region Detekt
-    val detektVersion = config.Versions.Plugin.detekt
+    val detektVersion = config.GradleDependency.Version.DETEKT
     detekt {
         toolVersion = detektVersion
         debug = true

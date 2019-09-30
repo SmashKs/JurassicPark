@@ -22,5 +22,16 @@
  * SOFTWARE.
  */
 
-include ':app', ':ext', ':ktx', ':domain', ':widget', ':data', ':device'
-include ':core'
+package config
+
+object CoreDependency {
+    object Version {
+        const val KOTLIN = "1.3.50"
+        const val KOTLIN_COROUTINE = "1.3.1"
+    }
+
+    const val KOTLIN = "org.jetbrains.kotlin:kotlin-stdlib:${Version.KOTLIN}"
+    const val KOTLIN_REFLECT = "org.jetbrains.kotlin:kotlin-reflect:${Version.KOTLIN}"
+    const val KOTLIN_COROUTINE =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Version.KOTLIN_COROUTINE}"
+}

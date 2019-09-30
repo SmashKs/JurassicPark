@@ -22,5 +22,6 @@
  * SOFTWARE.
  */
 
-include ':app', ':ext', ':ktx', ':domain', ':widget', ':data', ':device'
-include ':core'
+package config
+
+object CommonModuleDependency

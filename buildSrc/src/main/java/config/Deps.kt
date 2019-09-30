@@ -254,22 +254,4 @@ object Deps {
         const val quickDialog = Presentation.quickDialog
         const val constraintLayout = Presentation.constraintLayout
     }
-
-    /**
-     * The necessary unit test libs only for the widget module.
-     */
-    object WidgetTest
-    //endregion
-
-    //region Ext
-    /**
-     * The necessary libs only for the extension module.
-     */
-    object Ext
-
-    /**
-     * The necessary unit test libs only for the extension module.
-     */
-    object ExtTest
-    //endregion
 }
