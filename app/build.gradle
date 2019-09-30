@@ -22,24 +22,25 @@
  * SOFTWARE.
  */
 
+
+import config.AndroidConfiguration
 import config.Dependencies
-import config.Deps
-import config.Versions
+import config.LibraryDependency
 import resources.FeatureRes
 
 android {
-    compileSdkVersion Versions.Android.compileSdk
+    compileSdkVersion AndroidConfiguration.COMPILE_SDK
     defaultConfig {
-        applicationId "taiwan.no.one.jurassicpark"
-        minSdkVersion Versions.Android.minSdk
-        targetSdkVersion Versions.Android.targetSdk
+        applicationId AndroidConfiguration.ID
+        minSdkVersion AndroidConfiguration.MIN_SDK
+        targetSdkVersion AndroidConfiguration.TARGET_SDK
         versionCode 1
         versionName "1.0"
         multiDexEnabled = true
         vectorDrawables.useSupportLibrary = true
-        renderscriptTargetApi = Versions.Android.minSdk
+        renderscriptTargetApi = AndroidConfiguration.MIN_SDK
         renderscriptSupportModeEnabled = true
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner AndroidConfiguration.TEST_INSTRUMENTATION_RUNNER
         consumerProguardFiles 'consumer-rules.pro'
     }
     buildTypes {
@@ -97,16 +98,13 @@ kapt {
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation([project(":domain"), project(":data"), project(":ktx"), project(":device")])
-    //region Androidx SDK
-    implementation(Dependencies.commonAndroidx.values() + Dependencies.preziAndroidx.values())
-    kapt(Deps.Presentation.lifecycleCompiler)
-    // Android Ktx
-    implementation(Dependencies.preziKtx.values())
-    //endregion
-    //region Kotlin
-    implementation(Dependencies.kotlinAndroid.values())
-    implementation(Deps.Presentation.androidCoroutine)
-    //endregion
+    api fileTree(dir: "libs", include: ["*.jar"])
+    api([project(":core"), project(":ktx"), project(":device")])
+    api(LibraryDependency.KNIFER)
+    api(LibraryDependency.MMKV)
+    api(LibraryDependency.COIL)
+    api(Dependencies.androidxKtxDeps.values())
+    api(Dependencies.androidxDeps.values())
+    api(Dependencies.internetDeps.values())
+    api(Dependencies.uiDeps.values())
 }

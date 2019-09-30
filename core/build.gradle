@@ -22,38 +22,81 @@
  * SOFTWARE.
  */
 
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+import config.AndroidConfiguration
+import config.Dependencies
+import config.LibraryDependency
+import resources.FeatureRes
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
-
+    compileSdkVersion AndroidConfiguration.COMPILE_SDK
     defaultConfig {
-        minSdkVersion 23
-        targetSdkVersion 29
+        minSdkVersion AndroidConfiguration.MIN_SDK
+        targetSdkVersion AndroidConfiguration.TARGET_SDK
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled = true
+        vectorDrawables.useSupportLibrary = true
+        renderscriptTargetApi = AndroidConfiguration.MIN_SDK
+        renderscriptSupportModeEnabled = true
+        testInstrumentationRunner AndroidConfiguration.TEST_INSTRUMENTATION_RUNNER
         consumerProguardFiles 'consumer-rules.pro'
     }
-
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            minifyEnabled = true
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+        }
+        debug {
+            splits.abi.enable = false
+            splits.density.enable = false
+            aaptOptions.cruncherEnabled = false
+            minifyEnabled = false
+            // Only use this flag on builds you don't proguard or upload to beta-by-crashlytics.
+            testCoverageEnabled = false
+            ext.alwaysUpdateBuildId = false
+            crunchPngs = false // Enabled by default for RELEASE build type
         }
     }
+    sourceSets {
+        main {
+            res.srcDirs += FeatureRes.dirs
+        }
+    }
+    dexOptions {
+        jumboMode = true
+        preDexLibraries = true
+        threadCount = 8
+    }
+    packagingOptions {
+        exclude "META-INF/atomicfu.kotlin_module"
+        exclude "META-INF/kotlinx-coroutines-core.kotlin_module"
+    }
+    testOptions { unitTests.returnDefaultValues = true }
+    lintOptions { abortOnError = false }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+    viewBinding.enabled = true
+}
 
+androidExtensions {
+    experimental = true
+    defaultCacheImplementation = "SPARSE_ARRAY"
+}
+
+kapt {
+    useBuildCache = true
+    correctErrorTypes = true
+    mapDiagnosticLocations = true
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    api(Dependencies.kotlinDeps.values() + Dependencies.kotlinAndroidDeps.values())
+    api(Dependencies.commonAndroidxDeps.values())
+    api(LibraryDependency.GSON)
 }

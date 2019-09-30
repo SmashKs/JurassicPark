@@ -57,7 +57,7 @@ subprojects {
                 plugin("java-library")
                 plugin("kotlin")
             }
-            "widget", "ktx", "device", "data" -> {
+            "widget", "ktx", "device", "data", "core" -> {
                 plugin("com.android.library")
                 plugin("kotlin-android")
             }
@@ -67,7 +67,7 @@ subprojects {
 //                plugin("io.fabric")
             }
         }
-        if (name == "data" || name == "app") {
+        if (name == "data" || name == "app" || name == "core") {
             plugin("kotlin-android-extensions")
             plugin("org.jetbrains.kotlin.kapt")
         }

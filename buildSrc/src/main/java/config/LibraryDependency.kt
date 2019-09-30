@@ -53,7 +53,7 @@ object LibraryDependency {
 
         const val ROOM = "2.2.0-rc01"
         const val MMKV = "1.0.23"
-        const val GSON = "1.5.1"
+        const val GSON = "2.8.5"
 
         const val COIL = "0.7.0"
         const val RETROFIT2 = "2.6.2"
@@ -75,7 +75,7 @@ object LibraryDependency {
     }
 
     const val ANDROID_COROUTINE =
-        "org.jetbrains.kotlinx:kotlinx-coroutines-android:${CoreDependency.KOTLIN_COROUTINE}"
+        "org.jetbrains.kotlinx:kotlinx-coroutines-android:${CoreDependency.Version.KOTLIN_COROUTINE}"
     //region Jieyi
     const val KNIFER = "com.devrapid.jieyi:kotlinknifer:${Version.KINFER}"
     const val ARV = "com.devrapid.jieyi:adaptiverecyclerview:${Version.ARV}"

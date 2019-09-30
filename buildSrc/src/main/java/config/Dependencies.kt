@@ -72,4 +72,62 @@ object Dependencies {
         "analytics" to Deps.Presentation.firebaseAnalytics
 //        "crashlytics" to Deps.Presentation.firebaseCrashlytics
     )
+
+    private val kotlinDeps = hashMapOf(
+        "kotlin" to CoreDependency.KOTLIN,
+        "reflect" to CoreDependency.KOTLIN_REFLECT,
+        "coroutine" to CoreDependency.KOTLIN_COROUTINE
+    )
+
+    val kotlinAndroidDeps = kotlinDeps.apply {
+        put("coroutineForAndroid", LibraryDependency.ANDROID_COROUTINE)
+    }
+
+    private val commonAndroidDeps = hashMapOf(
+        "appcompat" to LibraryDependency.APPCOMPAT,
+        "lifecycle" to LibraryDependency.LIFECYCLE
+    )
+
+    private val commonKtxDeps = hashMapOf(
+        "ktx" to LibraryDependency.KTX,
+        "fragmentKtx" to LibraryDependency.FRAGMENT_KTX,
+        "viewmodelKtx" to LibraryDependency.VIEWMODEL_KTX,
+        "livedataKtx" to LibraryDependency.LIVEDATA_KTX,
+        "runtimeKtx" to LibraryDependency.RUNTIME_KTX
+    )
+
+    val commonAndroidxDeps = commonAndroidDeps + commonKtxDeps
+
+    val androidxKtxDeps = commonKtxDeps.apply {
+        put("paletteKtx", LibraryDependency.PALETTE_KTX)
+        put("collectionKtx", LibraryDependency.COLLECTION_KTX)
+        put("navigationCommonKtx", LibraryDependency.NAVIGATION_COMMON_KTX)
+        put("navigationFragmentKtx", LibraryDependency.NAVIGATION_FRAGMENT_KTX)
+        put("navigationUiKtx", LibraryDependency.NAVIGATION_UI_KTX)
+        put("workerKtx", LibraryDependency.WORKER_KTX)
+//        "dynAnimKtx" to Deps.Presentation.dynAnimKtx
+    }
+
+    val androidxDeps = commonAndroidDeps.apply {
+        put("dexTool", LibraryDependency.DEX_TOOL)
+        put("lifecycle", LibraryDependency.LIFECYCLE)
+        put("materialDesign", LibraryDependency.MATERIAL_DESIGN)
+        put("recyclerview", LibraryDependency.RECYCLERVIEW)
+        put("cardview", LibraryDependency.CARDVIEW)
+        put("coordinatorLayout", LibraryDependency.COORDINATOR_LAYOUT)
+        put("constraintLayout", LibraryDependency.CONSTRAINT_LAYOUT)
+        put("annot", LibraryDependency.ANNOT)
+    }
+
+    val internetDeps = hashMapOf(
+        "okhttp3" to LibraryDependency.OKHTTP,
+        "retrofit2" to LibraryDependency.RETROFIT2,
+        "retrofit2_converter" to LibraryDependency.RETROFIT2_CONVERTER_GSON
+    )
+
+    val uiDeps = hashMapOf(
+        "lottie" to LibraryDependency.LOTTIE,
+        "adaptiveRecyclerView" to LibraryDependency.ARV,
+        "quickDialog" to LibraryDependency.QUICK_DIALOG
+    )
 }
