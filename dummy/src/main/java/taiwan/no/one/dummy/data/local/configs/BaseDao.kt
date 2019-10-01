@@ -22,13 +22,49 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark
+package taiwan.no.one.dummy.data.local.configs
 
-import taiwan.no.one.core.presentation.fragment.BaseFragment
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Update
 
-class MainFragment : BaseFragment<MainActivity>() {
-    override fun provideInflateView() = R.layout.activity_main
+/**
+ * Integrated the base [androidx.room.Room] database operations.
+ * Thru [androidx.room.Room] we can just define the interfaces that we want to
+ * access for from a local database.
+ * Using prefix name (select), (insert), (update), (delete)
+ */
+internal interface BaseDao<in T> {
+    /**
+     * Insert an object in the database.
+     *
+     * @param obj the object to be inserted.
+     */
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(obj: T)
 
-    override fun viewComponentBinding() {
-    }
+    /**
+     * Insert an array of objects in the database.
+     *
+     * @param obj the objects to be inserted.
+     */
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    fun insert(vararg obj: T)
+
+    /**
+     * Update an object from the database.
+     *
+     * @param obj the object to be updated.
+     */
+    @Update
+    fun update(obj: T)
+
+    /**
+     * Delete an object from the database.
+     *
+     * @param obj the object to be deleted.
+     */
+    @Delete
+    fun delete(obj: T)
 }

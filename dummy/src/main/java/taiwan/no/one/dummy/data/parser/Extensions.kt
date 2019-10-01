@@ -22,13 +22,30 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark
+package taiwan.no.one.dummy.data.parser
 
-import taiwan.no.one.core.presentation.fragment.BaseFragment
+import android.content.Context
+import android.util.Log
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.google.gson.stream.JsonReader
 
-class MainFragment : BaseFragment<MainActivity>() {
-    override fun provideInflateView() = R.layout.activity_main
+internal inline fun <reified T> Context.parseObjectFromJson(jsonFileName: String): T? {
+    var dataObj: T? = null
 
-    override fun viewComponentBinding() {
+    try {
+        val gson = Gson().newBuilder().create()
+        applicationContext.assets.open(jsonFileName).use { inputStream ->
+            JsonReader(inputStream.reader()).use { jsonReader ->
+                val type = object : TypeToken<T>() {}.type
+                dataObj = gson.fromJson<T>(jsonReader, type)
+            }
+        }
     }
+    catch (e: Exception) {
+        e.printStackTrace()
+        Log.e("data layer", "Error for parsing json account", e)
+    }
+
+    return dataObj
 }

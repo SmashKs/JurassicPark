@@ -22,13 +22,11 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark
+package taiwan.no.one.dummy.domain.repository
 
-import taiwan.no.one.core.presentation.fragment.BaseFragment
+import taiwan.no.one.core.domain.repository.Repository
+import taiwan.no.one.dummy.domain.model.Dummy
 
-class MainFragment : BaseFragment<MainActivity>() {
-    override fun provideInflateView() = R.layout.activity_main
-
-    override fun viewComponentBinding() {
-    }
+internal interface DummyRepo : Repository {
+    fun fetchDummy(): Dummy
 }

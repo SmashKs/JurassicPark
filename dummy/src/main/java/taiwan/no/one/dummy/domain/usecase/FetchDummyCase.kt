@@ -22,13 +22,18 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark
+package taiwan.no.one.dummy.domain.usecase
 
-import taiwan.no.one.core.presentation.fragment.BaseFragment
+import taiwan.no.one.core.domain.usecase.DeferredUsecase
+import taiwan.no.one.core.domain.usecase.Usecase
+import taiwan.no.one.dummy.domain.model.Dummy
+import taiwan.no.one.dummy.domain.repository.DummyRepo
 
-class MainFragment : BaseFragment<MainActivity>() {
-    override fun provideInflateView() = R.layout.activity_main
+internal class FetchDummyCase(
+    private val dummyRepo: DummyRepo
+) : DeferredUsecase<Dummy, FetchDummyCase.Request>() {
+    override suspend fun acquireCase(parameter: Request?) =
+        Result.success(dummyRepo.fetchDummy())
 
-    override fun viewComponentBinding() {
-    }
+    data class Request(val id: Int) : Usecase.RequestValues
 }

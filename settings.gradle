@@ -22,5 +22,4 @@
  * SOFTWARE.
  */
 
-include ':app', ':ext', ':ktx', ':domain', ':widget', ':data', ':device'
-include ':core'
+include ':app', ':ktx', ':ext', ':widget', ':device', ':core', ':dummy'

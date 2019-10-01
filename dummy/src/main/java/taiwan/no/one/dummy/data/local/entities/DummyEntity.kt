@@ -22,13 +22,16 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark
+package taiwan.no.one.dummy.data.local.entities
 
-import taiwan.no.one.core.presentation.fragment.BaseFragment
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import java.util.Date
 
-class MainFragment : BaseFragment<MainActivity>() {
-    override fun provideInflateView() = R.layout.activity_main
-
-    override fun viewComponentBinding() {
-    }
-}
+@Entity(tableName = "table_dummy")
+internal data class DummyEntity(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+    val content: String,
+    val updated: Date = Date()
+)

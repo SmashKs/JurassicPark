@@ -22,13 +22,19 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark
+package taiwan.no.one.dummy.data.local.converters
 
-import taiwan.no.one.core.presentation.fragment.BaseFragment
+import androidx.room.TypeConverter
+import java.util.Date
 
-class MainFragment : BaseFragment<MainActivity>() {
-    override fun provideInflateView() = R.layout.activity_main
+internal class DateConvert {
+    @TypeConverter
+    fun fromTimestamp(value: Long?): Date? {
+        return value?.let(::Date)
+    }
 
-    override fun viewComponentBinding() {
+    @TypeConverter
+    fun dateToTimestamp(date: Date?): Long? {
+        return date?.time
     }
 }

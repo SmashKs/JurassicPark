@@ -46,7 +46,6 @@ android {
     buildTypes {
         release {
             minifyEnabled = true
-            shrinkResources = true
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
         debug {
@@ -84,6 +83,8 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8
     }
     viewBinding.enabled = true
+
+    dynamicFeatures = [":dummy"]
 }
 
 androidExtensions {

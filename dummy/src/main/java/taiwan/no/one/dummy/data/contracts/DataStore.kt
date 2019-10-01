@@ -22,13 +22,8 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark
+package taiwan.no.one.dummy.data.contracts
 
-import taiwan.no.one.core.presentation.fragment.BaseFragment
+import taiwan.no.one.dummy.data.contracts.sub.DummySub
 
-class MainFragment : BaseFragment<MainActivity>() {
-    override fun provideInflateView() = R.layout.activity_main
-
-    override fun viewComponentBinding() {
-    }
-}
+internal interface DataStore : DummySub

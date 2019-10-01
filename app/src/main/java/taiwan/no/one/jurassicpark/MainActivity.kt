@@ -24,13 +24,9 @@
 
 package taiwan.no.one.jurassicpark
 
-import taiwan.no.one.jurassicpark.core.BaseActivity
+import taiwan.no.one.core.presentation.activity.BaseActivity
 import taiwan.no.one.jurassicpark.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity() {
     override val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-
-    override fun viewComponentBinding() {
-        binding.tvMsg.text = "123"
-    }
 }

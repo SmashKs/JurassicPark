@@ -22,13 +22,12 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark
+package taiwan.no.one.dummy.presentation
 
-import taiwan.no.one.core.presentation.fragment.BaseFragment
+import taiwan.no.one.core.presentation.activity.BaseActivity
+import taiwan.no.one.dummy.databinding.ActivityDummyBinding
 
-class MainFragment : BaseFragment<MainActivity>() {
-    override fun provideInflateView() = R.layout.activity_main
+class DummyActivity : BaseActivity() {
+    override val binding by lazy { ActivityDummyBinding.inflate(layoutInflater) }
 
-    override fun viewComponentBinding() {
-    }
 }

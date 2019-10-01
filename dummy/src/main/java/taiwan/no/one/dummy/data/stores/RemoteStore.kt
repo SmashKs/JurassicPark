@@ -22,13 +22,11 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark
+package taiwan.no.one.dummy.data.stores
 
-import taiwan.no.one.core.presentation.fragment.BaseFragment
+import taiwan.no.one.dummy.data.contracts.DataStore
+import taiwan.no.one.ext.exceptions.UnsupportedOperation
 
-class MainFragment : BaseFragment<MainActivity>() {
-    override fun provideInflateView() = R.layout.activity_main
-
-    override fun viewComponentBinding() {
-    }
+internal class RemoteStore : DataStore {
+    override fun getDummy() = UnsupportedOperation()
 }

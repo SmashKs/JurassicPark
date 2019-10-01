@@ -22,13 +22,11 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark
+package taiwan.no.one.dummy.data.local.services.v1
 
-import taiwan.no.one.core.presentation.fragment.BaseFragment
+import androidx.room.Dao
+import taiwan.no.one.dummy.data.local.configs.BaseDao
+import taiwan.no.one.dummy.data.local.entities.DummyEntity
 
-class MainFragment : BaseFragment<MainActivity>() {
-    override fun provideInflateView() = R.layout.activity_main
-
-    override fun viewComponentBinding() {
-    }
-}
+@Dao
+internal abstract class DummyDao : BaseDao<DummyEntity>
