@@ -24,6 +24,8 @@
 
 package taiwan.no.one.dummy.data.contracts.sub
 
-interface DummySub {
+import taiwan.no.one.dummy.domain.model.Dummy
+
+internal interface DummySub {
     fun getDummy(): Dummy
 }

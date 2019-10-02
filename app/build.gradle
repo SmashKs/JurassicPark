@@ -101,6 +101,7 @@ kapt {
 dependencies {
     api fileTree(dir: "libs", include: ["*.jar"])
     api([project(":core"), project(":ktx"), project(":device")])
+    api(LibraryDependency.PLAY_CORE)
     api(LibraryDependency.KNIFER)
     api(LibraryDependency.MMKV)
     api(LibraryDependency.COIL)

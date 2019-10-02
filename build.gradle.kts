@@ -61,6 +61,10 @@ subprojects {
                 plugin("com.android.library")
                 plugin("kotlin-android")
             }
+            "dummy" -> {
+                plugin("com.android.dynamic-feature")
+                plugin("kotlin-android")
+            }
             "app" -> {
                 plugin("com.android.application")
                 plugin("kotlin-android")

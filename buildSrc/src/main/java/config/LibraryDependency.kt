@@ -54,6 +54,7 @@ object LibraryDependency {
         const val ROOM = "2.2.0-rc01"
         const val MMKV = "1.0.23"
         const val GSON = "2.8.5"
+        const val PLAY_CORE = "1.6.3"
 
         const val COIL = "0.7.0"
         const val RETROFIT2 = "2.6.2"
@@ -117,6 +118,7 @@ object LibraryDependency {
     //endregion
 
     const val GSON = "com.google.code.gson:gson:${Version.GSON}"
+    const val PLAY_CORE = "com.google.android.play:core:${Version.PLAY_CORE}"
     //region Internet
     const val OKHTTP = "com.squareup.okhttp3:okhttp:${Version.OKHTTP3}"
     const val RETROFIT2 = "com.squareup.retrofit2:retrofit:${Version.RETROFIT2}"

@@ -24,11 +24,6 @@
 
 package taiwan.no.one.jurassicpark
 
-import taiwan.no.one.core.presentation.fragment.BaseFragment
+import com.google.android.play.core.splitcompat.SplitCompatApplication
 
-class MainFragment : BaseFragment<MainActivity>() {
-    override fun provideInflateView() = R.layout.activity_main
-
-    override fun viewComponentBinding() {
-    }
-}
+class JurassicParkApp : SplitCompatApplication()
