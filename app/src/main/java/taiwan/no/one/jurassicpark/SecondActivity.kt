@@ -36,7 +36,6 @@ class SecondActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_second)
-        setContentView(binding.root)
 
         binding.tvMsg.text = "This is second Activity ${args.id}"
     }

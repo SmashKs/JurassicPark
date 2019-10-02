@@ -24,6 +24,7 @@
 
 package taiwan.no.one.jurassicpark
 
+import android.net.Uri
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.activity_second.btnClick
 import taiwan.no.one.core.presentation.fragment.BaseFragment
@@ -41,7 +42,8 @@ class MainFragment : BaseFragment<MainActivity>() {
      */
     override fun componentListenersBinding() {
         btnClick.setOnClickListener {
-            findNavController().navigate(MainFragmentDirections.actionFragmentSecondToActivitySecond(13))
+            //            findNavController().navigate(MainFragmentDirections.actionFragmentSecondToActivitySecond(13))
+            findNavController().navigate(Uri.parse("https://main.park.com/32"))
         }
     }
 }

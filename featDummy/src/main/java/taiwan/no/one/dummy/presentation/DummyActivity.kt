@@ -24,8 +24,6 @@
 
 package taiwan.no.one.dummy.presentation
 
-import android.content.Context
-import com.google.android.play.core.splitcompat.SplitCompat
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import taiwan.no.one.core.presentation.activity.BaseActivity
@@ -34,16 +32,10 @@ import taiwan.no.one.dummy.databinding.ActivityDummyBinding
 class DummyActivity : BaseActivity() {
     override val binding by lazy { ActivityDummyBinding.inflate(layoutInflater) }
 
-    override fun attachBaseContext(newBase: Context?) {
-        super.attachBaseContext(newBase)
-        SplitCompat.installActivity(this)
-    }
-
     override fun onStart() {
         super.onStart()
         launch {
             delay(1000)
-
         }
     }
 }

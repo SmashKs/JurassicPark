@@ -43,8 +43,10 @@
                 android:defaultValue="0"
                 app:argType="integer"/>
         </action>
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="main.park.com/{id}"/>
     </fragment>
-
     <activity
         android:id="@+id/activitySecond"
         android:name="taiwan.no.one.jurassicpark.SecondActivity"
@@ -54,5 +56,8 @@
             android:name="id"
             android:defaultValue="0"
             app:argType="integer"/>
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="second.park.com"/>
     </activity>
 </navigation>

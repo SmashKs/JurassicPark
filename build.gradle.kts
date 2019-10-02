@@ -61,7 +61,7 @@ subprojects {
                 plugin("com.android.library")
                 plugin("kotlin-android")
             }
-            "dummy" -> {
+            "featDummy" -> {
                 plugin("com.android.dynamic-feature")
                 plugin("kotlin-android")
                 plugin("androidx.navigation.safeargs.kotlin")

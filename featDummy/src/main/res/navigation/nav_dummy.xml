@@ -35,13 +35,16 @@
         android:name="taiwan.no.one.dummy.presentation.DummyFragment"
         android:label="Dummy Fragment"
         tools:layout="@layout/fragment_dummy">
-        <!--        <action-->
-        <!--            android:id="@+id/action_fragment_dummy_to_dummyDetailActivity"-->
-        <!--            app:destination="@id/dummyDetailActivity"/>-->
+        <action
+            android:id="@+id/action_fragment_dummy_to_dummyDetailActivity"
+            app:destination="@id/dummyDetailActivity"/>
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="dummy.com"/>
     </fragment>
-    <!--    <activity-->
-    <!--        android:id="@+id/dummyDetailActivity"-->
-    <!--        android:name="taiwan.no.one.dummy.presentation.DummyDetailActivity"-->
-    <!--        android:label="DummyDetailActivity"-->
-    <!--        tools:layout="@layout/activity_dummy_detail"/>-->
+    <activity
+        android:id="@+id/dummyDetailActivity"
+        android:name="taiwan.no.one.dummy.presentation.DummyDetailActivity"
+        android:label="DummyDetailActivity"
+        tools:layout="@layout/activity_dummy_detail"/>
 </navigation>

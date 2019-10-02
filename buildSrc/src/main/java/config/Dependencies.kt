@@ -61,7 +61,7 @@ object Dependencies {
     }
 
     val androidxDeps = commonAndroidDeps.apply {
-        put("dexTool", LibraryDependency.DEX_TOOL)
+        //        put("dexTool", LibraryDependency.DEX_TOOL)
         put("lifecycle", LibraryDependency.LIFECYCLE)
         put("materialDesign", LibraryDependency.MATERIAL_DESIGN)
         put("recyclerview", LibraryDependency.RECYCLERVIEW)

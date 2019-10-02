@@ -84,7 +84,7 @@ android {
     }
     viewBinding.enabled = true
 
-    dynamicFeatures = [":dummy"]
+    dynamicFeatures = [":featDummy"]
 }
 
 androidExtensions {
