@@ -25,54 +25,6 @@
 package config
 
 object Dependencies {
-    private val basicKotlin = hashMapOf(
-        "kotlin" to Deps.Global.kotlin,
-        "reflect" to Deps.Global.reflect
-    )
-
-    val kotlinAndroid = basicKotlin.apply {
-        put("coroutineForAndroid", Deps.Presentation.androidCoroutine)
-    }
-
-    val kotlin = basicKotlin.apply {
-        put("coroutine", Deps.Global.coroutine)
-    }
-
-    val commonAndroidx = hashMapOf(
-        "appcompat" to Deps.Presentation.appcompat,
-        "coordinatorLayout" to Deps.Presentation.coordinatorLayout,
-        "lifecycle" to Deps.Presentation.lifecycle
-    )
-
-    val preziAndroidx = hashMapOf(
-        "dexTool" to Deps.Presentation.dexTool,
-        "materialDesign" to Deps.Presentation.materialDesign,
-        "constraintLayout" to Deps.Presentation.constraintLayout,
-        "recyclerview" to Deps.Presentation.recyclerview,
-        "cardview" to Deps.Presentation.cardview,
-        "annot" to Deps.Presentation.annot
-    )
-
-    val preziKtx = hashMapOf(
-        "ktx" to Deps.Presentation.ktx,
-        "fragmentKtx" to Deps.Presentation.fragmentKtx,
-        "paletteKtx" to Deps.Presentation.paletteKtx,
-        "collectionKtx" to Deps.Presentation.collectionKtx,
-        "viewmodelKtx" to Deps.Presentation.viewmodelKtx,
-        "livedataKtx" to Deps.Presentation.livedataKtx,
-        "runtimeKtx" to Deps.Presentation.runtimeKtx,
-        "navigationCommonKtx" to Deps.Presentation.navigationCommonKtx,
-        "navigationFragmentKtx" to Deps.Presentation.navigationFragmentKtx,
-        "navigationUiKtx" to Deps.Presentation.navigationUiKtx,
-        "workerKtx" to Deps.Presentation.workerKtx
-//        "dynAnimKtx" to Deps.Presentation.dynAnimKtx
-    )
-
-    val preziFirebaseQuality = hashMapOf(
-        "analytics" to Deps.Presentation.firebaseAnalytics
-//        "crashlytics" to Deps.Presentation.firebaseCrashlytics
-    )
-
     private val kotlinDeps = hashMapOf(
         "kotlin" to CoreDependency.KOTLIN,
         "reflect" to CoreDependency.KOTLIN_REFLECT,

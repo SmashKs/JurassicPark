@@ -42,6 +42,8 @@ object LibraryDependency {
 
         const val AAC_LIFECYCLE = "2.2.0-alpha05"
 
+        const val KODEIN = "6.3.3"
+
         const val KTX = "1.2.0-alpha04"
         const val FRAGMENT_KTX = "1.2.0-alpha04"
         const val PALETTE_KTX = "1.0.0"
@@ -116,7 +118,11 @@ object LibraryDependency {
     const val WORKER_KTX = "androidx.work:work-runtime-ktx:${Version.WORK_KTX}"
     const val DYN_ANIM_KTX = "androidx.dynamicanimation-ktx:${Version.DYN_ANIM_KTX}"
     //endregion
-
+    //region DI
+    const val KODEIN_JVM = "org.kodein.di:kodein-di-generic-jvm:${Version.KODEIN}"
+    const val KODEIN_CORE = "org.kodein.di:kodein-di-core-jvm:${Version.KODEIN}"
+    const val KODEIN_ANDROID_X = "org.kodein.di:kodein-di-framework-android-x:${Version.KODEIN}"
+    //endregion
     const val GSON = "com.google.code.gson:gson:${Version.GSON}"
     const val PLAY_CORE = "com.google.android.play:core:${Version.PLAY_CORE}"
     //region Internet

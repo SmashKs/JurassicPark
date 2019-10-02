@@ -22,16 +22,16 @@
  * SOFTWARE.
  */
 
+
+import config.AndroidConfiguration
 import config.Dependencies
-import config.Deps
-import config.Versions
 
 android {
-    compileSdkVersion Versions.Android.compileSdk
+    compileSdkVersion AndroidConfiguration.COMPILE_SDK
     defaultConfig {
-        minSdkVersion Versions.Android.minSdk
-        targetSdkVersion Versions.Android.targetSdk
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        minSdkVersion AndroidConfiguration.MIN_SDK
+        targetSdkVersion AndroidConfiguration.TARGET_SDK
+        testInstrumentationRunner AndroidConfiguration.TEST_INSTRUMENTATION_RUNNER
         consumerProguardFiles 'consumer-rules.pro'
     }
     buildTypes {
@@ -60,7 +60,5 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     api([project(":widget"), project(":ext")])
-    implementation(Dependencies.kotlinAndroid.values())
-    implementation(Dependencies.commonAndroidx.values() +
-            Dependencies.preziAndroidx.values())
+    implementation(Dependencies.androidxDeps.values() + Dependencies.androidxKtxDeps.values())
 }

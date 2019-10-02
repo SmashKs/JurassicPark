@@ -60,4 +60,8 @@ object TestLibraryDependency {
     const val RUNNER = "androidx.test:runner:${Version.RUNNER}"
     const val ESPRESSO_CORE = "androidx.test.espresso:espresso-core:${Version.ESPRESSO}"
     //endregion
+
+    //region Testing stub
+    const val IDLING_ESPRESSO = "androidx.test.espresso:espresso-idling-resource:${Version.ESPRESSO}"
+    //endregion
 }

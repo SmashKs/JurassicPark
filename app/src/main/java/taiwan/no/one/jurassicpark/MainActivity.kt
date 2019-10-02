@@ -29,7 +29,4 @@ import taiwan.no.one.jurassicpark.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity() {
     override val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-
-    override fun viewComponentBinding() {
-    }
 }

@@ -22,18 +22,26 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.dummy.presentation
+package taiwan.no.one.jurassicpark
 
+import androidx.navigation.fragment.findNavController
+import kotlinx.android.synthetic.main.activity_second.btnClick
 import taiwan.no.one.core.presentation.fragment.BaseFragment
-import taiwan.no.one.dummy.R
 
-class DummyFragment : BaseFragment<DummyActivity>() {
+class MainFragment : BaseFragment<MainActivity>() {
     /**
      * Set the parentView for inflating.
      *
      * @return [LayoutRes] layout xml.
      */
-    override fun provideInflateView() = R.layout.fragment_dummy
+    override fun provideInflateView() = R.layout.activity_second
 
-//    override val binding by lazy { ActivityDummyBinding.inflate(layoutInflater) }
+    /**
+     * For separating the huge function code in [rendered]. Initialize all component listeners here.
+     */
+    override fun componentListenersBinding() {
+        btnClick.setOnClickListener {
+            findNavController().navigate(MainFragmentDirections.actionFragmentSecondToActivitySecond(13))
+        }
+    }
 }

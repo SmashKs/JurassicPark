@@ -24,6 +24,14 @@
 
 package taiwan.no.one.jurassicpark
 
-import com.google.android.play.core.splitcompat.SplitCompatApplication
+import android.app.Application
+import android.content.Context
+import com.google.android.play.core.splitcompat.SplitCompat
 
-class JurassicParkApp : SplitCompatApplication()
+class JurassicParkApp : Application() {
+    override fun attachBaseContext(context: Context?) {
+        super.attachBaseContext(context)
+        SplitCompat.install(this)
+//        MultiDex.install(this)
+    }
+}

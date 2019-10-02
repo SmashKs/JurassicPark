@@ -23,11 +23,10 @@
  */
 
 import config.Dependencies
-import config.Deps
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation(Dependencies.kotlin.values())
+    implementation(Dependencies.kotlinDeps.values())
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8

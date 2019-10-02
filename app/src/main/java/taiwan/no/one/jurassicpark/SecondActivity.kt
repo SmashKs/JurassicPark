@@ -22,8 +22,22 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark.constants.fragment
+package taiwan.no.one.jurassicpark
 
-object FragmentArguments {
-    const val COMMON_TITLE = "fragment argument title"
+import android.os.Bundle
+import androidx.navigation.navArgs
+import taiwan.no.one.core.presentation.activity.BaseActivity
+import taiwan.no.one.jurassicpark.databinding.ActivitySecondBinding
+
+class SecondActivity : BaseActivity() {
+    override val binding by lazy { ActivitySecondBinding.inflate(layoutInflater) }
+    private val args by navArgs<SecondActivityArgs>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+//        setContentView(R.layout.activity_second)
+        setContentView(binding.root)
+
+        binding.tvMsg.text = "This is second Activity ${args.id}"
+    }
 }

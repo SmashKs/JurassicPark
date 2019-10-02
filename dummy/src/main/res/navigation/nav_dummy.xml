@@ -23,39 +23,25 @@
   ~ SOFTWARE.
   -->
 
-<manifest
+<navigation
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    package="taiwan.no.one.jurassicpark">
+    android:id="@+id/navDummy"
+    app:startDestination="@id/dummyFragment">
 
-    <application
-        android:name=".JurassicParkApp"
-        android:allowBackup="true"
-        android:fullBackupContent="@xml/backup_descriptor"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true"
-        tools:replace="android:label">
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <action android:name="android.intent.action.VIEW"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-
-                <data
-                    android:host="www.smashks.com"
-                    android:pathPattern="/main"
-                    android:scheme="http"/>
-            </intent-filter>
-        </activity>
-        <activity android:name=".SecondActivity"/>
-    </application>
-</manifest>
+    <fragment
+        android:id="@+id/dummyFragment"
+        android:name="taiwan.no.one.dummy.presentation.DummyFragment"
+        android:label="Dummy Fragment"
+        tools:layout="@layout/fragment_dummy">
+        <!--        <action-->
+        <!--            android:id="@+id/action_fragment_dummy_to_dummyDetailActivity"-->
+        <!--            app:destination="@id/dummyDetailActivity"/>-->
+    </fragment>
+    <!--    <activity-->
+    <!--        android:id="@+id/dummyDetailActivity"-->
+    <!--        android:name="taiwan.no.one.dummy.presentation.DummyDetailActivity"-->
+    <!--        android:label="DummyDetailActivity"-->
+    <!--        tools:layout="@layout/activity_dummy_detail"/>-->
+</navigation>

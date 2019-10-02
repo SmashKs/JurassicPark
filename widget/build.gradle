@@ -23,16 +23,16 @@
  */
 
 
+import config.AndroidConfiguration
 import config.Dependencies
-import config.Deps
-import config.Versions
+import config.LibraryDependency
 
 android {
-    compileSdkVersion Versions.Android.compileSdk
+    compileSdkVersion AndroidConfiguration.COMPILE_SDK
     defaultConfig {
-        minSdkVersion Versions.Android.minSdk
-        targetSdkVersion Versions.Android.targetSdk
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        minSdkVersion AndroidConfiguration.MIN_SDK
+        targetSdkVersion AndroidConfiguration.TARGET_SDK
+        testInstrumentationRunner AndroidConfiguration.TEST_INSTRUMENTATION_RUNNER
         consumerProguardFiles 'consumer-rules.pro'
     }
     buildTypes {
@@ -62,12 +62,11 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation(project(":ext"))
-    implementation(Dependencies.kotlinAndroid.values())
-    implementation(Deps.Widget.appcompat)
-    implementation(Deps.Widget.material)
-    implementation(Deps.Widget.cardview)
-    implementation(Deps.Widget.constraintLayout)
-    implementation(Deps.Presentation.lottie)
+    implementation(Dependencies.commonAndroidDeps.values() + Dependencies.kotlinDeps.values())
+    implementation(LibraryDependency.MATERIAL_DESIGN)
+    implementation(LibraryDependency.CARDVIEW)
+    implementation(LibraryDependency.CONSTRAINT_LAYOUT)
+    implementation(LibraryDependency.LOTTIE)
 //    implementation(Deps.Presentation.arv)
 //    implementation(Deps.Widget.quickDialog)
 }

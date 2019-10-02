@@ -57,21 +57,23 @@ subprojects {
                 plugin("java-library")
                 plugin("kotlin")
             }
-            "widget", "ktx", "device", "data", "core" -> {
+            "widget", "ktx", "device", "core" -> {
                 plugin("com.android.library")
                 plugin("kotlin-android")
             }
             "dummy" -> {
                 plugin("com.android.dynamic-feature")
                 plugin("kotlin-android")
+                plugin("androidx.navigation.safeargs.kotlin")
             }
             "app" -> {
                 plugin("com.android.application")
                 plugin("kotlin-android")
+                plugin("androidx.navigation.safeargs.kotlin")
 //                plugin("io.fabric")
             }
         }
-        if (name == "data" || name == "app" || name == "core") {
+        if (name == "app" || name == "core") {
             plugin("kotlin-android-extensions")
             plugin("org.jetbrains.kotlin.kapt")
         }
@@ -102,22 +104,22 @@ subprojects {
     }
     //endregion
 
-    tasks.whenObjectAdded {
-        if (
-            name.contains("lint") ||
-            name == "clean" ||
-            name.contains("jacoco") ||
-            name.contains("lintVitalRelease") ||
-            name.contains("Aidl") ||
-            name.contains("mockableAndroidJar") ||
-            name.contains("UnitTest") ||
-            name.contains("AndroidTest") ||
-            name.contains("Ndk") ||
-            name.contains("Jni")
-        ) {
-            enabled = false
-        }
-    }
+//    tasks.whenObjectAdded {
+//        if (
+//            name.contains("lint") ||
+//            name == "clean" ||
+//            name.contains("jacoco") ||
+//            name.contains("lintVitalRelease") ||
+//            name.contains("Aidl") ||
+//            name.contains("mockableAndroidJar") ||
+//            name.contains("UnitTest") ||
+//            name.contains("AndroidTest") ||
+//            name.contains("Ndk") ||
+//            name.contains("Jni")
+//        ) {
+//            enabled = false
+//        }
+//    }
 }
 
 allprojects {

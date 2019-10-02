@@ -24,16 +24,16 @@
 
 package taiwan.no.one.dummy.presentation
 
-import taiwan.no.one.core.presentation.fragment.BaseFragment
-import taiwan.no.one.dummy.R
+import taiwan.no.one.core.presentation.activity.BaseActivity
+import taiwan.no.one.dummy.databinding.ActivityDummyDetailBinding
 
-class DummyFragment : BaseFragment<DummyActivity>() {
+class DummyDetailActivity : BaseActivity() {
+    override val binding by lazy { ActivityDummyDetailBinding.inflate(layoutInflater) }
+
     /**
-     * Set the parentView for inflating.
-     *
-     * @return [LayoutRes] layout xml.
+     * For separating the huge function code in [init]. Initialize all view components here after [setContentView].
      */
-    override fun provideInflateView() = R.layout.fragment_dummy
-
-//    override val binding by lazy { ActivityDummyBinding.inflate(layoutInflater) }
+    override fun viewComponentBinding() {
+        binding.tvMsg.text = "This is the detail activity!"
+    }
 }

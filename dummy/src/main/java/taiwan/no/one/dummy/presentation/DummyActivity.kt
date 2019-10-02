@@ -43,6 +43,7 @@ class DummyActivity : BaseActivity() {
         super.onStart()
         launch {
             delay(1000)
+
         }
     }
 }
