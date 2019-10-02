@@ -24,11 +24,18 @@
 
 package taiwan.no.one.dummy.presentation
 
+import android.content.Context
+import com.google.android.play.core.splitcompat.SplitCompat
 import taiwan.no.one.core.presentation.activity.BaseActivity
 import taiwan.no.one.dummy.databinding.ActivityDummyDetailBinding
 
 class DummyDetailActivity : BaseActivity() {
     override val binding by lazy { ActivityDummyDetailBinding.inflate(layoutInflater) }
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(newBase)
+        SplitCompat.installActivity(this)
+    }
 
     /**
      * For separating the huge function code in [init]. Initialize all view components here after [setContentView].

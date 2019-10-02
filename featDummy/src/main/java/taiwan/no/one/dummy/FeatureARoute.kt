@@ -22,18 +22,20 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark
+package taiwan.no.one.dummy
 
-import android.content.Context
-import com.google.android.play.core.splitcompat.SplitCompat
-import taiwan.no.one.core.presentation.activity.BaseActivity
-import taiwan.no.one.jurassicpark.databinding.ActivityMainBinding
+import androidx.navigation.NavGraph
+import taiwan.no.one.jurassicpark.NavigationGraphRoute
 
-class MainActivity : BaseActivity() {
-    override val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+object FeatureARoute : NavigationGraphRoute {
+    /**
+     * Contains the destination graph once inflated
+     * */
+    override lateinit var navGraph: NavGraph
 
-    override fun attachBaseContext(newBase: Context?) {
-        super.attachBaseContext(newBase)
-        SplitCompat.installActivity(this)
-    }
+    override val graphName get() = "nav_dummy"
+
+    override val packageName get() = BuildConfig.APPLICATION_ID
+
+    override val resourceId get() = R.navigation.nav_dummy
 }

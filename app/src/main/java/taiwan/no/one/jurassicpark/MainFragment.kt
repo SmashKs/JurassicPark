@@ -24,12 +24,55 @@
 
 package taiwan.no.one.jurassicpark
 
+import android.content.Context
 import android.net.Uri
+import androidx.navigation.NavController
+import androidx.navigation.NavGraph
 import androidx.navigation.fragment.findNavController
+import com.devrapid.kotlinshaver.uiSwitch
+import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
+import com.google.android.play.core.splitinstall.SplitInstallRequest
+import com.google.android.play.core.splitinstall.SplitInstallStateUpdatedListener
+import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus
 import kotlinx.android.synthetic.main.activity_second.btnClick
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import taiwan.no.one.core.presentation.fragment.BaseFragment
 
 class MainFragment : BaseFragment<MainActivity>() {
+    private val manager by lazy { SplitInstallManagerFactory.create(requireContext()) }
+    private val request by lazy { SplitInstallRequest.newBuilder().addModule("featDummy").build() }
+    private val listener by lazy {
+        SplitInstallStateUpdatedListener {
+            when (it.status()) {
+                SplitInstallSessionStatus.INSTALLED -> {
+                    println("333333333333==================={${it.status()}}==============================")
+                    println(it.moduleNames())
+                    println(it.moduleNames().joinToString(" - "))
+                    val route =
+                        Class.forName("taiwan.no.one.dummy.FeatureARoute").kotlin.objectInstance as? NavigationGraphRoute
+                    println("=================111111111111================================")
+                    println(route?.graphName)
+                    println("==================11111111111111===============================")
+                    println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+                    println(resources.getIdentifier("dummy",
+                                                    "string",
+                                                    "taiwan.no.one.dummy"))
+                    println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+
+                    addNavGraphDestination(route!!, findNavController(), requireContext())
+
+                    launch {
+                        delay(1500)
+                        uiSwitch {
+                            findNavController().navigate(Uri.parse("https://taiwan.no.one.dummy/activity"))
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     /**
      * Set the parentView for inflating.
      *
@@ -43,7 +86,54 @@ class MainFragment : BaseFragment<MainActivity>() {
     override fun componentListenersBinding() {
         btnClick.setOnClickListener {
             //            findNavController().navigate(MainFragmentDirections.actionFragmentSecondToActivitySecond(13))
-            findNavController().navigate(Uri.parse("https://main.park.com/32"))
+            findNavController().navigate(Uri.parse("https://taiwan.no.one.dummy/activity"))
         }
+        manager.startInstall(request)
     }
+
+    override fun onResume() {
+        super.onResume()
+        manager.registerListener(listener)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        manager.unregisterListener(listener)
+    }
+
+    private fun addNavGraphDestination(
+        navigationGraphRoute: NavigationGraphRoute,
+        navController: NavController,
+        context: Context
+    ): NavGraph {
+        val navigationId = context.resources.getIdentifier(navigationGraphRoute.graphName,
+                                                           "navigation",
+                                                           navigationGraphRoute.packageName)
+        println("===========ididid======================================")
+        println(navigationId)
+        println("===========ididid======================================")
+        val newGraph = navController.navInflater.inflate(navigationGraphRoute.resourceId)
+        navController.graph.addDestination(newGraph)
+        return newGraph
+    }
+}
+
+/**
+Provides necessary information for NavGraph in other modules
+ */
+interface NavigationGraphRoute {
+    /*
+    The inflated NavGraph
+    */
+    var navGraph: NavGraph
+    /**
+    The .xml name for the nav-graph
+     */
+    val graphName: String
+    /**
+    The full package name where the nav-graph is located
+     */
+    val packageName: String
+
+    val resourceId: Int
 }

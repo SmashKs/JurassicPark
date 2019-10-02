@@ -46,5 +46,7 @@
         android:id="@+id/dummyDetailActivity"
         android:name="taiwan.no.one.dummy.presentation.DummyDetailActivity"
         android:label="DummyDetailActivity"
-        tools:layout="@layout/activity_dummy_detail"/>
+        tools:layout="@layout/activity_dummy_detail">
+        <deepLink app:uri="taiwan.no.one.dummy/activity"/>
+    </activity>
 </navigation>
