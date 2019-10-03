@@ -22,31 +22,18 @@
  * SOFTWARE.
  */
 
-package config
+package taiwan.no.one.ktx.timing
 
-import kotlin.reflect.KProperty1
-import kotlin.reflect.full.memberProperties
+import com.devrapid.kotlinshaver.cast
+import kotlin.system.measureTimeMillis
 
-private const val FEATURE_PREFIX = ":feature_"
-
-@Suppress("unused")
-object CommonModuleDependency {
-    const val APP = ":app"
-    const val LIB_PURE_EXT = ":library_ext"
-    const val LIB_KTX = ":library_ktx"
-    const val LIB_WIDGET = ":library_widget"
-    const val LIB_DEVICE = ":library_device"
-    const val LIB_CORE = ":library_core"
-    const val FEAT_DUMMY = ":feature_featDummy"
-
-    fun getAllModules() = CommonModuleDependency::class.memberProperties
-        .asSequence()
-        .filter(KProperty1<CommonModuleDependency, *>::isConst)
-        .map { it.getter.call().toString() }
-        .toSet()
-
-    fun getDynamicFeatureModules() = getAllModules()
-        .asSequence()
-        .filter { it.startsWith(FEATURE_PREFIX) }
-        .toSet()
+/**
+ * Executes the given [block] and returns elapsed time in milliseconds.
+ */
+inline fun <reified T> measureTimeMillisReturn(block: () -> T): Pair<T, Long> {
+    var ret: T? = null
+    val time = measureTimeMillis {
+        ret = block()
+    }
+    return Pair(cast(ret), time)
 }

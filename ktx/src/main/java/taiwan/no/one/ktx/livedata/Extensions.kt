@@ -22,31 +22,11 @@
  * SOFTWARE.
  */
 
-package config
+package taiwan.no.one.ktx.livedata
 
-import kotlin.reflect.KProperty1
-import kotlin.reflect.full.memberProperties
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 
-private const val FEATURE_PREFIX = ":feature_"
+inline fun <reified T> MutableLiveData<T>.toLiveData() = this as LiveData<T>
 
-@Suppress("unused")
-object CommonModuleDependency {
-    const val APP = ":app"
-    const val LIB_PURE_EXT = ":library_ext"
-    const val LIB_KTX = ":library_ktx"
-    const val LIB_WIDGET = ":library_widget"
-    const val LIB_DEVICE = ":library_device"
-    const val LIB_CORE = ":library_core"
-    const val FEAT_DUMMY = ":feature_featDummy"
-
-    fun getAllModules() = CommonModuleDependency::class.memberProperties
-        .asSequence()
-        .filter(KProperty1<CommonModuleDependency, *>::isConst)
-        .map { it.getter.call().toString() }
-        .toSet()
-
-    fun getDynamicFeatureModules() = getAllModules()
-        .asSequence()
-        .filter { it.startsWith(FEATURE_PREFIX) }
-        .toSet()
-}
+inline fun <reified T> SilentMutableLiveData<T>.toLiveData() = this as SilentLiveData<T>

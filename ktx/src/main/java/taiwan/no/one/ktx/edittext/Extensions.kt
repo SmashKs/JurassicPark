@@ -22,31 +22,34 @@
  * SOFTWARE.
  */
 
-package config
+package taiwan.no.one.ktx.edittext
 
-import kotlin.reflect.KProperty1
-import kotlin.reflect.full.memberProperties
+import android.text.InputType
+import android.view.inputmethod.EditorInfo
+import android.widget.EditText
 
-private const val FEATURE_PREFIX = ":feature_"
+fun EditText.diseditable() = apply {
+    isFocusableInTouchMode = false
+}
 
-@Suppress("unused")
-object CommonModuleDependency {
-    const val APP = ":app"
-    const val LIB_PURE_EXT = ":library_ext"
-    const val LIB_KTX = ":library_ktx"
-    const val LIB_WIDGET = ":library_widget"
-    const val LIB_DEVICE = ":library_device"
-    const val LIB_CORE = ":library_core"
-    const val FEAT_DUMMY = ":feature_featDummy"
+fun EditText.toCalendarField() = apply {
+    diseditable()
+    inputType = InputType.TYPE_CLASS_DATETIME
+    isCursorVisible = false
+}
 
-    fun getAllModules() = CommonModuleDependency::class.memberProperties
-        .asSequence()
-        .filter(KProperty1<CommonModuleDependency, *>::isConst)
-        .map { it.getter.call().toString() }
-        .toSet()
+fun EditText.toNumberType() = apply {
+    inputType = InputType.TYPE_CLASS_NUMBER
+}
 
-    fun getDynamicFeatureModules() = getAllModules()
-        .asSequence()
-        .filter { it.startsWith(FEATURE_PREFIX) }
-        .toSet()
+fun EditText.toEmailType() = apply {
+    inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS or InputType.TYPE_CLASS_TEXT
+}
+
+fun EditText.toPhoneType() = apply {
+    inputType = InputType.TYPE_CLASS_PHONE
+}
+
+fun EditText.enterToCloseKeyboard() = apply {
+    imeOptions = EditorInfo.IME_ACTION_DONE
 }

@@ -25,6 +25,7 @@
 
 import config.AndroidConfiguration
 import config.Dependencies
+import config.LibraryDependency
 
 android {
     compileSdkVersion AndroidConfiguration.COMPILE_SDK
@@ -61,4 +62,5 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     api([project(":widget"), project(":ext")])
     implementation(Dependencies.androidxDeps.values() + Dependencies.androidxKtxDeps.values())
+    implementation(LibraryDependency.KNIFER)
 }

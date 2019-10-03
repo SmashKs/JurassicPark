@@ -46,20 +46,8 @@ class MainFragment : BaseFragment<MainActivity>() {
         SplitInstallStateUpdatedListener {
             when (it.status()) {
                 SplitInstallSessionStatus.INSTALLED -> {
-                    println("333333333333==================={${it.status()}}==============================")
-                    println(it.moduleNames())
-                    println(it.moduleNames().joinToString(" - "))
                     val route =
                         Class.forName("taiwan.no.one.dummy.FeatureARoute").kotlin.objectInstance as? NavigationGraphRoute
-                    println("=================111111111111================================")
-                    println(route?.graphName)
-                    println("==================11111111111111===============================")
-                    println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-                    println(resources.getIdentifier("dummy",
-                                                    "string",
-                                                    "taiwan.no.one.dummy"))
-                    println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-
                     addNavGraphDestination(route!!, findNavController(), requireContext())
 
                     launch {

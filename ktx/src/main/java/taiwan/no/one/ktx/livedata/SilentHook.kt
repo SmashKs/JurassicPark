@@ -22,11 +22,10 @@
  * SOFTWARE.
  */
 
-@file:Suppress("NOTHING_TO_INLINE")
+package taiwan.no.one.ktx.livedata
 
-package taiwan.no.one.ext.exceptions
+import androidx.lifecycle.Observer
 
-inline fun UnsupportedOperation(): Nothing = throw UnsupportedOperationException()
-
-inline fun UnsupportedOperation(reason: String): Nothing =
-    throw UnsupportedOperationException(reason)
+interface SilentHook<T> {
+    fun beSilent(observer: Observer<in T>)
+}

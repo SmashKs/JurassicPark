@@ -71,6 +71,12 @@ object Dependencies {
         put("annot", LibraryDependency.ANNOT)
     }
 
+    val diDeps = hashMapOf(
+        "kodeinJvm" to LibraryDependency.KODEIN_JVM,
+        "kodeinCore" to LibraryDependency.KODEIN_CORE,
+        "kodeinAndroid" to LibraryDependency.KODEIN_ANDROID_X
+    )
+
     val internetDeps = hashMapOf(
         "okhttp3" to LibraryDependency.OKHTTP,
         "retrofit2" to LibraryDependency.RETROFIT2,

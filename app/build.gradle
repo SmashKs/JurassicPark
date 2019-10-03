@@ -107,6 +107,7 @@ dependencies {
     api(LibraryDependency.COIL)
     api(Dependencies.androidxKtxDeps.values())
     api(Dependencies.androidxDeps.values())
+    api(Dependencies.diDeps.values())
     api(Dependencies.internetDeps.values())
     api(Dependencies.uiDeps.values())
 }
