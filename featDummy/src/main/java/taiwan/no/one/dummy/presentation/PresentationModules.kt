@@ -22,17 +22,13 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.dummy.data.local.services.json.v1
+package taiwan.no.one.dummy.presentation
 
-import android.content.Context
-import taiwan.no.one.dummy.data.local.entities.DummyEntity
-import taiwan.no.one.dummy.data.parser.parseObjectFromJson
+import org.kodein.di.Kodein
+import taiwan.no.one.dummy.BuildConfig
 
-internal class DummyFile(
-    private val context: Context
-) {
-    suspend fun getDummies(): List<DummyEntity> {
-        val jsonFileName = "dummy.json"
-        return context.parseObjectFromJson<List<DummyEntity>>(jsonFileName).orEmpty()
+object PresentationModules {
+    fun provideDependency() = Kodein.Module("${BuildConfig.APPLICATION_ID}FeatModule") {
+
     }
 }

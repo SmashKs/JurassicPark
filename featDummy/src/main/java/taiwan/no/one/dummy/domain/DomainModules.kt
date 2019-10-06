@@ -22,17 +22,10 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.dummy.data.local.services.json.v1
+package taiwan.no.one.dummy.domain
 
-import android.content.Context
-import taiwan.no.one.dummy.data.local.entities.DummyEntity
-import taiwan.no.one.dummy.data.parser.parseObjectFromJson
+object DomainModules {
+    fun provideDependency() {
 
-internal class DummyFile(
-    private val context: Context
-) {
-    suspend fun getDummies(): List<DummyEntity> {
-        val jsonFileName = "dummy.json"
-        return context.parseObjectFromJson<List<DummyEntity>>(jsonFileName).orEmpty()
     }
 }
