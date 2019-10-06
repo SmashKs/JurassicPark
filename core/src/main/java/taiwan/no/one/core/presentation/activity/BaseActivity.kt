@@ -37,14 +37,16 @@ import java.lang.reflect.ParameterizedType
 /**
  * The basic activity is for the normal activity that prepares all necessary variables or functions.
  */
-abstract class BaseActivity<V : ViewBinding> : AppCompatActivity(), CoroutineScope by MainScope() {
+abstract class BaseActivity<out V : ViewBinding> : AppCompatActivity(), CoroutineScope by MainScope() {
     /** Using reflection to get dynamic view binding name. */
     @Suppress("UNCHECKED_CAST")
     protected val binding by lazy { inflateMethod.invoke(null, layoutInflater) as V }
     /** [ViewBinding] is the first (index: 0) in the generic declare. */
     private val viewBindingConcreteClass
         get() = ((this::class.java.genericSuperclass as ParameterizedType).actualTypeArguments[0]) as Class<*>
-    private val inflateMethod by lazy { viewBindingConcreteClass.getMethod("inflate", LayoutInflater::class.java) }
+    private val inflateMethod by lazy {
+        viewBindingConcreteClass.getMethod("inflate", LayoutInflater::class.java)
+    }
 
     //region Activity lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {

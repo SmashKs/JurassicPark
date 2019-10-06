@@ -24,6 +24,8 @@
 
 package taiwan.no.one.dummy.presentation
 
-//class DummyFragment : BaseFragment<DummyActivity, FragmentDummyBinding>() {
-//    override val binding by lazy { FragmentDummyBinding.inflate(localInflater) }
-//}
+import taiwan.no.one.core.presentation.activity.BaseActivity
+import taiwan.no.one.core.presentation.fragment.BaseFragment
+import taiwan.no.one.dummy.databinding.FragmentDummyBinding
+
+class DummyFragment : BaseFragment<BaseActivity<*>, FragmentDummyBinding>()

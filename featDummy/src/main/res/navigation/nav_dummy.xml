@@ -28,25 +28,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navDummy"
-    app:startDestination="@id/dummyDetailActivity">
+    app:startDestination="@id/dummyFragment">
 
     <fragment
         android:id="@+id/dummyFragment"
         android:name="taiwan.no.one.dummy.presentation.DummyFragment"
         android:label="Dummy Fragment"
         tools:layout="@layout/fragment_dummy">
-        <action
-            android:id="@+id/action_fragment_dummy_to_dummyDetailActivity"
-            app:destination="@id/dummyDetailActivity"/>
         <deepLink
             android:id="@+id/deepLink"
-            app:uri="dummy.com"/>
+            app:uri="taiwan.no.one.dummy/dummy"/>
     </fragment>
-    <activity
-        android:id="@+id/dummyDetailActivity"
-        android:name="taiwan.no.one.dummy.presentation.DummyDetailActivity"
-        android:label="DummyDetailActivity"
-        tools:layout="@layout/activity_dummy_detail">
-        <deepLink app:uri="taiwan.no.one.dummy/activity"/>
-    </activity>
 </navigation>

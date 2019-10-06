@@ -46,7 +46,6 @@ class MainFragment : BaseFragment<MainActivity, ActivitySecondBinding>() {
                     val route =
                         Class.forName("taiwan.no.one.dummy.FeatureARoute").kotlin.objectInstance as? NavigationGraphRoute
                     addNavGraphDestination(route!!, findNavController(), requireContext())
-
 //                    launch {
 //                        delay(1500)
 //                        uiSwitch {
@@ -71,7 +70,7 @@ class MainFragment : BaseFragment<MainActivity, ActivitySecondBinding>() {
     override fun componentListenersBinding() {
         binding.btnClick.setOnClickListener {
             //            findNavController().navigate(MainFragmentDirections.actionFragmentSecondToActivitySecond(13))
-            findNavController().navigate(Uri.parse("https://taiwan.no.one.dummy/activity"))
+            findNavController().navigate(Uri.parse("https://taiwan.no.one.dummy/dummy"))
         }
         manager.startInstall(request)
     }

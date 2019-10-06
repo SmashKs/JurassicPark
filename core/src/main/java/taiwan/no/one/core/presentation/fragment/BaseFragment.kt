@@ -45,19 +45,23 @@ import java.lang.reflect.ParameterizedType
 /**
  * The basic fragment is for the normal activity that prepares all necessary variables or functions.
  */
-abstract class BaseFragment<out A : BaseActivity<*>, V : ViewBinding> : Fragment(), CoroutineScope by MainScope() {
+abstract class BaseFragment<out A : BaseActivity<*>, out V : ViewBinding> : Fragment(), CoroutineScope by MainScope() {
     @Suppress("UNCHECKED_CAST")
     protected val parent
         // If there's no parent, forcing crashing the app.
         get() = requireActivity() as A
+    //region ViewBinding Operations
     /** Using reflection to get dynamic view binding name. */
     @Suppress("UNCHECKED_CAST")
     protected val binding by lazy { inflateMethod.invoke(null, localInflater) as V }
     private lateinit var localInflater: LayoutInflater
-    /** [ViewBinding] is the first (index: 1) in the generic declare. */
+    /** [ViewBinding] is the second (index: 1) in the generic declare. */
     private val viewBindingConcreteClass
         get() = ((this::class.java.genericSuperclass as ParameterizedType).actualTypeArguments[1]) as Class<*>
-    private val inflateMethod by lazy { viewBindingConcreteClass.getMethod("inflate", LayoutInflater::class.java) }
+    private val inflateMethod by lazy {
+        viewBindingConcreteClass.getMethod("inflate", LayoutInflater::class.java)
+    }
+    //endregion
     // Set action bar's back icon color into all fragments are inheriting advFragment.
     protected open val backDrawable by lazy {
         //        android.R.drawable.arrow_down_float
