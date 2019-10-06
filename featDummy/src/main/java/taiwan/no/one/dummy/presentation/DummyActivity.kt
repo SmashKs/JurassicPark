@@ -29,9 +29,7 @@ import kotlinx.coroutines.launch
 import taiwan.no.one.core.presentation.activity.BaseActivity
 import taiwan.no.one.dummy.databinding.ActivityDummyBinding
 
-class DummyActivity : BaseActivity() {
-    override val binding by lazy { ActivityDummyBinding.inflate(layoutInflater) }
-
+class DummyActivity : BaseActivity<ActivityDummyBinding>() {
     override fun onStart() {
         super.onStart()
         launch {

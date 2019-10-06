@@ -29,18 +29,15 @@ import android.net.Uri
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph
 import androidx.navigation.fragment.findNavController
-import com.devrapid.kotlinshaver.uiSwitch
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
 import com.google.android.play.core.splitinstall.SplitInstallRequest
 import com.google.android.play.core.splitinstall.SplitInstallStateUpdatedListener
 import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus
-import kotlinx.android.synthetic.main.activity_second.btnClick
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import taiwan.no.one.core.presentation.fragment.BaseFragment
+import taiwan.no.one.jurassicpark.databinding.ActivitySecondBinding
 
-class MainFragment : BaseFragment<MainActivity>() {
-    private val manager by lazy { SplitInstallManagerFactory.create(requireContext()) }
+class MainFragment : BaseFragment<MainActivity, ActivitySecondBinding>() {
+    val manager by lazy { SplitInstallManagerFactory.create(requireContext()) }
     private val request by lazy { SplitInstallRequest.newBuilder().addModule("featDummy").build() }
     private val listener by lazy {
         SplitInstallStateUpdatedListener {
@@ -50,29 +47,29 @@ class MainFragment : BaseFragment<MainActivity>() {
                         Class.forName("taiwan.no.one.dummy.FeatureARoute").kotlin.objectInstance as? NavigationGraphRoute
                     addNavGraphDestination(route!!, findNavController(), requireContext())
 
-                    launch {
-                        delay(1500)
-                        uiSwitch {
-                            findNavController().navigate(Uri.parse("https://taiwan.no.one.dummy/activity"))
-                        }
-                    }
+//                    launch {
+//                        delay(1500)
+//                        uiSwitch {
+//                            findNavController().navigate(Uri.parse("https://taiwan.no.one.dummy/activity"))
+//                        }
+//                    }
                 }
             }
         }
     }
 
     /**
-     * Set the parentView for inflating.
-     *
-     * @return [LayoutRes] layout xml.
+     * For separating the huge function code in [rendered]. Initialize all view components here.
      */
-    override fun provideInflateView() = R.layout.activity_second
+    override fun viewComponentBinding() {
+        binding.tvMsg.text = "321321"
+    }
 
     /**
      * For separating the huge function code in [rendered]. Initialize all component listeners here.
      */
     override fun componentListenersBinding() {
-        btnClick.setOnClickListener {
+        binding.btnClick.setOnClickListener {
             //            findNavController().navigate(MainFragmentDirections.actionFragmentSecondToActivitySecond(13))
             findNavController().navigate(Uri.parse("https://taiwan.no.one.dummy/activity"))
         }

@@ -30,25 +30,34 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import androidx.annotation.LayoutRes
 import androidx.annotation.StyleRes
 import androidx.annotation.UiThread
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.viewbinding.ViewBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
 import taiwan.no.one.core.presentation.activity.BaseActivity
+import java.lang.reflect.ParameterizedType
 
 /**
  * The basic fragment is for the normal activity that prepares all necessary variables or functions.
  */
-abstract class BaseFragment<out A : BaseActivity> : Fragment(), CoroutineScope by MainScope() {
+abstract class BaseFragment<out A : BaseActivity<*>, V : ViewBinding> : Fragment(), CoroutineScope by MainScope() {
     @Suppress("UNCHECKED_CAST")
     protected val parent
         // If there's no parent, forcing crashing the app.
         get() = requireActivity() as A
+    /** Using reflection to get dynamic view binding name. */
+    @Suppress("UNCHECKED_CAST")
+    protected val binding by lazy { inflateMethod.invoke(null, localInflater) as V }
+    private lateinit var localInflater: LayoutInflater
+    /** [ViewBinding] is the first (index: 1) in the generic declare. */
+    private val viewBindingConcreteClass
+        get() = ((this::class.java.genericSuperclass as ParameterizedType).actualTypeArguments[1]) as Class<*>
+    private val inflateMethod by lazy { viewBindingConcreteClass.getMethod("inflate", LayoutInflater::class.java) }
     // Set action bar's back icon color into all fragments are inheriting advFragment.
     protected open val backDrawable by lazy {
         //        android.R.drawable.arrow_down_float
@@ -56,7 +65,6 @@ abstract class BaseFragment<out A : BaseActivity> : Fragment(), CoroutineScope b
 //            .changeColor(getColor(R.color.colorPrimaryTextV1))
         android.R.drawable.arrow_down_float
     }
-
     //    private val actionTitle by extra<String>(COMMON_TITLE)
     private val actionTitle = ""
 
@@ -83,22 +91,17 @@ abstract class BaseFragment<out A : BaseActivity> : Fragment(), CoroutineScope b
         return anim
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Keep the instance data.
         retainInstance = true
-
-        val localInflater = customTheme()?.let {
+        localInflater = customTheme()?.let {
             // Create ContextThemeWrapper from the original Activity Context with the custom theme
             val contextThemeWrapper = ContextThemeWrapper(activity, it)
             // Clone the inflater using the ContextThemeWrapper
             inflater.cloneInContext(contextThemeWrapper)
         } ?: inflater
 
-        return localInflater.inflate(provideInflateView(), null)
+        return binding.root
     }
 
     /**
@@ -124,15 +127,6 @@ abstract class BaseFragment<out A : BaseActivity> : Fragment(), CoroutineScope b
     //endregion
 
     //region Customized methods
-    /**
-     * Set the parentView for inflating.
-     *
-     * @return [LayoutRes] layout xml.
-     */
-    @UiThread
-    @LayoutRes
-    protected abstract fun provideInflateView(): Int
-
     /**
      * For separating the huge function code in [rendered]. Initialize all view components here.
      */

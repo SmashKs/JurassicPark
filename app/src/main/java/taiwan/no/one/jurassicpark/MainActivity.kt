@@ -29,9 +29,7 @@ import com.google.android.play.core.splitcompat.SplitCompat
 import taiwan.no.one.core.presentation.activity.BaseActivity
 import taiwan.no.one.jurassicpark.databinding.ActivityMainBinding
 
-class MainActivity : BaseActivity() {
-    override val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-
+class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(newBase)
         SplitCompat.installActivity(this)
