@@ -31,7 +31,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import taiwan.no.one.dummy.data.local.converters.DateConvert
 import taiwan.no.one.dummy.data.local.entities.DummyEntity
-import taiwan.no.one.dummy.data.local.services.v1.DummyDao
+import taiwan.no.one.dummy.data.local.services.database.v1.DummyDao
 
 /**
  * The access operations to a database.

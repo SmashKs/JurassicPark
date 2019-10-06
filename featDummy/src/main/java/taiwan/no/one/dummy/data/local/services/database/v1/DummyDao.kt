@@ -22,6 +22,13 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.dummy.data.contracts
+package taiwan.no.one.dummy.data.local.services.database.v1
 
-internal interface DataStore
+import androidx.room.Dao
+import taiwan.no.one.dummy.data.local.configs.BaseDao
+import taiwan.no.one.dummy.data.local.entities.DummyEntity
+
+@Dao
+internal abstract class DummyDao : BaseDao<DummyEntity> {
+    suspend fun getDummies(): List<DummyEntity> = TODO()
+}

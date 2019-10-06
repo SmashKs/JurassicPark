@@ -25,8 +25,18 @@
 package taiwan.no.one.dummy.data.stores
 
 import taiwan.no.one.dummy.data.contracts.DataStore
-import taiwan.no.one.ext.exceptions.UnsupportedOperation
+import taiwan.no.one.dummy.data.contracts.sub.DummySubStore
+import taiwan.no.one.dummy.data.local.entities.DummyEntity
+import taiwan.no.one.dummy.data.local.services.database.v1.DummyDao
+import taiwan.no.one.dummy.data.local.services.json.v1.DummyFile
 
-internal class LocalStore : DataStore {
-    override fun getDummy() = UnsupportedOperation()
+internal class LocalStore(
+    private val dummyDao: DummyDao,
+    private val dummyFile: DummyFile
+) : DataStore, DummySubStore {
+    override suspend fun getDummies(): List<DummyEntity> {
+        val dbDummy = dummyDao.getDummies()
+        if (dbDummy.isNotEmpty()) return dbDummy
+        return dummyFile.getDummies()
+    }
 }

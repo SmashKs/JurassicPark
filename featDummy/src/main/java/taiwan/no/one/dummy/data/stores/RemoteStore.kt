@@ -25,8 +25,5 @@
 package taiwan.no.one.dummy.data.stores
 
 import taiwan.no.one.dummy.data.contracts.DataStore
-import taiwan.no.one.ext.exceptions.UnsupportedOperation
 
-internal class RemoteStore : DataStore {
-    override fun getDummy() = UnsupportedOperation()
-}
+internal class RemoteStore : DataStore

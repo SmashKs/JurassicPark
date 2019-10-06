@@ -24,8 +24,8 @@
 
 package taiwan.no.one.dummy.data.contracts.sub
 
-import taiwan.no.one.dummy.domain.model.Dummy
+import taiwan.no.one.dummy.data.local.entities.DummyEntity
 
-internal interface DummySub {
-    fun getDummy(): Dummy
+internal interface DummySubStore {
+    suspend fun getDummies(): List<DummyEntity>
 }

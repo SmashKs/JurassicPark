@@ -22,6 +22,20 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.dummy.data.contracts
+package taiwan.no.one.dummy.data.repository
 
-internal interface DataStore
+import taiwan.no.one.dummy.data.stores.LocalStore
+import taiwan.no.one.dummy.data.stores.RemoteStore
+import taiwan.no.one.dummy.domain.model.Dummy
+import taiwan.no.one.dummy.domain.repository.DummyRepo
+
+internal class DummyRepository(
+    private val local: LocalStore,
+    private val remote: RemoteStore
+) : DummyRepo {
+    override suspend fun retrieveDummies(): List<Dummy> {
+        return local.getDummies().map {
+            Dummy(it.id, it.content)
+        }
+    }
+}

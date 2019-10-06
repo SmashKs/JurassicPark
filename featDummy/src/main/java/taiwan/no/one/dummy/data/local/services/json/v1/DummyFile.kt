@@ -22,11 +22,10 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.dummy.data.local.services.v1
+package taiwan.no.one.dummy.data.local.services.json.v1
 
-import androidx.room.Dao
-import taiwan.no.one.dummy.data.local.configs.BaseDao
 import taiwan.no.one.dummy.data.local.entities.DummyEntity
 
-@Dao
-internal abstract class DummyDao : BaseDao<DummyEntity>
+internal class DummyFile {
+    suspend fun getDummies(): List<DummyEntity> = TODO()
+}

@@ -28,5 +28,5 @@ import taiwan.no.one.core.domain.repository.Repository
 import taiwan.no.one.dummy.domain.model.Dummy
 
 internal interface DummyRepo : Repository {
-    fun fetchDummy(): Dummy
+    suspend fun retrieveDummies(): List<Dummy>
 }

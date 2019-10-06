@@ -29,11 +29,11 @@ import taiwan.no.one.core.domain.usecase.Usecase
 import taiwan.no.one.dummy.domain.model.Dummy
 import taiwan.no.one.dummy.domain.repository.DummyRepo
 
-internal class FetchDummyCase(
+internal class RetrieveDummyCase(
     private val dummyRepo: DummyRepo
-) : DeferredUsecase<Dummy, FetchDummyCase.Request>() {
+) : DeferredUsecase<Dummy, RetrieveDummyCase.Request>() {
     override suspend fun acquireCase(parameter: Request?) =
-        Result.success(dummyRepo.fetchDummy())
+        Result.success(dummyRepo.retrieveDummies())
 
     data class Request(val id: Int) : Usecase.RequestValues
 }
