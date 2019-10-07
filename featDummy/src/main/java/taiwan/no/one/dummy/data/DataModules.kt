@@ -24,8 +24,42 @@
 
 package taiwan.no.one.dummy.data
 
-object DataModules {
-    fun provideDependency() {
+import org.kodein.di.Kodein
+import org.kodein.di.generic.bind
+import org.kodein.di.generic.instance
+import org.kodein.di.generic.singleton
+import taiwan.no.one.dummy.DummyFeatModules.FEAT_NAME
+import taiwan.no.one.dummy.data.contracts.DataStore
+import taiwan.no.one.dummy.data.local.configs.DummyDatabase
+import taiwan.no.one.dummy.data.local.services.database.v1.DummyDao
+import taiwan.no.one.dummy.data.local.services.json.v1.DummyFile
+import taiwan.no.one.dummy.data.repository.DummyRepository
+import taiwan.no.one.dummy.data.stores.LocalStore
+import taiwan.no.one.dummy.data.stores.RemoteStore
+import taiwan.no.one.dummy.domain.repository.DummyRepo
+import taiwan.no.one.jurassicpark.di.ModuleProvider
 
+object DataModules : ModuleProvider {
+    private const val LOCAL = "local data store"
+    private const val REMOTE = "remote data store"
+
+    override fun provide() = Kodein.Module("${FEAT_NAME}DataModule") {
+        import(localProvide())
+        import(remoteProvide())
+
+        bind<DataStore>(LOCAL) with singleton { LocalStore(instance(), instance()) }
+        bind<DataStore>(REMOTE) with singleton { RemoteStore() }
+
+        bind<DummyRepo>() with singleton { DummyRepository(instance(LOCAL), instance(REMOTE)) }
+    }
+
+    private fun localProvide() = Kodein.Module("LocalModule") {
+        bind<DummyDatabase>() with singleton { DummyDatabase.getDatabase(instance()) }
+
+        bind<DummyFile>() with singleton { DummyFile(instance()) }
+        bind<DummyDao>() with singleton { instance<DummyDatabase>().createDummyDao() }
+    }
+
+    private fun remoteProvide() = Kodein.Module("RemoteModule") {
     }
 }

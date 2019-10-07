@@ -26,6 +26,7 @@ package taiwan.no.one.jurassicpark
 
 import android.content.Context
 import android.net.Uri
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph
 import androidx.navigation.fragment.findNavController
@@ -35,10 +36,13 @@ import com.google.android.play.core.splitinstall.SplitInstallStateUpdatedListene
 import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus
 import taiwan.no.one.core.presentation.fragment.BaseFragment
 import taiwan.no.one.jurassicpark.databinding.ActivitySecondBinding
+import taiwan.no.one.jurassicpark.viewmodel.MainViewModel
+import taiwan.no.one.jurassicpark.viewmodel.VMProvider
 
 class MainFragment : BaseFragment<MainActivity, ActivitySecondBinding>() {
     val manager by lazy { SplitInstallManagerFactory.create(requireContext()) }
     private val request by lazy { SplitInstallRequest.newBuilder().addModule("featDummy").build() }
+    private val vm by viewModels<MainViewModel> { VMProvider }
     private val listener by lazy {
         SplitInstallStateUpdatedListener {
             when (it.status()) {
@@ -61,7 +65,7 @@ class MainFragment : BaseFragment<MainActivity, ActivitySecondBinding>() {
      * For separating the huge function code in [rendered]. Initialize all view components here.
      */
     override fun viewComponentBinding() {
-        binding.tvMsg.text = "321321"
+        binding.tvMsg.text = vm.test.toString()
     }
 
     /**

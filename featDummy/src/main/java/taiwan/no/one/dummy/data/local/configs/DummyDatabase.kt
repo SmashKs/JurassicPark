@@ -40,12 +40,12 @@ import taiwan.no.one.dummy.data.local.services.database.v1.DummyDao
           version = 1,
           exportSchema = false)
 @TypeConverters(DateConvert::class)
-internal abstract class MusicDatabase : RoomDatabase() {
+internal abstract class DummyDatabase : RoomDatabase() {
     companion object {
-        @Volatile private var INSTANCE: MusicDatabase? = null
+        @Volatile private var INSTANCE: DummyDatabase? = null
         private const val DATABASE_NAME = "number_one.db"
 
-        fun getDatabase(context: Context): MusicDatabase {
+        fun getDatabase(context: Context): DummyDatabase {
             val tempInstance = INSTANCE
 
             if (tempInstance != null) {
@@ -54,7 +54,7 @@ internal abstract class MusicDatabase : RoomDatabase() {
             synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    MusicDatabase::class.java,
+                    DummyDatabase::class.java,
                     DATABASE_NAME
                 ).build()
                 INSTANCE = instance

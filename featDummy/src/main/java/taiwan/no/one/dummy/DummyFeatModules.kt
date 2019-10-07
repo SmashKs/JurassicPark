@@ -22,16 +22,20 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.dummy.domain.usecase
+package taiwan.no.one.dummy
 
-import taiwan.no.one.core.domain.usecase.Usecase
-import taiwan.no.one.dummy.domain.repository.DummyRepo
+import org.kodein.di.Kodein
+import taiwan.no.one.dummy.data.DataModules
+import taiwan.no.one.dummy.domain.DomainModules
+import taiwan.no.one.dummy.presentation.PresentationModules
+import taiwan.no.one.jurassicpark.di.ModuleProvider
 
-internal class RetrieveDummyCase(
-    private val dummyRepo: DummyRepo
-) : RetrieveDummyDeferredCase() {
-    override suspend fun acquireCase(parameter: Request?) =
-        Result.success(dummyRepo.retrieveDummies())
+object DummyFeatModules : ModuleProvider {
+    internal const val FEAT_NAME = "Dummy"
 
-    data class Request(val id: Int) : Usecase.RequestValues
+    override fun provide() = Kodein.Module("${FEAT_NAME}Module") {
+        import(DataModules.provide())
+        import(DomainModules.provide())
+        import(PresentationModules.provide())
+    }
 }

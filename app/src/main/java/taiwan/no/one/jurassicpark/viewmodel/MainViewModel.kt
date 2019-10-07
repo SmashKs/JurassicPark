@@ -22,16 +22,12 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.dummy.domain.usecase
+package taiwan.no.one.jurassicpark.viewmodel
 
-import taiwan.no.one.core.domain.usecase.Usecase
-import taiwan.no.one.dummy.domain.repository.DummyRepo
+import androidx.lifecycle.ViewModel
 
-internal class RetrieveDummyCase(
-    private val dummyRepo: DummyRepo
-) : RetrieveDummyDeferredCase() {
-    override suspend fun acquireCase(parameter: Request?) =
-        Result.success(dummyRepo.retrieveDummies())
-
-    data class Request(val id: Int) : Usecase.RequestValues
+class MainViewModel(
+    private val params: Int
+) : ViewModel() {
+    val test = params
 }

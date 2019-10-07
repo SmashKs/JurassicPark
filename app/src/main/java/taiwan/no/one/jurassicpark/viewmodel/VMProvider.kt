@@ -22,16 +22,24 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.dummy.domain.usecase
+package taiwan.no.one.jurassicpark.viewmodel
 
-import taiwan.no.one.core.domain.usecase.Usecase
-import taiwan.no.one.dummy.domain.repository.DummyRepo
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import org.kodein.di.Kodein
+import org.kodein.di.KodeinAware
 
-internal class RetrieveDummyCase(
-    private val dummyRepo: DummyRepo
-) : RetrieveDummyDeferredCase() {
-    override suspend fun acquireCase(parameter: Request?) =
-        Result.success(dummyRepo.retrieveDummies())
+object VMProvider : ViewModelProvider.Factory, KodeinAware {
+    override val kodein: Kodein = Kodein.lazy {
+        import(viewmodelProvider())
+    }
+//    private val
 
-    data class Request(val id: Int) : Usecase.RequestValues
+    override fun <T : ViewModel?> create(modelClass: Class<T>) = MainViewModel(3333) as T
+
+    private fun viewmodelProvider() = Kodein.Module("ViewModelModule") {
+        //        bind<ViewModelEntry>().inSet() with provider {
+//            MainViewModel::class.java to MainViewModel(999111)
+//        }
+    }
 }

@@ -24,14 +24,8 @@
 
 package taiwan.no.one.dummy.domain.usecase
 
-import taiwan.no.one.core.domain.usecase.Usecase
-import taiwan.no.one.dummy.domain.repository.DummyRepo
+import taiwan.no.one.core.domain.usecase.DeferredUsecase
+import taiwan.no.one.dummy.domain.model.Dummy
 
-internal class RetrieveDummyCase(
-    private val dummyRepo: DummyRepo
-) : RetrieveDummyDeferredCase() {
-    override suspend fun acquireCase(parameter: Request?) =
-        Result.success(dummyRepo.retrieveDummies())
-
-    data class Request(val id: Int) : Usecase.RequestValues
-}
+internal typealias RetrieveDummyDeferredCase = DeferredUsecase<List<Dummy>, RetrieveDummyReq>
+internal typealias RetrieveDummyReq = RetrieveDummyCase.Request

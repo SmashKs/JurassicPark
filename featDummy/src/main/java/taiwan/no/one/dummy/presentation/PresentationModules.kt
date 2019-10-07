@@ -25,10 +25,11 @@
 package taiwan.no.one.dummy.presentation
 
 import org.kodein.di.Kodein
-import taiwan.no.one.dummy.BuildConfig
+import taiwan.no.one.dummy.DummyFeatModules.FEAT_NAME
+import taiwan.no.one.jurassicpark.di.ModuleProvider
 
-object PresentationModules {
-    fun provideDependency() = Kodein.Module("${BuildConfig.APPLICATION_ID}FeatModule") {
+object PresentationModules : ModuleProvider {
+    override fun provide() = Kodein.Module("${FEAT_NAME}PreziModule") {
 
     }
 }
