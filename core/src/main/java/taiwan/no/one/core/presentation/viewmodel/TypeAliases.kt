@@ -22,12 +22,8 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark.viewmodel
+package taiwan.no.one.core.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 
-class MainViewModel(
-    private val params: Int
-) : ViewModel() {
-    val test = params
-}
+typealias LookUpViewModel = MutableMap<Class<out ViewModel>, ViewModel>

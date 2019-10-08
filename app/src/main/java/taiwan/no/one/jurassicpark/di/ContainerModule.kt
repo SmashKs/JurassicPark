@@ -22,15 +22,22 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark
+package taiwan.no.one.jurassicpark.di
 
-import android.app.Application
-import android.content.Context
-import com.google.android.play.core.splitcompat.SplitCompat
+import androidx.lifecycle.ViewModelProvider
+import org.kodein.di.Kodein
+import org.kodein.di.generic.bind
+import org.kodein.di.generic.instance
+import org.kodein.di.generic.setBinding
+import org.kodein.di.generic.singleton
+import taiwan.no.one.core.presentation.viewmodel.ViewModelFactory
 
-class JurassicParkApp : Application() {
-    override fun attachBaseContext(context: Context?) {
-        super.attachBaseContext(context)
-        SplitCompat.install(this)
+object ContainerModule {
+    fun provide() = Kodein.Module("ContainerModule") {
+        bind() from setBinding<ViewModelEntry>()
+
+        bind<ViewModelProvider.Factory>() with singleton {
+            ViewModelFactory(instance<ViewModelEntries>().toMap().toMutableMap())
+        }
     }
 }

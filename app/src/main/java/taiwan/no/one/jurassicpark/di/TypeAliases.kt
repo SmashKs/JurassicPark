@@ -22,15 +22,9 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark
+package taiwan.no.one.jurassicpark.di
 
-import android.app.Application
-import android.content.Context
-import com.google.android.play.core.splitcompat.SplitCompat
+import androidx.lifecycle.ViewModel
 
-class JurassicParkApp : Application() {
-    override fun attachBaseContext(context: Context?) {
-        super.attachBaseContext(context)
-        SplitCompat.install(this)
-    }
-}
+typealias ViewModelEntry = Pair<Class<out ViewModel>, ViewModel>
+typealias ViewModelEntries = Set<ViewModelEntry>

@@ -22,24 +22,14 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark.viewmodel
+package taiwan.no.one.core.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import org.kodein.di.Kodein
-import org.kodein.di.KodeinAware
 
-object VMProvider : ViewModelProvider.Factory, KodeinAware {
-    override val kodein: Kodein = Kodein.lazy {
-        import(viewmodelProvider())
-    }
-//    private val
-
-    override fun <T : ViewModel?> create(modelClass: Class<T>) = MainViewModel(3333) as T
-
-    private fun viewmodelProvider() = Kodein.Module("ViewModelModule") {
-        //        bind<ViewModelEntry>().inSet() with provider {
-//            MainViewModel::class.java to MainViewModel(999111)
-//        }
-    }
+class ViewModelFactory(
+    private val viewModels: LookUpViewModel
+) : ViewModelProvider.Factory {
+    @Suppress("UNCHECKED_CAST")
+    override fun <T : ViewModel?> create(modelClass: Class<T>) = viewModels[modelClass] as T
 }
