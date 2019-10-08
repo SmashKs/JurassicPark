@@ -92,5 +92,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api(Dependencies.kotlinDeps.values() + Dependencies.kotlinAndroidDeps.values())
     api(Dependencies.commonAndroidxDeps.values())
+    api(Dependencies.diDeps.values())
     api(LibraryDependency.GSON)
 }

@@ -22,19 +22,15 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark
+package taiwan.no.one.jurassicpark.di
 
 import android.app.Application
-import android.content.Context
-import com.google.android.play.core.splitcompat.SplitCompat
-import org.kodein.di.KodeinAware
-import taiwan.no.one.jurassicpark.di.Dispatcher
+import org.kodein.di.Kodein
+import org.kodein.di.android.x.androidXModule
 
-class JurassicParkApp : Application(), KodeinAware {
-    override val kodein = Dispatcher.importIntoApp(this)
-
-    override fun attachBaseContext(context: Context?) {
-        super.attachBaseContext(context)
-        SplitCompat.install(this)
+object Dispatcher {
+    fun importIntoApp(app: Application) = Kodein.lazy {
+        import(androidXModule(app))
     }
+
 }

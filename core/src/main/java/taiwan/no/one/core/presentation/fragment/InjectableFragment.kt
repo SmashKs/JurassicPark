@@ -22,19 +22,21 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark
+package taiwan.no.one.core.presentation.fragment
 
-import android.app.Application
-import android.content.Context
-import com.google.android.play.core.splitcompat.SplitCompat
+import android.os.Bundle
+import androidx.fragment.app.Fragment
 import org.kodein.di.KodeinAware
-import taiwan.no.one.jurassicpark.di.Dispatcher
+import org.kodein.di.KodeinTrigger
+import org.kodein.di.android.x.kodein
+import taiwan.no.one.core.BuildConfig
 
-class JurassicParkApp : Application(), KodeinAware {
-    override val kodein = Dispatcher.importIntoApp(this)
+abstract class InjectableFragment : Fragment(), KodeinAware {
+    override val kodein by kodein()
+    override val kodeinTrigger = if (BuildConfig.DEBUG) KodeinTrigger() else super.kodeinTrigger
 
-    override fun attachBaseContext(context: Context?) {
-        super.attachBaseContext(context)
-        SplitCompat.install(this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        kodeinTrigger?.trigger()
     }
 }

@@ -34,7 +34,6 @@ import androidx.annotation.StyleRes
 import androidx.annotation.UiThread
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
@@ -45,12 +44,13 @@ import java.lang.reflect.ParameterizedType
 /**
  * The basic fragment is for the normal activity that prepares all necessary variables or functions.
  */
-abstract class BaseFragment<out A : BaseActivity<*>, out V : ViewBinding> : Fragment(), CoroutineScope by MainScope() {
+abstract class BaseFragment<out A : BaseActivity<*>, out V : ViewBinding> : InjectableFragment(),
+                                                                            CoroutineScope by MainScope() {
     @Suppress("UNCHECKED_CAST")
     protected val parent
         // If there's no parent, forcing crashing the app.
         get() = requireActivity() as A
-    //region ViewBinding Operations
+    //region ViewBinding Reflection
     /** Using reflection to get dynamic view binding name. */
     @Suppress("UNCHECKED_CAST")
     protected val binding by lazy { inflateMethod.invoke(null, localInflater) as V }

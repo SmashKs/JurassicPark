@@ -27,7 +27,6 @@ package taiwan.no.one.core.presentation.activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.annotation.UiThread
-import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
@@ -37,7 +36,8 @@ import java.lang.reflect.ParameterizedType
 /**
  * The basic activity is for the normal activity that prepares all necessary variables or functions.
  */
-abstract class BaseActivity<out V : ViewBinding> : AppCompatActivity(), CoroutineScope by MainScope() {
+abstract class BaseActivity<out V : ViewBinding> : InjectableActivity(), CoroutineScope by MainScope() {
+    //region ViewBinding Reflection
     /** Using reflection to get dynamic view binding name. */
     @Suppress("UNCHECKED_CAST")
     protected val binding by lazy { inflateMethod.invoke(null, layoutInflater) as V }
@@ -47,6 +47,7 @@ abstract class BaseActivity<out V : ViewBinding> : AppCompatActivity(), Coroutin
     private val inflateMethod by lazy {
         viewBindingConcreteClass.getMethod("inflate", LayoutInflater::class.java)
     }
+    //endregion
 
     //region Activity lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
