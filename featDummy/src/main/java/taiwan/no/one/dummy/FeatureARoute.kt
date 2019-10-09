@@ -25,12 +25,9 @@
 package taiwan.no.one.dummy
 
 import androidx.navigation.NavGraph
-import taiwan.no.one.jurassicpark.NavigationGraphRoute
+import taiwan.no.one.jurassicpark.provider.NaviGraphRouteProvider
 
-object FeatureARoute : NavigationGraphRoute {
-    /**
-     * Contains the destination graph once inflated
-     * */
+object FeatureARoute : NaviGraphRouteProvider {
     override lateinit var navGraph: NavGraph
 
     override val graphName get() = "nav_dummy"

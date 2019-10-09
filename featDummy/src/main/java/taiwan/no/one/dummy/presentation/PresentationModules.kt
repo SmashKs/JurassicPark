@@ -26,7 +26,7 @@ package taiwan.no.one.dummy.presentation
 
 import org.kodein.di.Kodein
 import taiwan.no.one.dummy.DummyFeatModules.FEAT_NAME
-import taiwan.no.one.jurassicpark.di.ModuleProvider
+import taiwan.no.one.jurassicpark.provider.ModuleProvider
 
 object PresentationModules : ModuleProvider {
     override fun provide() = Kodein.Module("${FEAT_NAME}PreziModule") {

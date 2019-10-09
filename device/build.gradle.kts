@@ -22,7 +22,6 @@
  * SOFTWARE.
  */
 
-
 import config.AndroidConfiguration
 import config.Dependencies
 

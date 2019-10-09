@@ -22,74 +22,71 @@
  * SOFTWARE.
  */
 
-
 import config.AndroidConfiguration
+import config.CommonModuleDependency
 import config.Dependencies
 import config.LibraryDependency
+import org.jetbrains.kotlin.gradle.internal.CacheImplementation
 import resources.FeatureRes
 
 android {
-    compileSdkVersion AndroidConfiguration.COMPILE_SDK
+    compileSdkVersion(AndroidConfiguration.COMPILE_SDK)
     defaultConfig {
-        applicationId AndroidConfiguration.ID
-        minSdkVersion AndroidConfiguration.MIN_SDK
-        targetSdkVersion AndroidConfiguration.TARGET_SDK
-        versionCode 1
-        versionName "1.0"
+        applicationId = AndroidConfiguration.ID
+        minSdkVersion(AndroidConfiguration.MIN_SDK)
+        targetSdkVersion(AndroidConfiguration.TARGET_SDK)
+        versionCode = 1
+        versionName = "1.0"
         multiDexEnabled = true
         vectorDrawables.useSupportLibrary = true
         renderscriptTargetApi = AndroidConfiguration.MIN_SDK
         renderscriptSupportModeEnabled = true
-        testInstrumentationRunner AndroidConfiguration.TEST_INSTRUMENTATION_RUNNER
-        consumerProguardFiles 'consumer-rules.pro'
+        testInstrumentationRunner = AndroidConfiguration.TEST_INSTRUMENTATION_RUNNER
+        consumerProguardFiles(file("consumer-rules.pro"))
     }
     buildTypes {
-        release {
-            minifyEnabled = true
-            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+        getByName("release") {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), file("proguard-rules.pro"))
         }
-        debug {
-            splits.abi.enable = false
-            splits.density.enable = false
+        getByName("debug") {
+            splits.abi.isEnable = false
+            splits.density.isEnable = false
             aaptOptions.cruncherEnabled = false
-            minifyEnabled = false
+            isMinifyEnabled = false
+            isTestCoverageEnabled = false
             // Only use this flag on builds you don't proguard or upload to beta-by-crashlytics.
-            testCoverageEnabled = false
-            ext.alwaysUpdateBuildId = false
-            crunchPngs = false // Enabled by default for RELEASE build type
+            ext.set("alwaysUpdateBuildId", false)
+            isCrunchPngs = false // Enabled by default for RELEASE build type
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), file("proguard-rules.pro"))
         }
     }
     sourceSets {
-        main {
-            res.srcDirs += FeatureRes.dirs
-        }
+        getByName("main").res.srcDirs(*FeatureRes.dirs)
     }
     dexOptions {
         jumboMode = true
         preDexLibraries = true
         threadCount = 8
     }
-    packagingOptions {
-        exclude "META-INF/atomicfu.kotlin_module"
-        exclude "META-INF/kotlinx-coroutines-core.kotlin_module"
-    }
-    testOptions { unitTests.returnDefaultValues = true }
-    lintOptions { abortOnError = false }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8
+    packagingOptions {
+        exclude("META-INF/atomicfu.kotlin_module")
+        exclude("META-INF/kotlinx-coroutines-core.kotlin_module")
     }
-    viewBinding.enabled = true
-
-    dynamicFeatures = [":featDummy"]
+    testOptions { unitTests.apply { isReturnDefaultValues = true } }
+    lintOptions { isAbortOnError = false }
+    kotlinOptions { jvmTarget = JavaVersion.VERSION_1_8.toString() }
+    viewBinding.isEnabled = true
+    dynamicFeatures = CommonModuleDependency.getFeatureModuleName()
 }
 
 androidExtensions {
-    experimental = true
-    defaultCacheImplementation = "SPARSE_ARRAY"
+    isExperimental = true
+    defaultCacheImplementation = CacheImplementation.SPARSE_ARRAY
 }
 
 kapt {
@@ -99,15 +96,14 @@ kapt {
 }
 
 dependencies {
-    api fileTree(dir: "libs", include: ["*.jar"])
-    api([project(":core"), project(":ktx"), project(":device")])
+    api(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    api(project(":core"))
     api(LibraryDependency.PLAY_CORE)
     api(LibraryDependency.KNIFER)
     api(LibraryDependency.MMKV)
     api(LibraryDependency.COIL)
-    api(Dependencies.androidxKtxDeps.values())
-    api(Dependencies.androidxDeps.values())
-    api(Dependencies.diDeps.values())
-    api(Dependencies.internetDeps.values())
-    api(Dependencies.uiDeps.values())
+    (Dependencies.androidxKtxDeps.values +
+     Dependencies.androidxDeps.values +
+     Dependencies.internetDeps.values +
+     Dependencies.uiDeps.values).forEach(::api)
 }

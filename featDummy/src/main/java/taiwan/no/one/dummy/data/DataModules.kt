@@ -37,7 +37,7 @@ import taiwan.no.one.dummy.data.repository.DummyRepository
 import taiwan.no.one.dummy.data.stores.LocalStore
 import taiwan.no.one.dummy.data.stores.RemoteStore
 import taiwan.no.one.dummy.domain.repository.DummyRepo
-import taiwan.no.one.jurassicpark.di.ModuleProvider
+import taiwan.no.one.jurassicpark.provider.ModuleProvider
 
 object DataModules : ModuleProvider {
     private const val LOCAL = "local data store"

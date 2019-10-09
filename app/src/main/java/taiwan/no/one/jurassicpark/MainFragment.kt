@@ -28,13 +28,13 @@ import android.content.Context
 import android.net.Uri
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph
-import androidx.navigation.fragment.findNavController
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
 import com.google.android.play.core.splitinstall.SplitInstallRequest
 import com.google.android.play.core.splitinstall.SplitInstallStateUpdatedListener
 import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus
 import taiwan.no.one.core.presentation.fragment.BaseFragment
 import taiwan.no.one.jurassicpark.databinding.ActivitySecondBinding
+import taiwan.no.one.jurassicpark.provider.NaviGraphRouteProvider
 
 class MainFragment : BaseFragment<MainActivity, ActivitySecondBinding>() {
     val manager by lazy { SplitInstallManagerFactory.create(requireContext()) }
@@ -44,7 +44,7 @@ class MainFragment : BaseFragment<MainActivity, ActivitySecondBinding>() {
             when (it.status()) {
                 SplitInstallSessionStatus.INSTALLED -> {
                     val route =
-                        Class.forName("taiwan.no.one.dummy.FeatureARoute").kotlin.objectInstance as? NavigationGraphRoute
+                        Class.forName("taiwan.no.one.dummy.FeatureARoute").kotlin.objectInstance as? NaviGraphRouteProvider
                     addNavGraphDestination(route!!, findNavController(), requireContext())
 //                    launch {
 //                        delay(1500)
@@ -52,6 +52,7 @@ class MainFragment : BaseFragment<MainActivity, ActivitySecondBinding>() {
 //                            findNavController().navigate(Uri.parse("https://taiwan.no.one.dummy/activity"))
 //                        }
 //                    }
+                    BuildConfig.VERSION_CODE
                 }
             }
         }
@@ -86,7 +87,7 @@ class MainFragment : BaseFragment<MainActivity, ActivitySecondBinding>() {
     }
 
     private fun addNavGraphDestination(
-        navigationGraphRoute: NavigationGraphRoute,
+        navigationGraphRoute: NaviGraphRouteProvider,
         navController: NavController,
         context: Context
     ): NavGraph {
@@ -100,24 +101,4 @@ class MainFragment : BaseFragment<MainActivity, ActivitySecondBinding>() {
         navController.graph.addDestination(newGraph)
         return newGraph
     }
-}
-
-/**
-Provides necessary information for NavGraph in other modules
- */
-interface NavigationGraphRoute {
-    /*
-    The inflated NavGraph
-    */
-    var navGraph: NavGraph
-    /**
-    The .xml name for the nav-graph
-     */
-    val graphName: String
-    /**
-    The full package name where the nav-graph is located
-     */
-    val packageName: String
-
-    val resourceId: Int
 }

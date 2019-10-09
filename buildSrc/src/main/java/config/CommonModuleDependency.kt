@@ -49,4 +49,9 @@ object CommonModuleDependency {
         .asSequence()
         .filter { it.startsWith(FEATURE_PREFIX) }
         .toSet()
+
+    fun getFeatureModuleName() = getDynamicFeatureModules()
+        .asSequence()
+        .map { it.replace("feature_", "") }
+        .toMutableSet()
 }

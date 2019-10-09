@@ -22,9 +22,10 @@
  * SOFTWARE.
  */
 
+import config.CommonModuleDependency
+
 android {
     compileSdkVersion 29
-    
     defaultConfig {
         minSdkVersion 23
         targetSdkVersion 29
@@ -40,5 +41,5 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':app')
+    implementation project(CommonModuleDependency.APP)
 }

@@ -22,19 +22,10 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.dummy.domain
+package taiwan.no.one.jurassicpark.provider
 
 import org.kodein.di.Kodein
-import org.kodein.di.generic.bind
-import org.kodein.di.generic.instance
-import org.kodein.di.generic.singleton
-import taiwan.no.one.dummy.DummyFeatModules.FEAT_NAME
-import taiwan.no.one.dummy.domain.usecase.RetrieveDummyCase
-import taiwan.no.one.dummy.domain.usecase.RetrieveDummyDeferredCase
-import taiwan.no.one.jurassicpark.provider.ModuleProvider
 
-object DomainModules : ModuleProvider {
-    override fun provide() = Kodein.Module("${FEAT_NAME}DomainModule") {
-        bind<RetrieveDummyDeferredCase>() with singleton { RetrieveDummyCase(instance()) }
-    }
+interface ModuleProvider {
+    fun provide(): Kodein.Module
 }
