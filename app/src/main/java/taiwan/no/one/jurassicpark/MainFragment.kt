@@ -28,6 +28,7 @@ import android.content.Context
 import android.net.Uri
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph
+import androidx.navigation.fragment.findNavController
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
 import com.google.android.play.core.splitinstall.SplitInstallRequest
 import com.google.android.play.core.splitinstall.SplitInstallStateUpdatedListener
