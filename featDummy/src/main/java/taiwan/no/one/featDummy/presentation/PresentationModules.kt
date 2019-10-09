@@ -22,16 +22,21 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark.di
+package taiwan.no.one.featDummy.presentation
 
-import android.app.Application
 import org.kodein.di.Kodein
-import org.kodein.di.android.x.androidXModule
+import org.kodein.di.generic.bind
+import org.kodein.di.generic.inSet
+import org.kodein.di.generic.provider
+import taiwan.no.one.featDummy.FeatModules.FEAT_NAME
+import taiwan.no.one.featDummy.presentation.viewmodel.DummyViewModel
+import taiwan.no.one.jurassicpark.di.ViewModelEntry
+import taiwan.no.one.jurassicpark.provider.ModuleProvider
 
-object Dispatcher {
-    fun importIntoApp(app: Application) = Kodein.lazy {
-        import(androidXModule(app))
-        import(ContainerModule.provide())
-        importAll(FeatModuleHelper.kodeinModules)
+object PresentationModules : ModuleProvider {
+    override fun provide() = Kodein.Module("${FEAT_NAME}PreziModule") {
+        bind<ViewModelEntry>().inSet() with provider {
+            DummyViewModel::class.java to DummyViewModel(32)
+        }
     }
 }

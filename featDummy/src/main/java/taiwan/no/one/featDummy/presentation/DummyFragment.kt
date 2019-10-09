@@ -22,16 +22,18 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark.di
+package taiwan.no.one.featDummy.presentation
 
-import android.app.Application
-import org.kodein.di.Kodein
-import org.kodein.di.android.x.androidXModule
+import androidx.fragment.app.viewModels
+import com.devrapid.kotlinknifer.logw
+import taiwan.no.one.core.presentation.activity.BaseActivity
+import taiwan.no.one.core.presentation.fragment.BaseFragment
+import taiwan.no.one.featDummy.presentation.viewmodel.DummyViewModel
 
-object Dispatcher {
-    fun importIntoApp(app: Application) = Kodein.lazy {
-        import(androidXModule(app))
-        import(ContainerModule.provide())
-        importAll(FeatModuleHelper.kodeinModules)
+class DummyFragment : BaseFragment<BaseActivity<*>, FragmentDummyBinding>() {
+    private val vm by viewModels<DummyViewModel> { vmFactory }
+
+    override fun viewComponentBinding() {
+        logw(vm.getParam())
     }
 }

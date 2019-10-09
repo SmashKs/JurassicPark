@@ -22,16 +22,19 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark.di
+package taiwan.no.one.featDummy.data.local.converters
 
-import android.app.Application
-import org.kodein.di.Kodein
-import org.kodein.di.android.x.androidXModule
+import androidx.room.TypeConverter
+import java.util.Date
 
-object Dispatcher {
-    fun importIntoApp(app: Application) = Kodein.lazy {
-        import(androidXModule(app))
-        import(ContainerModule.provide())
-        importAll(FeatModuleHelper.kodeinModules)
+internal class DateConvert {
+    @TypeConverter
+    fun fromTimestamp(value: Long?): Date? {
+        return value?.let(::Date)
+    }
+
+    @TypeConverter
+    fun dateToTimestamp(date: Date?): Long? {
+        return date?.time
     }
 }

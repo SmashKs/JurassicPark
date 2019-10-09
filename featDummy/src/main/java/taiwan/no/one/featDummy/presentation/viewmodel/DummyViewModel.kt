@@ -22,16 +22,12 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark.di
+package taiwan.no.one.featDummy.presentation.viewmodel
 
-import android.app.Application
-import org.kodein.di.Kodein
-import org.kodein.di.android.x.androidXModule
+import taiwan.no.one.core.presentation.viewmodel.BehindViewModel
 
-object Dispatcher {
-    fun importIntoApp(app: Application) = Kodein.lazy {
-        import(androidXModule(app))
-        import(ContainerModule.provide())
-        importAll(FeatModuleHelper.kodeinModules)
-    }
+class DummyViewModel(
+    private val param: Int
+) : BehindViewModel() {
+    fun getParam() = param
 }

@@ -26,7 +26,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
     xmlns:tools="http://schemas.android.com/tools"
-    package="taiwan.no.one.dummy">
+    package="taiwan.no.one.featDummy">
 
     <dist:module
         dist:instant="false"
@@ -42,15 +42,5 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,MissingApplicationIcon">
-        <activity android:name=".presentation.DummyActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-            </intent-filter>
-        </activity>
-        <activity android:name=".presentation.DummyDetailActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-            </intent-filter>
-        </activity>
     </application>
 </manifest>

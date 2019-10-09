@@ -22,16 +22,15 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark.di
+package taiwan.no.one.core.presentation.viewmodel
 
-import android.app.Application
-import org.kodein.di.Kodein
-import org.kodein.di.android.x.androidXModule
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-object Dispatcher {
-    fun importIntoApp(app: Application) = Kodein.lazy {
-        import(androidXModule(app))
-        import(ContainerModule.provide())
-        importAll(FeatModuleHelper.kodeinModules)
-    }
+abstract class BehindViewModel : ViewModel() {
+    inline fun launchBehind(crossinline block: suspend CoroutineScope.() -> Unit) =
+        viewModelScope.launch(Dispatchers.IO) { block() }
 }

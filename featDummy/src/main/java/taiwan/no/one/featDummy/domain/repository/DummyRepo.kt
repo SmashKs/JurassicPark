@@ -22,16 +22,11 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark.di
+package taiwan.no.one.featDummy.domain.repository
 
-import android.app.Application
-import org.kodein.di.Kodein
-import org.kodein.di.android.x.androidXModule
+import taiwan.no.one.core.domain.repository.Repository
+import taiwan.no.one.featDummy.domain.model.Dummy
 
-object Dispatcher {
-    fun importIntoApp(app: Application) = Kodein.lazy {
-        import(androidXModule(app))
-        import(ContainerModule.provide())
-        importAll(FeatModuleHelper.kodeinModules)
-    }
+internal interface DummyRepo : Repository {
+    suspend fun retrieveDummies(): List<Dummy>
 }

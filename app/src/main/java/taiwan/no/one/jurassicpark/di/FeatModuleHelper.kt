@@ -24,4 +24,26 @@
 
 package taiwan.no.one.jurassicpark.di
 
-object FeatModuleHelper
+import taiwan.no.one.jurassicpark.BuildConfig
+import taiwan.no.one.jurassicpark.provider.ModuleProvider
+
+object FeatModuleHelper {
+    private val featurePackagePrefix by lazy {
+        BuildConfig.APPLICATION_ID
+            .split(".")
+            .dropLast(1)
+            .joinToString(".")
+    }
+
+    val kodeinModules = listOf("featDummy")
+        .map { "$featurePackagePrefix.$it.FeatModules" }
+        .map {
+            try {
+                Class.forName(it).kotlin.objectInstance as ModuleProvider
+            }
+            catch (e: ClassNotFoundException) {
+                throw ClassNotFoundException("Kodein module class not found $it")
+            }
+        }
+        .map { it.provide() }
+}

@@ -22,16 +22,10 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark.di
+package taiwan.no.one.featDummy.domain.usecase
 
-import android.app.Application
-import org.kodein.di.Kodein
-import org.kodein.di.android.x.androidXModule
+import taiwan.no.one.core.domain.usecase.DeferredUsecase
+import taiwan.no.one.featDummy.domain.model.Dummy
 
-object Dispatcher {
-    fun importIntoApp(app: Application) = Kodein.lazy {
-        import(androidXModule(app))
-        import(ContainerModule.provide())
-        importAll(FeatModuleHelper.kodeinModules)
-    }
-}
+internal typealias RetrieveDummyDeferredCase = DeferredUsecase<List<Dummy>, RetrieveDummyReq>
+internal typealias RetrieveDummyReq = RetrieveDummyCase.Request

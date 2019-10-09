@@ -22,16 +22,17 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark.di
+package taiwan.no.one.featDummy
 
-import android.app.Application
-import org.kodein.di.Kodein
-import org.kodein.di.android.x.androidXModule
+import androidx.navigation.NavGraph
+import taiwan.no.one.jurassicpark.provider.NaviGraphRouteProvider
 
-object Dispatcher {
-    fun importIntoApp(app: Application) = Kodein.lazy {
-        import(androidXModule(app))
-        import(ContainerModule.provide())
-        importAll(FeatModuleHelper.kodeinModules)
-    }
+object FeatureARoute : NaviGraphRouteProvider {
+    override lateinit var navGraph: NavGraph
+
+    override val graphName get() = "nav_dummy"
+
+    override val packageName get() = BuildConfig.APPLICATION_ID
+
+    override val resourceId get() = R.navigation.nav_dummy
 }

@@ -22,16 +22,20 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark.di
+package taiwan.no.one.featDummy.data.repository
 
-import android.app.Application
-import org.kodein.di.Kodein
-import org.kodein.di.android.x.androidXModule
+import taiwan.no.one.featDummy.data.stores.LocalStore
+import taiwan.no.one.featDummy.data.stores.RemoteStore
+import taiwan.no.one.featDummy.domain.model.Dummy
+import taiwan.no.one.featDummy.domain.repository.DummyRepo
 
-object Dispatcher {
-    fun importIntoApp(app: Application) = Kodein.lazy {
-        import(androidXModule(app))
-        import(ContainerModule.provide())
-        importAll(FeatModuleHelper.kodeinModules)
+internal class DummyRepository(
+    private val local: LocalStore,
+    private val remote: RemoteStore
+) : DummyRepo {
+    override suspend fun retrieveDummies(): List<Dummy> {
+        return local.getDummies().map {
+            Dummy(it.id, it.content)
+        }
     }
 }

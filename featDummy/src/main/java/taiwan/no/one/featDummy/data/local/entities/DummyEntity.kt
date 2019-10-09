@@ -22,16 +22,16 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark.di
+package taiwan.no.one.featDummy.data.local.entities
 
-import android.app.Application
-import org.kodein.di.Kodein
-import org.kodein.di.android.x.androidXModule
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import java.util.Date
 
-object Dispatcher {
-    fun importIntoApp(app: Application) = Kodein.lazy {
-        import(androidXModule(app))
-        import(ContainerModule.provide())
-        importAll(FeatModuleHelper.kodeinModules)
-    }
-}
+@Entity(tableName = "table_dummy")
+internal data class DummyEntity(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+    val content: String,
+    val updated: Date = Date()
+)

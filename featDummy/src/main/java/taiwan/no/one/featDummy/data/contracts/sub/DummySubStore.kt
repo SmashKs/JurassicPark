@@ -22,16 +22,10 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark.di
+package taiwan.no.one.featDummy.data.contracts.sub
 
-import android.app.Application
-import org.kodein.di.Kodein
-import org.kodein.di.android.x.androidXModule
+import taiwan.no.one.featDummy.data.local.entities.DummyEntity
 
-object Dispatcher {
-    fun importIntoApp(app: Application) = Kodein.lazy {
-        import(androidXModule(app))
-        import(ContainerModule.provide())
-        importAll(FeatModuleHelper.kodeinModules)
-    }
+internal interface DummySubStore {
+    suspend fun getDummies(): List<DummyEntity>
 }

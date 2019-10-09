@@ -45,7 +45,7 @@ class MainFragment : BaseFragment<MainActivity, ActivitySecondBinding>() {
             when (it.status()) {
                 SplitInstallSessionStatus.INSTALLED -> {
                     val route =
-                        Class.forName("taiwan.no.one.dummy.FeatureARoute").kotlin.objectInstance as? NaviGraphRouteProvider
+                        Class.forName("taiwan.no.one.featDummy.FeatureARoute").kotlin.objectInstance as? NaviGraphRouteProvider
                     addNavGraphDestination(route!!, findNavController(), requireContext())
 //                    launch {
 //                        delay(1500)

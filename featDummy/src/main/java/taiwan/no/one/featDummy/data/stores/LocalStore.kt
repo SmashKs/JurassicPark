@@ -22,16 +22,21 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark.di
+package taiwan.no.one.featDummy.data.stores
 
-import android.app.Application
-import org.kodein.di.Kodein
-import org.kodein.di.android.x.androidXModule
+import taiwan.no.one.featDummy.data.contracts.DataStore
+import taiwan.no.one.featDummy.data.contracts.sub.DummySubStore
+import taiwan.no.one.featDummy.data.local.entities.DummyEntity
+import taiwan.no.one.featDummy.data.local.services.database.v1.DummyDao
+import taiwan.no.one.featDummy.data.local.services.json.v1.DummyFile
 
-object Dispatcher {
-    fun importIntoApp(app: Application) = Kodein.lazy {
-        import(androidXModule(app))
-        import(ContainerModule.provide())
-        importAll(FeatModuleHelper.kodeinModules)
+internal class LocalStore(
+    private val dummyDao: DummyDao,
+    private val dummyFile: DummyFile
+) : DataStore, DummySubStore {
+    override suspend fun getDummies(): List<DummyEntity> {
+        val dbDummy = dummyDao.getDummies()
+        if (dbDummy.isNotEmpty()) return dbDummy
+        return dummyFile.getDummies()
     }
 }

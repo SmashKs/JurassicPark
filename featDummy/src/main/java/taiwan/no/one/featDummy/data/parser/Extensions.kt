@@ -22,16 +22,30 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark.di
+package taiwan.no.one.featDummy.data.parser
 
-import android.app.Application
-import org.kodein.di.Kodein
-import org.kodein.di.android.x.androidXModule
+import android.content.Context
+import android.util.Log
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.google.gson.stream.JsonReader
 
-object Dispatcher {
-    fun importIntoApp(app: Application) = Kodein.lazy {
-        import(androidXModule(app))
-        import(ContainerModule.provide())
-        importAll(FeatModuleHelper.kodeinModules)
+internal inline fun <reified T> Context.parseObjectFromJson(jsonFileName: String): T? {
+    var dataObj: T? = null
+
+    try {
+        val gson = Gson().newBuilder().create()
+        applicationContext.assets.open(jsonFileName).use { inputStream ->
+            JsonReader(inputStream.reader()).use { jsonReader ->
+                val type = object : TypeToken<T>() {}.type
+                dataObj = gson.fromJson<T>(jsonReader, type)
+            }
+        }
     }
+    catch (e: Exception) {
+        e.printStackTrace()
+        Log.e("data layer", "Error for parsing json account", e)
+    }
+
+    return dataObj
 }

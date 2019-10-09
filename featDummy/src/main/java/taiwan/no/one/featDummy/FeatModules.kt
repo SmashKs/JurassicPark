@@ -22,16 +22,20 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark.di
+package taiwan.no.one.featDummy
 
-import android.app.Application
 import org.kodein.di.Kodein
-import org.kodein.di.android.x.androidXModule
+import taiwan.no.one.featDummy.data.DataModules
+import taiwan.no.one.featDummy.domain.DomainModules
+import taiwan.no.one.featDummy.presentation.PresentationModules
+import taiwan.no.one.jurassicpark.provider.ModuleProvider
 
-object Dispatcher {
-    fun importIntoApp(app: Application) = Kodein.lazy {
-        import(androidXModule(app))
-        import(ContainerModule.provide())
-        importAll(FeatModuleHelper.kodeinModules)
+object FeatModules : ModuleProvider {
+    internal const val FEAT_NAME = "Dummy"
+
+    override fun provide() = Kodein.Module("${FEAT_NAME}Module") {
+        import(DataModules.provide())
+        import(DomainModules.provide())
+        import(PresentationModules.provide())
     }
 }

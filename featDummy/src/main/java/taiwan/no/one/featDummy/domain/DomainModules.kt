@@ -22,16 +22,19 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark.di
+package taiwan.no.one.featDummy.domain
 
-import android.app.Application
 import org.kodein.di.Kodein
-import org.kodein.di.android.x.androidXModule
+import org.kodein.di.generic.bind
+import org.kodein.di.generic.instance
+import org.kodein.di.generic.singleton
+import taiwan.no.one.featDummy.FeatModules.FEAT_NAME
+import taiwan.no.one.featDummy.domain.usecase.RetrieveDummyCase
+import taiwan.no.one.featDummy.domain.usecase.RetrieveDummyDeferredCase
+import taiwan.no.one.jurassicpark.provider.ModuleProvider
 
-object Dispatcher {
-    fun importIntoApp(app: Application) = Kodein.lazy {
-        import(androidXModule(app))
-        import(ContainerModule.provide())
-        importAll(FeatModuleHelper.kodeinModules)
+object DomainModules : ModuleProvider {
+    override fun provide() = Kodein.Module("${FEAT_NAME}DomainModule") {
+        bind<RetrieveDummyDeferredCase>() with singleton { RetrieveDummyCase(instance()) }
     }
 }

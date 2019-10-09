@@ -34,10 +34,12 @@ import androidx.annotation.StyleRes
 import androidx.annotation.UiThread
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
+import org.kodein.di.generic.instance
 import taiwan.no.one.core.presentation.activity.BaseActivity
 import java.lang.reflect.ParameterizedType
 
@@ -50,6 +52,14 @@ abstract class BaseFragment<out A : BaseActivity<*>, out V : ViewBinding> : Inje
     protected val parent
         // If there's no parent, forcing crashing the app.
         get() = requireActivity() as A
+    protected val vmFactory: ViewModelProvider.Factory by instance()
+    // Set action bar's back icon color into all fragments are inheriting advFragment.
+    protected open val backDrawable by lazy {
+        //        android.R.drawable.arrow_down_float
+//            .toDrawable(parent)
+//            .changeColor(getColor(R.color.colorPrimaryTextV1))
+        android.R.drawable.arrow_down_float
+    }
     //region ViewBinding Reflection
     /** Using reflection to get dynamic view binding name. */
     @Suppress("UNCHECKED_CAST")
@@ -62,13 +72,6 @@ abstract class BaseFragment<out A : BaseActivity<*>, out V : ViewBinding> : Inje
         viewBindingConcreteClass.getMethod("inflate", LayoutInflater::class.java)
     }
     //endregion
-    // Set action bar's back icon color into all fragments are inheriting advFragment.
-    protected open val backDrawable by lazy {
-        //        android.R.drawable.arrow_down_float
-//            .toDrawable(parent)
-//            .changeColor(getColor(R.color.colorPrimaryTextV1))
-        android.R.drawable.arrow_down_float
-    }
     //    private val actionTitle by extra<String>(COMMON_TITLE)
     private val actionTitle = ""
 

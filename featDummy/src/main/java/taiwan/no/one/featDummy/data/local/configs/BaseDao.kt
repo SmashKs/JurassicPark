@@ -22,36 +22,49 @@
  * SOFTWARE.
  */
 
-package config
+package taiwan.no.one.featDummy.data.local.configs
 
-import kotlin.reflect.KProperty1
-import kotlin.reflect.full.memberProperties
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Update
 
-private const val FEATURE_PREFIX = ":feature_"
+/**
+ * Integrated the base [androidx.room.Room] database operations.
+ * Thru [androidx.room.Room] we can just define the interfaces that we want to
+ * access for from a local database.
+ * Using prefix name (select), (insert), (update), (delete)
+ */
+internal interface BaseDao<in T> {
+    /**
+     * Insert an object in the database.
+     *
+     * @param obj the object to be inserted.
+     */
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(obj: T)
 
-@Suppress("unused")
-object CommonModuleDependency {
-    const val APP = ":app"
-    const val LIB_PURE_EXT = ":library_ext"
-    const val LIB_KTX = ":library_ktx"
-    const val LIB_WIDGET = ":library_widget"
-    const val LIB_DEVICE = ":library_device"
-    const val LIB_CORE = ":library_core"
-    const val FEAT_DUMMY = ":feature_featDummy"
+    /**
+     * Insert an array of objects in the database.
+     *
+     * @param obj the objects to be inserted.
+     */
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    fun insert(vararg obj: T)
 
-    fun getAllModules() = CommonModuleDependency::class.memberProperties
-        .asSequence()
-        .filter(KProperty1<CommonModuleDependency, *>::isConst)
-        .map { it.getter.call().toString() }
-        .toSet()
+    /**
+     * Update an object from the database.
+     *
+     * @param obj the object to be updated.
+     */
+    @Update
+    fun update(obj: T)
 
-    fun getDynamicFeatureModules() = getAllModules()
-        .asSequence()
-        .filter { it.startsWith(FEATURE_PREFIX) }
-        .toSet()
-
-    fun getFeatureModuleName() = getDynamicFeatureModules()
-        .asSequence()
-        .map { it.replace("feature_", "") }
-        .toMutableSet()
+    /**
+     * Delete an object from the database.
+     *
+     * @param obj the object to be deleted.
+     */
+    @Delete
+    fun delete(obj: T)
 }

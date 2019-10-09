@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/dummyFragment"
-        android:name="taiwan.no.one.dummy.presentation.DummyFragment"
+        android:name="taiwan.no.one.featDummy.presentation.DummyFragment"
         android:label="Dummy Index">
     </fragment>
 </navigation>

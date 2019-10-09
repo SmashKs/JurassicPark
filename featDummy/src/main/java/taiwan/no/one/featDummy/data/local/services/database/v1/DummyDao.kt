@@ -22,16 +22,13 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark.di
+package taiwan.no.one.featDummy.data.local.services.database.v1
 
-import android.app.Application
-import org.kodein.di.Kodein
-import org.kodein.di.android.x.androidXModule
+import androidx.room.Dao
+import taiwan.no.one.featDummy.data.local.configs.BaseDao
+import taiwan.no.one.featDummy.data.local.entities.DummyEntity
 
-object Dispatcher {
-    fun importIntoApp(app: Application) = Kodein.lazy {
-        import(androidXModule(app))
-        import(ContainerModule.provide())
-        importAll(FeatModuleHelper.kodeinModules)
-    }
+@Dao
+internal abstract class DummyDao : BaseDao<DummyEntity> {
+    suspend fun getDummies(): List<DummyEntity> = TODO()
 }
