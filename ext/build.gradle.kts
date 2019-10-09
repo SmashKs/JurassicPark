@@ -25,9 +25,11 @@
 import config.Dependencies
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation(Dependencies.kotlinDeps.values())
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    Dependencies.kotlinDeps.values.forEach(::implementation)
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}

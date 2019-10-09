@@ -32,5 +32,4 @@ object Dispatcher {
     fun importIntoApp(app: Application) = Kodein.lazy {
         import(androidXModule(app))
     }
-
 }

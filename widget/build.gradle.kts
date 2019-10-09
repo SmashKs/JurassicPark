@@ -25,41 +25,48 @@
 
 import config.AndroidConfiguration
 import config.Dependencies
+import config.LibraryDependency
 
 android {
-    compileSdkVersion AndroidConfiguration.COMPILE_SDK
+    compileSdkVersion(AndroidConfiguration.COMPILE_SDK)
     defaultConfig {
-        minSdkVersion AndroidConfiguration.MIN_SDK
-        targetSdkVersion AndroidConfiguration.TARGET_SDK
-        testInstrumentationRunner AndroidConfiguration.TEST_INSTRUMENTATION_RUNNER
-        consumerProguardFiles 'consumer-rules.pro'
+        minSdkVersion(AndroidConfiguration.MIN_SDK)
+        targetSdkVersion(AndroidConfiguration.TARGET_SDK)
+        testInstrumentationRunner = AndroidConfiguration.TEST_INSTRUMENTATION_RUNNER
+        consumerProguardFiles(file("consumer-rules.pro"))
     }
     buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+        getByName("release") {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), file("proguard-rules.pro"))
         }
-        debug {
-            splits.abi.enable = false
-            splits.density.enable = false
+        getByName("debug") {
+            splits.abi.isEnable = false
+            splits.density.isEnable = false
             aaptOptions.cruncherEnabled = false
-            minifyEnabled = false
-            testCoverageEnabled = false
+            isMinifyEnabled = false
+            isTestCoverageEnabled = false
             // Only use this flag on builds you don't proguard or upload to beta-by-crashlytics.
-            ext.alwaysUpdateBuildId = false
-            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+            ext.set("alwaysUpdateBuildId", false)
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), file("proguard-rules.pro"))
         }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-    testOptions { unitTests.returnDefaultValues = true }
-    lintOptions { abortOnError = false }
+    testOptions { unitTests.apply { isReturnDefaultValues = true } }
+    lintOptions { isAbortOnError = false }
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(project(":ext"))
-    implementation(Dependencies.kotlinDeps.values())
+    (Dependencies.commonAndroidxDeps.values + Dependencies.kotlinAndroidDeps.values).forEach(::implementation)
+    implementation(LibraryDependency.MATERIAL_DESIGN)
+    implementation(LibraryDependency.CARDVIEW)
+    implementation(LibraryDependency.CONSTRAINT_LAYOUT)
+    implementation(LibraryDependency.LOTTIE)
+//    implementation(Deps.Presentation.arv)
+//    implementation(Deps.Widget.quickDialog)
 }

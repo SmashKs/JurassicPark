@@ -25,7 +25,7 @@
 package config
 
 object Dependencies {
-    private val kotlinDeps = hashMapOf(
+    val kotlinDeps = hashMapOf(
         "kotlin" to CoreDependency.KOTLIN,
         "reflect" to CoreDependency.KOTLIN_REFLECT,
         "coroutine" to CoreDependency.KOTLIN_COROUTINE
