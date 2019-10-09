@@ -32,8 +32,7 @@ object GradleDependency {
         const val VERSION_UPDATER = "0.25.0"
     }
 
-    const val SAFE_ARGS =
-        "androidx.navigation:navigation-safe-args-gradle-plugin:${Version.SAFE_ARGS}"
+    const val SAFE_ARGS = "androidx.navigation:navigation-safe-args-gradle-plugin:${Version.SAFE_ARGS}"
     const val GOOGLE_SERVICE = "com.google.gms:google-services:${Version.GOOGLE_SERVICE}"
     const val DETEKT = "io.gitlab.arturbosch.detekt"
     const val GRADLE_VERSION_UPDATER = "com.github.ben-manes.versions"

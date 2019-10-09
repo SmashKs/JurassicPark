@@ -27,8 +27,6 @@ package config
 import kotlin.reflect.KProperty1
 import kotlin.reflect.full.memberProperties
 
-private const val FEATURE_PREFIX = ":feature_"
-
 @Suppress("unused")
 object CommonModuleDependency {
     const val APP = ":app"
@@ -38,6 +36,7 @@ object CommonModuleDependency {
     const val LIB_DEVICE = ":library_device"
     const val LIB_CORE = ":library_core"
     const val FEAT_DUMMY = ":feature_featDummy"
+    private const val FEATURE_PREFIX = ":feature_"
 
     fun getAllModules() = CommonModuleDependency::class.memberProperties
         .asSequence()

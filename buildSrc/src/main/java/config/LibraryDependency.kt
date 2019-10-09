@@ -91,16 +91,12 @@ object LibraryDependency {
     const val ANNOT = "androidx.annotation:annotation:${Version.ANNOTATION}"
     const val RECYCLERVIEW = "androidx.recyclerview:recyclerview:${Version.RECYCLERVIEW}"
     const val CARDVIEW = "androidx.cardview:cardview:${Version.CARDVIEW}"
-    const val CONSTRAINT_LAYOUT =
-        "androidx.constraintlayout:constraintlayout:${Version.CONSTRAINTLAYOUT}"
-    const val COORDINATOR_LAYOUT =
-        "androidx.coordinatorlayout:coordinatorlayout:${Version.COORDINATORLAYOUT}"
+    const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:${Version.CONSTRAINTLAYOUT}"
+    const val COORDINATOR_LAYOUT = "androidx.coordinatorlayout:coordinatorlayout:${Version.COORDINATORLAYOUT}"
     //endregion
     //region ViewModel and LiveData
-    const val LIFECYCLE =
-        "androidx.lifecycle:lifecycle-extensions:${Version.AAC_LIFECYCLE}"
-    const val LIFECYCLE_COMPILER =
-        "android.arch.lifecycle:compiler:${Version.AAC_LIFECYCLE}"
+    const val LIFECYCLE = "androidx.lifecycle:lifecycle-extensions:${Version.AAC_LIFECYCLE}"
+    const val LIFECYCLE_COMPILER = "android.arch.lifecycle:compiler:${Version.AAC_LIFECYCLE}"
     //endregion
     //region Android Ktx
     const val KTX = "androidx.core:core-ktx:${Version.KTX}"
@@ -149,10 +145,8 @@ object LibraryDependency {
     const val FIREBASE_CORE = "com.google.firebase:firebase-core:${Version.FIREBASE_CORE}"
     const val FIREBASE_DB = "com.google.firebase:firebase-database:${Version.FIREBASE_DATABASE}"
     const val FIREBASE_AUTH = "com.google.firebase:firebase-auth:${Version.FIREBASE_AUTH}"
-    const val FIREBASE_ANALYTICS =
-        "com.google.firebase:firebase-analytics:${Version.FIREBASE_ANALYTICS}"
-    const val FIREBASE_CRASHLYTICS =
-        "com.crashlytics.sdk.android:crashlytics:${Version.FIREBASE_CRASHLYTICS}"
+    const val FIREBASE_ANALYTICS = "com.google.firebase:firebase-analytics:${Version.FIREBASE_ANALYTICS}"
+    const val FIREBASE_CRASHLYTICS = "com.crashlytics.sdk.android:crashlytics:${Version.FIREBASE_CRASHLYTICS}"
     //endregion
 //    const val CLOUDINARY = "com.cloudinary:cloudinary-android:${Version.cloudinary}"
 

@@ -35,7 +35,6 @@ object DebugDependency {
     const val STEHO = "com.facebook.stetho:stetho:${Version.STEHO}"
     const val STEHO_INTERCEPTOR = "com.facebook.stetho:stetho-okhttp3:${Version.STEHO}"
     const val DEBUG_DB = "com.amitshekhar.android:debug-db:${Version.DEBUG_DB}"
-    const val OK_HTTP_PROFILER =
-        "com.itkacher.okhttpprofiler:okhttpprofiler:${Version.OKHTTP_PROFILER}"
+    const val OK_HTTP_PROFILER = "com.itkacher.okhttpprofiler:okhttpprofiler:${Version.OKHTTP_PROFILER}"
     const val ACTIVITY_LAUNCHER = "io.xnc.intellij.plugin:launchanchor:${Version.ACTIVITY_LAUNCHER}"
 }
