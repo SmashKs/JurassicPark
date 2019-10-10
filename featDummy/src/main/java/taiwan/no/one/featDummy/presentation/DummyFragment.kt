@@ -25,6 +25,7 @@
 package taiwan.no.one.featDummy.presentation
 
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
 import com.devrapid.kotlinknifer.logw
 import taiwan.no.one.core.presentation.activity.BaseActivity
 import taiwan.no.one.core.presentation.fragment.BaseFragment
@@ -35,6 +36,9 @@ class DummyFragment : BaseFragment<BaseActivity<*>, FragmentDummyBinding>() {
     private val vm by viewModels<DummyViewModel> { vmFactory }
 
     override fun viewComponentBinding() {
-        logw(vm.getParam())
+        vm.getDummies()
+        vm.dummy.observe(viewLifecycleOwner) {
+            logw(it)
+        }
     }
 }

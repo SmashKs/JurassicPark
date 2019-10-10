@@ -25,9 +25,19 @@
 package taiwan.no.one.featDummy.presentation.viewmodel
 
 import taiwan.no.one.core.presentation.viewmodel.BehindViewModel
+import taiwan.no.one.featDummy.domain.model.Dummy
+import taiwan.no.one.featDummy.domain.usecase.RetrieveDummyCase
+import taiwan.no.one.ktx.livedata.SilentMutableLiveData
+import taiwan.no.one.ktx.livedata.toLiveData
 
-class DummyViewModel(
-    private val param: Int
+internal class DummyViewModel(
+    private val retrieveDummyCase: RetrieveDummyCase
 ) : BehindViewModel() {
-    fun getParam() = param
+    private val _dummy by lazy { SilentMutableLiveData<List<Dummy>>() }
+    val dummy = _dummy.toLiveData()
+
+    fun getDummies() = launchBehind {
+        val data = retrieveDummyCase.execute()
+        data.onSuccess(_dummy::postValue)
+    }
 }

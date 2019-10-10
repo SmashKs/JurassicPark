@@ -35,6 +35,6 @@ import taiwan.no.one.jurassicpark.provider.ModuleProvider
 
 object DomainModules : ModuleProvider {
     override fun provide() = Kodein.Module("${FEAT_NAME}DomainModule") {
-        bind<RetrieveDummyDeferredCase>() with singleton { RetrieveDummyCase(instance()) }
+        bind<RetrieveDummyCase>() with singleton { RetrieveDummyDeferredCase(instance()) }
     }
 }

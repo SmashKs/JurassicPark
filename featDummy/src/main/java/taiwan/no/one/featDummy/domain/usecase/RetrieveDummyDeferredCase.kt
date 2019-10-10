@@ -27,9 +27,9 @@ package taiwan.no.one.featDummy.domain.usecase
 import taiwan.no.one.core.domain.usecase.Usecase
 import taiwan.no.one.featDummy.domain.repository.DummyRepo
 
-internal class RetrieveDummyCase(
+internal class RetrieveDummyDeferredCase(
     private val dummyRepo: DummyRepo
-) : RetrieveDummyDeferredCase() {
+) : RetrieveDummyCase() {
     override suspend fun acquireCase(parameter: Request?) =
         Result.success(dummyRepo.retrieveDummies())
 
