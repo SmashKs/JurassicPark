@@ -67,7 +67,7 @@ abstract class BaseFragment<out A : BaseActivity<*>, out V : ViewBinding> : Inje
     private lateinit var localInflater: LayoutInflater
     /** [ViewBinding] is the second (index: 1) in the generic declare. */
     private val viewBindingConcreteClass
-        get() = ((this::class.java.genericSuperclass as ParameterizedType).actualTypeArguments[1]) as Class<*>
+        get() = (this::class.java.genericSuperclass as ParameterizedType).actualTypeArguments[1] as Class<*>
     private val inflateMethod by lazy {
         viewBindingConcreteClass.getMethod("inflate", LayoutInflater::class.java)
     }

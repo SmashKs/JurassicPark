@@ -22,4 +22,5 @@
  * SOFTWARE.
  */
 
-include ':app', ':ktx', ':ext', ':widget', ':device', ':core', ':featDummy'
+include ':app', ':ktx', ':ext', ':widget', ':device', ':core'
+include ':featDummy'

@@ -28,6 +28,7 @@ import androidx.fragment.app.viewModels
 import com.devrapid.kotlinknifer.logw
 import taiwan.no.one.core.presentation.activity.BaseActivity
 import taiwan.no.one.core.presentation.fragment.BaseFragment
+import taiwan.no.one.featDummy.databinding.FragmentDummyBinding
 import taiwan.no.one.featDummy.presentation.viewmodel.DummyViewModel
 
 class DummyFragment : BaseFragment<BaseActivity<*>, FragmentDummyBinding>() {
