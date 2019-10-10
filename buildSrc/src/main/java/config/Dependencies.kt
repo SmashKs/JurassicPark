@@ -77,6 +77,11 @@ object Dependencies {
         "kodeinAndroid" to LibraryDependency.KODEIN_ANDROID_X
     )
 
+    val localDeps = hashMapOf(
+        "room" to LibraryDependency.ROOM,
+        "roomKtx" to LibraryDependency.ROOM_KTX
+    )
+
     val internetDeps = hashMapOf(
         "okhttp3" to LibraryDependency.OKHTTP,
         "retrofit2" to LibraryDependency.RETROFIT2,

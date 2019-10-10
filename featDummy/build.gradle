@@ -23,6 +23,7 @@
  */
 
 import config.CommonModuleDependency
+import config.LibraryDependency
 
 android {
     compileSdkVersion 29
@@ -42,4 +43,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(CommonModuleDependency.APP)
+    kapt(LibraryDependency.ROOM_ANNOTATION)
+    kapt(LibraryDependency.LIFECYCLE_COMPILER)
 }

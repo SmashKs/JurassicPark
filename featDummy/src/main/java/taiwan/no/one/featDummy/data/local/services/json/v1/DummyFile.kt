@@ -32,7 +32,7 @@ internal class DummyFile(
     private val context: Context
 ) {
     suspend fun getDummies(): List<DummyEntity> {
-        val jsonFileName = "dummy.json"
+        val jsonFileName = "json/dummy.json"
         return context.parseObjectFromJson<List<DummyEntity>>(jsonFileName).orEmpty()
     }
 }

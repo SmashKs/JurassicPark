@@ -30,5 +30,5 @@ import taiwan.no.one.featDummy.data.local.entities.DummyEntity
 
 @Dao
 internal abstract class DummyDao : BaseDao<DummyEntity> {
-    suspend fun getDummies(): List<DummyEntity> = TODO()
+    suspend fun getDummies(): List<DummyEntity> = emptyList()
 }

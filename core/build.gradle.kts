@@ -92,6 +92,9 @@ dependencies {
     (Dependencies.kotlinDeps.values +
      Dependencies.kotlinAndroidDeps.values +
      Dependencies.commonAndroidxDeps.values +
-     Dependencies.diDeps.values).forEach(::api)
+     Dependencies.diDeps.values +
+     Dependencies.localDeps.values).forEach(::api)
     api(LibraryDependency.GSON)
+    kapt(LibraryDependency.ROOM_ANNOTATION)
+    kapt(LibraryDependency.LIFECYCLE_COMPILER)
 }
