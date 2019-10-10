@@ -25,42 +25,42 @@
 package config
 
 object LibraryDependency {
-    private object Version {
+    object Version {
         const val ARV = "1.0.16"
         const val QUICK_DIALOG = "1.0.7"
         const val KINFER = "2.1.16"
 
         const val DEX_TOOL = "2.0.1"
-        const val MATERIAL = "1.1.0-alpha10"
+        const val MATERIAL = "1.1.0-beta01"
         const val ANDROIDX = "1.0.0"
         const val ANNOTATION = "1.1.0"
         const val APPCOMPAT = "1.1.0"
         const val CARDVIEW = ANDROIDX
-        const val RECYCLERVIEW = "1.1.0-beta04"
+        const val RECYCLERVIEW = "1.1.0-beta05"
         const val CONSTRAINTLAYOUT = "2.0.0-beta2"
         const val COORDINATORLAYOUT = "1.1.0-beta01"
 
-        const val AAC_LIFECYCLE = "2.2.0-alpha05"
+        const val AAC_LIFECYCLE = "2.2.0-beta01"
 
-        const val KODEIN = "6.3.3"
+        const val KODEIN = "6.4.1"
 
-        const val KTX = "1.2.0-alpha04"
-        const val FRAGMENT_KTX = "1.2.0-alpha04"
+        const val KTX = "1.2.0-beta01"
+        const val FRAGMENT_KTX = "1.2.0-beta01"
         const val PALETTE_KTX = "1.0.0"
         const val COLLECTION_KTX = "1.1.0"
         const val VIEWMODEL_KTX = AAC_LIFECYCLE
-        const val NAVIGATION_KTX = "2.2.0-alpha03"
-        const val WORK_KTX = "2.3.0-alpha01"
+        const val NAVIGATION_KTX = "2.2.0-beta01"
+        const val WORK_KTX = "2.3.0-alpha02"
         const val DYN_ANIM_KTX = "1.0.0-alpha01"
 
         const val ROOM = "2.2.0-rc01"
         const val MMKV = "1.0.23"
-        const val GSON = "2.8.5"
+        const val GSON = "2.8.6"
         const val PLAY_CORE = "1.6.3"
 
         const val COIL = "0.7.0"
         const val RETROFIT2 = "2.6.2"
-        const val OKHTTP3 = "4.2.0"
+        const val OKHTTP3 = "4.2.2"
         const val JSOUP = "1.12.1"
 
         const val FIREBASE_CORE = "16.0.8"
@@ -70,7 +70,7 @@ object LibraryDependency {
         const val FIREBASE_ANALYTICS = "17.2.0"
         const val FIREBASE_CRASHLYTICS = "2.10.1"
 
-        const val googleService = "4.3.2"
+        const val GOOGLE_SERVICE = "4.3.2"
 
         const val SHAPE_OF_VIEW = "1.4.7"
         const val REALTIME_BLUR = "1.2.1"
@@ -124,8 +124,7 @@ object LibraryDependency {
     //region Internet
     const val OKHTTP = "com.squareup.okhttp3:okhttp:${Version.OKHTTP3}"
     const val RETROFIT2 = "com.squareup.retrofit2:retrofit:${Version.RETROFIT2}"
-    const val RETROFIT2_CONVERTER_GSON =
-        "com.squareup.retrofit2:converter-gson:${Version.RETROFIT2}"
+    const val RETROFIT2_CONVERTER_GSON = "com.squareup.retrofit2:converter-gson:${Version.RETROFIT2}"
     //endregion
     //region Database
     const val ROOM = "androidx.room:room-runtime:${Version.ROOM}"
