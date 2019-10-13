@@ -22,11 +22,12 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.featDummy.data.local.services.database.v1
+package taiwan.no.one.core.data.local.room
 
-import androidx.room.Dao
-import taiwan.no.one.core.data.local.room.BaseDao
-import taiwan.no.one.featDummy.data.local.entities.DummyEntity
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Update
 
 /**
  * Integrated the base [androidx.room.Room] database operations.
@@ -34,7 +35,36 @@ import taiwan.no.one.featDummy.data.local.entities.DummyEntity
  * access for from a local database.
  * Using prefix name (get), (insert), (update), (delete)
  */
-@Dao
-internal abstract class DummyDao : BaseDao<DummyEntity> {
-    suspend fun getDummies(): List<DummyEntity> = emptyList()
+interface BaseDao<in T> {
+    /**
+     * Insert an object in the database.
+     *
+     * @param obj the object to be inserted.
+     */
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(obj: T)
+
+    /**
+     * Insert an array of objects in the database.
+     *
+     * @param obj the objects to be inserted.
+     */
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    suspend fun insert(vararg obj: T)
+
+    /**
+     * Update an object from the database.
+     *
+     * @param obj the object to be updated.
+     */
+    @Update
+    suspend fun update(obj: T)
+
+    /**
+     * Delete an object from the database.
+     *
+     * @param obj the object to be deleted.
+     */
+    @Delete
+    suspend fun delete(obj: T)
 }

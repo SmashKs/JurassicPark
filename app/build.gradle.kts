@@ -43,6 +43,15 @@ android {
         renderscriptSupportModeEnabled = true
         testInstrumentationRunner = AndroidConfiguration.TEST_INSTRUMENTATION_RUNNER
         consumerProguardFiles(file("consumer-rules.pro"))
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = mapOf(
+                    "room.schemaLocation" to "$projectDir/schemas".toString(),
+                    "room.incremental" to "true",
+                    "room.expandProjection" to "true"
+                )
+            }
+        }
     }
     buildTypes {
         getByName("release") {

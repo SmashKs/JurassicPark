@@ -22,49 +22,43 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.featDummy.data.local.configs
+package taiwan.no.one.core.presentation
 
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Update
+import androidx.annotation.UiThread
 
 /**
- * Integrated the base [androidx.room.Room] database operations.
- * Thru [androidx.room.Room] we can just define the interfaces that we want to
- * access for from a local database.
- * Using prefix name (select), (insert), (update), (delete)
+ * Interface representing a View that will use to load data.
  */
-internal interface BaseDao<in T> {
+interface LoadView {
     /**
-     * Insert an object in the database.
-     *
-     * @param obj the object to be inserted.
+     * Show a view with a progress bar indicating a loading process.
      */
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(obj: T)
+    @UiThread
+    fun showLoading()
 
     /**
-     * Insert an array of objects in the database.
-     *
-     * @param obj the objects to be inserted.
+     * Hide a loading view.
      */
-    @Insert(onConflict = OnConflictStrategy.ABORT)
-    fun insert(vararg obj: T)
+    @UiThread
+    fun hideLoading()
 
     /**
-     * Update an object from the database.
-     *
-     * @param obj the object to be updated.
+     * Show a retry view in case of an error when retrieving data.
      */
-    @Update
-    fun update(obj: T)
+    @UiThread
+    fun showRetry()
 
     /**
-     * Delete an object from the database.
-     *
-     * @param obj the object to be deleted.
+     * Hide a retry view shown if there was an error when retrieving data.
      */
-    @Delete
-    fun delete(obj: T)
+    @UiThread
+    fun hideRetry()
+
+    /**
+     * Show an error message
+     *
+     * @param message String representing an error.
+     */
+    @UiThread
+    fun showError(message: String)
 }

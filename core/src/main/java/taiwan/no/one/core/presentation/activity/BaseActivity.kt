@@ -36,7 +36,7 @@ import java.lang.reflect.ParameterizedType
 /**
  * The basic activity is for the normal activity that prepares all necessary variables or functions.
  */
-abstract class BaseActivity<out V : ViewBinding> : InjectableActivity(), CoroutineScope by MainScope() {
+abstract class BaseActivity<out V : ViewBinding> : LoadableActivity(), CoroutineScope by MainScope() {
     //region ViewBinding Reflection
     /** Using reflection to get dynamic view binding name. */
     @Suppress("UNCHECKED_CAST")

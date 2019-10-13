@@ -22,30 +22,19 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.featDummy.presentation
+package taiwan.no.one.core.data.local.room.convert
 
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.observe
-import com.devrapid.kotlinknifer.logw
-import taiwan.no.one.core.presentation.activity.BaseActivity
-import taiwan.no.one.core.presentation.fragment.BaseFragment
-import taiwan.no.one.featDummy.databinding.FragmentDummyBinding
-import taiwan.no.one.featDummy.presentation.viewmodel.DummyViewModel
+import androidx.room.TypeConverter
+import java.util.Date
 
-class DummyFragment : BaseFragment<BaseActivity<*>, FragmentDummyBinding>() {
-    private val vm by viewModels<DummyViewModel> { vmFactory }
-
-    /** The block of binding to [androidx.lifecycle.ViewModel]'s [androidx.lifecycle.LiveData]. */
-    override fun bindLiveData() {
-        vm.dummy.observe(viewLifecycleOwner) {
-            logw(it)
-        }
+class DateConvert {
+    @TypeConverter
+    fun fromTimestamp(value: Long?): Date? {
+        return value?.let(::Date)
     }
 
-    /**
-     * For separating the huge function code in [rendered]. Initialize all view components here.
-     */
-    override fun viewComponentBinding() {
-        vm.getDummies()
+    @TypeConverter
+    fun dateToTimestamp(date: Date?): Long? {
+        return date?.time
     }
 }

@@ -95,9 +95,6 @@ class MainFragment : BaseFragment<MainActivity, ActivitySecondBinding>() {
         val navigationId = context.resources.getIdentifier(navigationGraphRoute.graphName,
                                                            "navigation",
                                                            navigationGraphRoute.packageName)
-        println("===========ididid======================================")
-        println(navigationId)
-        println("===========ididid======================================")
         val newGraph = navController.navInflater.inflate(navigationGraphRoute.resourceId)
         navController.graph.addDestination(newGraph)
         return newGraph

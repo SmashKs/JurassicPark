@@ -22,19 +22,26 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.featDummy.data.local.converters
+package taiwan.no.one.core.presentation.activity
 
-import androidx.room.TypeConverter
-import java.util.Date
+import androidx.annotation.UiThread
+import taiwan.no.one.core.presentation.LoadView
 
-internal class DateConvert {
-    @TypeConverter
-    fun fromTimestamp(value: Long?): Date? {
-        return value?.let(::Date)
-    }
+abstract class LoadableActivity : InjectableActivity(), LoadView {
+    //region View Implementation for the Presenter.
+    @UiThread
+    override fun showLoading() = Unit
 
-    @TypeConverter
-    fun dateToTimestamp(date: Date?): Long? {
-        return date?.time
-    }
+    @UiThread
+    override fun hideLoading() = Unit
+
+    @UiThread
+    override fun showRetry() = Unit
+
+    @UiThread
+    override fun hideRetry() = Unit
+
+    @UiThread
+    override fun showError(message: String) = Unit
+    //endregion
 }

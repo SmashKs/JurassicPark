@@ -46,7 +46,7 @@ import java.lang.reflect.ParameterizedType
 /**
  * The basic fragment is for the normal activity that prepares all necessary variables or functions.
  */
-abstract class BaseFragment<out A : BaseActivity<*>, out V : ViewBinding> : InjectableFragment(),
+abstract class BaseFragment<out A : BaseActivity<*>, out V : ViewBinding> : LoadableFragment(),
                                                                             CoroutineScope by MainScope() {
     @Suppress("UNCHECKED_CAST")
     protected val parent
@@ -55,7 +55,7 @@ abstract class BaseFragment<out A : BaseActivity<*>, out V : ViewBinding> : Inje
     protected val vmFactory: ViewModelProvider.Factory by instance()
     // Set action bar's back icon color into all fragments are inheriting advFragment.
     protected open val backDrawable by lazy {
-        //        android.R.drawable.arrow_down_float
+        //                android.R.drawable.arrow_down_float
 //            .toDrawable(parent)
 //            .changeColor(getColor(R.color.colorPrimaryTextV1))
         android.R.drawable.arrow_down_float
@@ -72,7 +72,7 @@ abstract class BaseFragment<out A : BaseActivity<*>, out V : ViewBinding> : Inje
         viewBindingConcreteClass.getMethod("inflate", LayoutInflater::class.java)
     }
     //endregion
-    //    private val actionTitle by extra<String>(COMMON_TITLE)
+//        private val actionTitle by extra<String>(COMMON_TITLE)
     private val actionTitle = ""
 
     //region Lifecycle
@@ -99,6 +99,8 @@ abstract class BaseFragment<out A : BaseActivity<*>, out V : ViewBinding> : Inje
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        // Pre-set the binding live data.
+        bindLiveData()
         // Keep the instance data.
         retainInstance = true
         localInflater = customTheme()?.let {
@@ -134,20 +136,24 @@ abstract class BaseFragment<out A : BaseActivity<*>, out V : ViewBinding> : Inje
     //endregion
 
     //region Customized methods
+    /** The block of binding to [androidx.lifecycle.ViewModel]'s [androidx.lifecycle.LiveData]. */
+    @UiThread
+    protected open fun bindLiveData() = Unit
+
     /**
      * For separating the huge function code in [rendered]. Initialize all view components here.
      */
     @UiThread
     protected open fun viewComponentBinding() {
-//        if (parent.supportActionBar == null) {
-//            // Set the title into the support action bar.
-//            parent.setSupportActionBar(provideActionBarResource())
-//        }
-//        parent.supportActionBar?.apply {
-//            actionBarTitle()?.let(this::setTitle)
-//            setDisplayHomeAsUpEnabled(true)
-//            setHomeAsUpIndicator(backDrawable)
-//        }
+        if (parent.supportActionBar == null) {
+            // Set the title into the support action bar.
+            parent.setSupportActionBar(provideActionBarResource())
+        }
+        parent.supportActionBar?.apply {
+            actionBarTitle()?.let(this::setTitle)
+            setDisplayHomeAsUpEnabled(true)
+            setHomeAsUpIndicator(backDrawable)
+        }
     }
 
     /**
@@ -165,7 +171,7 @@ abstract class BaseFragment<out A : BaseActivity<*>, out V : ViewBinding> : Inje
     protected open fun rendered(savedInstanceState: Bundle?) = Unit
 
     /**
-     * Set specific theme to this fragment.
+     * Set a specific theme to this fragment.
      *
      * @return [Int] style xml resource.
      */

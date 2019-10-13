@@ -26,6 +26,7 @@ import config.AndroidConfiguration
 import config.Dependencies
 import config.LibraryDependency
 import org.jetbrains.kotlin.gradle.internal.CacheImplementation
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 import resources.FeatureRes
 
 android {
@@ -35,6 +36,15 @@ android {
         targetSdkVersion(AndroidConfiguration.TARGET_SDK)
         testInstrumentationRunner = AndroidConfiguration.TEST_INSTRUMENTATION_RUNNER
         consumerProguardFiles(file("consumer-rules.pro"))
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = mapOf(
+                    "room.schemaLocation" to "$projectDir/schemas".toString(),
+                    "room.incremental" to "true",
+                    "room.expandProjection" to "true"
+                )
+            }
+        }
     }
     buildTypes {
         getByName("release") {

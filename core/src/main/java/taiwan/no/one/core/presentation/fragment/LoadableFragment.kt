@@ -22,30 +22,26 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.featDummy.presentation
+package taiwan.no.one.core.presentation.fragment
 
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.observe
-import com.devrapid.kotlinknifer.logw
-import taiwan.no.one.core.presentation.activity.BaseActivity
-import taiwan.no.one.core.presentation.fragment.BaseFragment
-import taiwan.no.one.featDummy.databinding.FragmentDummyBinding
-import taiwan.no.one.featDummy.presentation.viewmodel.DummyViewModel
+import androidx.annotation.UiThread
+import taiwan.no.one.core.presentation.LoadView
 
-class DummyFragment : BaseFragment<BaseActivity<*>, FragmentDummyBinding>() {
-    private val vm by viewModels<DummyViewModel> { vmFactory }
+abstract class LoadableFragment : InjectableFragment(), LoadView {
+    //region View Implementation for the Presenter.
+    @UiThread
+    override fun showLoading() = Unit
 
-    /** The block of binding to [androidx.lifecycle.ViewModel]'s [androidx.lifecycle.LiveData]. */
-    override fun bindLiveData() {
-        vm.dummy.observe(viewLifecycleOwner) {
-            logw(it)
-        }
-    }
+    @UiThread
+    override fun hideLoading() = Unit
 
-    /**
-     * For separating the huge function code in [rendered]. Initialize all view components here.
-     */
-    override fun viewComponentBinding() {
-        vm.getDummies()
-    }
+    @UiThread
+    override fun showRetry() = Unit
+
+    @UiThread
+    override fun hideRetry() = Unit
+
+    @UiThread
+    override fun showError(message: String) = Unit
+    //endregion
 }

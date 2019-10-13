@@ -53,7 +53,7 @@ object LibraryDependency {
         const val WORK_KTX = "2.3.0-alpha02"
         const val DYN_ANIM_KTX = "1.0.0-alpha01"
 
-        const val ROOM = "2.2.0-rc01"
+        const val ROOM = "2.2.0"
         const val MMKV = "1.0.23"
         const val GSON = "2.8.6"
         const val PLAY_CORE = "1.6.3"

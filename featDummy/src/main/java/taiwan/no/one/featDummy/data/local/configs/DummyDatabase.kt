@@ -29,7 +29,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import taiwan.no.one.featDummy.data.local.converters.DateConvert
+import taiwan.no.one.core.data.local.room.convert.DateConvert
 import taiwan.no.one.featDummy.data.local.entities.DummyEntity
 import taiwan.no.one.featDummy.data.local.services.database.v1.DummyDao
 
