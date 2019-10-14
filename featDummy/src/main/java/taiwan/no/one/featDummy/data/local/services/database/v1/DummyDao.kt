@@ -25,6 +25,7 @@
 package taiwan.no.one.featDummy.data.local.services.database.v1
 
 import androidx.room.Dao
+import androidx.room.Query
 import taiwan.no.one.core.data.local.room.BaseDao
 import taiwan.no.one.featDummy.data.local.entities.DummyEntity
 
@@ -36,5 +37,6 @@ import taiwan.no.one.featDummy.data.local.entities.DummyEntity
  */
 @Dao
 internal abstract class DummyDao : BaseDao<DummyEntity> {
-    suspend fun getDummies(): List<DummyEntity> = emptyList()
+    @Query("""SELECT * FROM table_dummy""")
+    abstract suspend fun getDummies(): List<DummyEntity>
 }
