@@ -113,7 +113,6 @@ dependencies {
     api(LibraryDependency.COIL)
     (Dependencies.androidxKtxDeps.values +
      Dependencies.androidxDeps.values +
-     Dependencies.internetDeps.values +
      Dependencies.uiDeps.values).forEach(::api)
     kapt(LibraryDependency.ROOM_ANNOTATION)
     kapt(LibraryDependency.LIFECYCLE_COMPILER)

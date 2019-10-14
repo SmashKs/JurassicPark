@@ -26,7 +26,6 @@ import config.AndroidConfiguration
 import config.Dependencies
 import config.LibraryDependency
 import org.jetbrains.kotlin.gradle.internal.CacheImplementation
-import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 import resources.FeatureRes
 
 android {
@@ -103,6 +102,7 @@ dependencies {
      Dependencies.kotlinAndroidDeps.values +
      Dependencies.commonAndroidxDeps.values +
      Dependencies.diDeps.values +
+     Dependencies.internetDeps.values +
      Dependencies.localDeps.values).forEach(::api)
     api(LibraryDependency.GSON)
     kapt(LibraryDependency.ROOM_ANNOTATION)
