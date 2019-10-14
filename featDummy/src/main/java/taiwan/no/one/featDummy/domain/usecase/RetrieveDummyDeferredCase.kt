@@ -30,8 +30,7 @@ import taiwan.no.one.featDummy.domain.repository.DummyRepo
 internal class RetrieveDummyDeferredCase(
     private val dummyRepo: DummyRepo
 ) : RetrieveDummyCase() {
-    override suspend fun acquireCase(parameter: Request?) =
-        Result.success(dummyRepo.retrieveDummies())
+    override suspend fun acquireCase(parameter: Request?) = runCatching { dummyRepo.retrieveDummies() }
 
     data class Request(val id: Int) : Usecase.RequestValues
 }

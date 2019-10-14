@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit
 abstract class BaseOkHttpClient {
     open
     fun provide(vararg interceptors: Interceptor) = OkHttpClient.Builder().apply {
-        interceptors.forEach(::addInterceptor)
+        interceptors.forEach { addInterceptor(it) }
         readTimeout(3000, TimeUnit.SECONDS)
         writeTimeout(3000, TimeUnit.SECONDS)
         connectTimeout(3000, TimeUnit.SECONDS)
