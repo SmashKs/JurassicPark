@@ -37,7 +37,6 @@ internal class DummyViewModel(
     val dummy = _dummy.toLiveData()
 
     fun getDummies() = launchBehind {
-        val data = retrieveDummyCase.execute()
-        data.onSuccess(_dummy::postValue)
+        retrieveDummyCase.execute().onSuccess(_dummy::postValue)
     }
 }

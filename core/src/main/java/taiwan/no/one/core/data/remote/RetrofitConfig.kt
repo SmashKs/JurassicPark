@@ -36,7 +36,7 @@ interface RetrofitConfig {
 
     val connectTimeOut: Long
 
-    fun provideRetrofit(): Retrofit
+    fun provideRetrofitBuilder(): Retrofit.Builder
 
-    fun provideOkHttpClient(): OkHttpClient
+    fun provideOkHttpClientBuilder(): OkHttpClient.Builder
 }

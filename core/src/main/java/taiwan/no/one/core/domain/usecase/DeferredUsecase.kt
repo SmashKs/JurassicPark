@@ -29,7 +29,7 @@ package taiwan.no.one.core.domain.usecase
  * error handling when an error or cancellation happened.
  */
 abstract class DeferredUsecase<out T : Any, in R : Usecase.RequestValues> : Usecase<R> {
-    abstract suspend fun acquireCase(parameter: R? = null): Result<T>
+    abstract suspend fun acquireCase(parameter: R? = null): T
 
-    open suspend fun execute(parameter: R? = null) = acquireCase(parameter)
+    open suspend fun execute(parameter: R? = null) = runCatching { acquireCase(parameter) }
 }

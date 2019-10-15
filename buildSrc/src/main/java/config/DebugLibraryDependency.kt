@@ -22,16 +22,17 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.featDummy.data.repository
+package config
 
-import taiwan.no.one.featDummy.data.local.entities.DummyEntity
-import taiwan.no.one.featDummy.data.stores.LocalStore
-import taiwan.no.one.featDummy.data.stores.RemoteStore
-import taiwan.no.one.featDummy.domain.repository.DummyRepo
+object DebugLibraryDependency {
+    private object Version {
+        const val STEHO_DEBUG = "1.5.1"
+        const val DEBUG_DB = "1.0.6"
+        const val OKHTTP_PROFILER = "1.0.5"
+    }
 
-internal class DummyRepository(
-    private val local: LocalStore,
-    private val remote: RemoteStore
-) : DummyRepo {
-    override suspend fun retrieveDummies() = local.getDummies().map(DummyEntity::toModel)
+    const val STEHO = "com.facebook.stetho:stetho:${Version.STEHO_DEBUG}"
+    const val STEHO_INTERCEPTOR = "com.facebook.stetho:stetho-okhttp3:${Version.STEHO_DEBUG}"
+    const val DEBUG_DB = "com.amitshekhar.android:debug-db:${Version.DEBUG_DB}"
+    const val OK_HTTP_PROFILER = "com.itkacher.okhttpprofiler:okhttpprofiler:${Version.OKHTTP_PROFILER}"
 }

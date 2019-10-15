@@ -22,16 +22,15 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.featDummy.data.repository
+package taiwan.no.one.core.data.remote.provider
 
-import taiwan.no.one.featDummy.data.local.entities.DummyEntity
-import taiwan.no.one.featDummy.data.stores.LocalStore
-import taiwan.no.one.featDummy.data.stores.RemoteStore
-import taiwan.no.one.featDummy.domain.repository.DummyRepo
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
-internal class DummyRepository(
-    private val local: LocalStore,
-    private val remote: RemoteStore
-) : DummyRepo {
-    override suspend fun retrieveDummies() = local.getDummies().map(DummyEntity::toModel)
+abstract class RetrofitProvider {
+    open fun provideBuilder(domainUrl: String) = Retrofit.Builder()
+        .baseUrl(domainUrl)
+        .addConverterFactory(provideJsonConverter())
+
+    open fun provideJsonConverter() = GsonConverterFactory.create()
 }

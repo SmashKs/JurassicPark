@@ -26,6 +26,7 @@ package taiwan.no.one.featDummy.data.local.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import taiwan.no.one.featDummy.domain.model.Dummy
 import java.util.Date
 
 @Entity(tableName = "table_dummy")
@@ -34,4 +35,6 @@ internal data class DummyEntity(
     val id: Int = 0,
     val content: String,
     val updated: Date = Date()
-)
+) {
+    fun toModel() = Dummy(id, content)
+}

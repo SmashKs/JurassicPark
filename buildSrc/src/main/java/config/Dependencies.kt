@@ -93,4 +93,11 @@ object Dependencies {
         "adaptiveRecyclerView" to LibraryDependency.ARV,
         "quickDialog" to LibraryDependency.QUICK_DIALOG
     )
+
+    val debugDeps = hashMapOf(
+        "steho" to DebugLibraryDependency.STEHO,
+        "stehoInterceptor" to DebugLibraryDependency.STEHO_INTERCEPTOR,
+        "database" to DebugLibraryDependency.DEBUG_DB,
+        "okhttpInterceptor" to DebugLibraryDependency.OK_HTTP_PROFILER
+    )
 }

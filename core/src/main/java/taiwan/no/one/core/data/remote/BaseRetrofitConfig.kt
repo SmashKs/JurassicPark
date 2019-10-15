@@ -24,11 +24,41 @@
 
 package taiwan.no.one.core.data.remote
 
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import android.content.Context
+import com.itkacher.okhttpprofiler.OkHttpProfilerInterceptor
+import taiwan.no.one.core.data.remote.interceptor.ConnectInterceptor
+import taiwan.no.one.core.data.remote.provider.OkHttpClientProvider
+import taiwan.no.one.core.data.remote.provider.RetrofitProvider
 
-abstract class BaseRetrofit {
-    fun provide() = Retrofit.Builder().baseUrl("")
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
+abstract class BaseRetrofitConfig(
+    private val context: Context,
+    private val clientProvider: OkHttpClientProvider,
+    private val retrofitProvider: RetrofitProvider
+) : RetrofitConfig {
+    companion object Constant {
+        private const val TIME_OUT = 10L
+    }
+
+    init {
+        clientProvider.also {
+            it.readTimeOut = readTimeOut
+            it.writeTimeOut = writeTimeOut
+            it.connectTimeOut = connectTimeOut
+        }
+    }
+
+    override val baseUrl = ""
+
+    override val readTimeOut = TIME_OUT
+
+    override val writeTimeOut = TIME_OUT
+
+    override val connectTimeOut = TIME_OUT
+
+    override fun provideRetrofitBuilder() = retrofitProvider.provideBuilder(baseUrl)
+
+    override fun provideOkHttpClientBuilder() = clientProvider.provideClientBuilder(
+        OkHttpProfilerInterceptor(),
+        ConnectInterceptor(context)
+    )
 }

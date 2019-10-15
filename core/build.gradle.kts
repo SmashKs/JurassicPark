@@ -107,4 +107,5 @@ dependencies {
     api(LibraryDependency.GSON)
     kapt(LibraryDependency.ROOM_ANNOTATION)
     kapt(LibraryDependency.LIFECYCLE_COMPILER)
+    Dependencies.debugDeps.values.forEach(::debugApi)
 }

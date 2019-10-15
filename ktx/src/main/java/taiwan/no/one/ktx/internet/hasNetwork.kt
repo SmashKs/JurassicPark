@@ -22,18 +22,21 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.core.data.remote
+package taiwan.no.one.ktx.internet
 
-import okhttp3.Interceptor
-import okhttp3.OkHttpClient
-import java.util.concurrent.TimeUnit
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Context.CONNECTIVITY_SERVICE
+import android.net.ConnectivityManager
+import com.devrapid.kotlinshaver.cast
 
-abstract class BaseOkHttpClient {
-    open
-    fun provide(vararg interceptors: Interceptor) = OkHttpClient.Builder().apply {
-        interceptors.forEach { addInterceptor(it) }
-        readTimeout(3000, TimeUnit.SECONDS)
-        writeTimeout(3000, TimeUnit.SECONDS)
-        connectTimeout(3000, TimeUnit.SECONDS)
-    }.build()
+@SuppressLint("MissingPermission")
+fun hasNetwork(context: Context): Boolean? {
+    var isConnected = false // Initial Value
+    val connectivityManager = cast<ConnectivityManager>(context.getSystemService(CONNECTIVITY_SERVICE))
+    val activeNetwork = connectivityManager.activeNetworkInfo
+    if (activeNetwork != null && activeNetwork.isConnected) {
+        isConnected = true
+    }
+    return isConnected
 }
