@@ -28,7 +28,7 @@ object LibraryDependency {
     object Version {
         const val ARV = "1.0.16"
         const val QUICK_DIALOG = "1.0.7"
-        const val KINFER = "2.1.16"
+        const val KINFER = "2.1.17"
 
         const val DEX_TOOL = "2.0.1"
         const val MATERIAL = "1.1.0-beta01"
