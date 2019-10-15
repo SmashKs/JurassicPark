@@ -36,7 +36,7 @@ object LibraryDependency {
         const val ANNOTATION = "1.1.0"
         const val APPCOMPAT = "1.1.0"
         const val CARDVIEW = ANDROIDX
-        const val RECYCLERVIEW = "1.1.0-beta05"
+        const val RECYCLERVIEW = "1.1.0-beta06"
         const val CONSTRAINTLAYOUT = "2.0.0-beta2"
         const val COORDINATORLAYOUT = "1.1.0-beta01"
 
@@ -45,7 +45,7 @@ object LibraryDependency {
         const val KODEIN = "6.4.1"
 
         const val KTX = "1.2.0-beta01"
-        const val FRAGMENT_KTX = "1.2.0-beta01"
+        const val FRAGMENT_KTX = "1.2.0-beta02"
         const val PALETTE_KTX = "1.0.0"
         const val COLLECTION_KTX = "1.1.0"
         const val VIEWMODEL_KTX = AAC_LIFECYCLE
@@ -74,7 +74,7 @@ object LibraryDependency {
 
         const val SHAPE_OF_VIEW = "1.4.7"
         const val REALTIME_BLUR = "1.2.1"
-        const val LOTTIE = "3.0.7"
+        const val LOTTIE = "3.1.0"
     }
 
     const val ANDROID_COROUTINE =
