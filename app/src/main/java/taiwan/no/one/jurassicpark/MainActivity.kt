@@ -25,13 +25,17 @@
 package taiwan.no.one.jurassicpark
 
 import android.content.Context
+import android.content.res.Configuration
 import com.google.android.play.core.splitcompat.SplitCompat
 import taiwan.no.one.core.presentation.activity.BaseActivity
 import taiwan.no.one.jurassicpark.databinding.ActivityMainBinding
+import java.util.Locale
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun attachBaseContext(newBase: Context?) {
-        super.attachBaseContext(newBase)
-        SplitCompat.installActivity(this)
+        val config = Configuration().apply { setLocale(Locale.getDefault()) }
+        val ctx = newBase?.createConfigurationContext(config)
+        super.attachBaseContext(ctx)
+        SplitCompat.install(this)
     }
 }

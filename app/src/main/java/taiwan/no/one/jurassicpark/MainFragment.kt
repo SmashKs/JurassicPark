@@ -53,10 +53,19 @@ class MainFragment : BaseFragment<MainActivity, ActivitySecondBinding>() {
 //                            findNavController().navigate(Uri.parse("https://taiwan.no.one.dummy/activity"))
 //                        }
 //                    }
-                    BuildConfig.VERSION_CODE
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        manager.registerListener(listener)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        manager.unregisterListener(listener)
     }
 
     /**
@@ -70,21 +79,11 @@ class MainFragment : BaseFragment<MainActivity, ActivitySecondBinding>() {
      * For separating the huge function code in [rendered]. Initialize all component listeners here.
      */
     override fun componentListenersBinding() {
+        manager.startInstall(request)
         binding.btnClick.setOnClickListener {
             //            findNavController().navigate(MainFragmentDirections.actionFragmentSecondToActivitySecond(13))
             findNavController().navigate(Uri.parse("https://taiwan.no.one.dummy/dummy"))
         }
-        manager.startInstall(request)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        manager.registerListener(listener)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        manager.unregisterListener(listener)
     }
 
     private fun addNavGraphDestination(
