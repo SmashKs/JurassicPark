@@ -35,4 +35,7 @@ object FeatureRes {
         "src/main/res-theme",
         "src/main/res-main"
     )
+
+    val manifestDebug = "src/main/debug/AndroidManifest.xml"
+    val manifestRelease = "src/main/release/AndroidManifest.xml"
 }
