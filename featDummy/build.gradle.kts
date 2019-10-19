@@ -26,7 +26,6 @@ import config.AndroidConfiguration
 import config.CommonModuleDependency
 import config.Configuration
 import config.LibraryDependency
-import resources.FeatureRes
 
 plugins {
     if (config.Configuration.isFeature) {
@@ -48,6 +47,7 @@ android {
         versionCode = 1
         versionName = "1.0"
         if (Configuration.isFeature) {
+            applicationId = "taiwan.no.one.featureDummy"
             multiDexEnabled = true
         }
         vectorDrawables.useSupportLibrary = true
@@ -79,12 +79,6 @@ android {
             isCrunchPngs = false // Enabled by default for RELEASE build type
         }
     }
-    sourceSets {
-        getByName("main").apply {
-            res.srcDirs(*FeatureRes.dirs)
-            manifest.srcFile(file(if (Configuration.isFeature) FeatureRes.MANIFEST_FEATURE else FeatureRes.MANIFEST_APP))
-        }
-    }
     dexOptions {
         jumboMode = true
         preDexLibraries = true
@@ -94,18 +88,17 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    if (Configuration.isFeature) {
+        packagingOptions {
+            exclude("META-INF/atomicfu.kotlin_module")
+            exclude("META-INF/kotlinx-coroutines-core.kotlin_module")
+        }
+    }
     testOptions { unitTests.apply { isReturnDefaultValues = true } }
     lintOptions { isAbortOnError = false }
     kotlinOptions { jvmTarget = JavaVersion.VERSION_1_8.toString() }
     viewBinding.isEnabled = true
 }
-
-//if (!isFeature.toBoolean()) {
-//    androidExtensions {
-//        isExperimental = true
-//        defaultCacheImplementation = CacheImplementation.SPARSE_ARRAY
-//    }
-//}
 
 kapt {
     useBuildCache = true

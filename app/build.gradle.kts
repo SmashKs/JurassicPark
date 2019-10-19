@@ -24,12 +24,11 @@
 
 import config.AndroidConfiguration
 import config.CommonModuleDependency
+import config.Configuration
 import config.Dependencies
 import config.LibraryDependency
 import org.jetbrains.kotlin.gradle.internal.CacheImplementation
 import resources.FeatureRes
-
-val isFeature: String by project
 
 plugins {
     if (!config.Configuration.isFeature) {
@@ -47,7 +46,9 @@ plugins {
 android {
     compileSdkVersion(AndroidConfiguration.COMPILE_SDK)
     defaultConfig {
-        applicationId = AndroidConfiguration.ID
+        if (!Configuration.isFeature) {
+            applicationId = AndroidConfiguration.ID
+        }
         minSdkVersion(AndroidConfiguration.MIN_SDK)
         targetSdkVersion(AndroidConfiguration.TARGET_SDK)
         versionCode = 1
@@ -88,7 +89,7 @@ android {
     sourceSets {
         getByName("main").apply {
             res.srcDirs(*FeatureRes.dirs)
-            manifest.srcFile(file(if (isFeature.toBoolean()) FeatureRes.MANIFEST_FEATURE else FeatureRes.MANIFEST_APP))
+            manifest.srcFile(file(if (Configuration.isFeature) FeatureRes.MANIFEST_FEATURE else FeatureRes.MANIFEST_APP))
         }
     }
     dexOptions {
@@ -108,7 +109,7 @@ android {
     lintOptions { isAbortOnError = false }
     kotlinOptions { jvmTarget = JavaVersion.VERSION_1_8.toString() }
     viewBinding.isEnabled = true
-    if (!isFeature.toBoolean()) {
+    if (!Configuration.isFeature) {
         dynamicFeatures = CommonModuleDependency.getFeatureModuleName()
     }
 }
