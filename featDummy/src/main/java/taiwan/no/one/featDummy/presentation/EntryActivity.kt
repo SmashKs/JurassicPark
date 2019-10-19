@@ -22,20 +22,15 @@
  * SOFTWARE.
  */
 
-package resources
+package taiwan.no.one.featDummy.presentation
 
-/**
- * For separating the resource modules.
- */
-object FeatureRes {
-    val dirs = arrayOf(
-        "src/main/res-icons",
-        "src/main/res-images",
-        "src/main/res-splash",
-        "src/main/res-theme",
-        "src/main/res-main"
-    )
+import android.app.Activity
+import android.os.Bundle
+import taiwan.no.one.featDummy.R
 
-    const val MANIFEST_APP = "src/main/app/AndroidManifest.xml"
-    const val MANIFEST_FEATURE = "src/main/feature/AndroidManifest.xml"
+class EntryActivity : Activity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.fragment_dummy)
+    }
 }

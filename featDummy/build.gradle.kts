@@ -24,8 +24,21 @@
 
 import config.AndroidConfiguration
 import config.CommonModuleDependency
+import config.Configuration
 import config.LibraryDependency
 import resources.FeatureRes
+
+plugins {
+    if (config.Configuration.isFeature) {
+        id("com.android.application")
+    }
+    else {
+        id("com.android.dynamic-feature")
+    }
+    id("kotlin-android")
+    id("kotlin-kapt")
+    id("androidx.navigation.safeargs.kotlin")
+}
 
 android {
     compileSdkVersion(AndroidConfiguration.COMPILE_SDK)
@@ -34,10 +47,11 @@ android {
         targetSdkVersion(AndroidConfiguration.TARGET_SDK)
         versionCode = 1
         versionName = "1.0"
-        multiDexEnabled = true
+        if (Configuration.isFeature) {
+            multiDexEnabled = true
+        }
         vectorDrawables.useSupportLibrary = true
         renderscriptTargetApi = AndroidConfiguration.MIN_SDK
-        renderscriptSupportModeEnabled = true
         testInstrumentationRunner = AndroidConfiguration.TEST_INSTRUMENTATION_RUNNER
         consumerProguardFiles(file("consumer-rules.pro"))
         javaCompileOptions {
@@ -53,7 +67,6 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
-//            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), file("proguard-rules.pro"))
         }
         getByName("debug") {
             splits.abi.isEnable = false
@@ -64,14 +77,12 @@ android {
             // Only use this flag on builds you don't proguard or upload to beta-by-crashlytics.
             ext.set("alwaysUpdateBuildId", false)
             isCrunchPngs = false // Enabled by default for RELEASE build type
-//            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), file("proguard-rules.pro"))
         }
     }
     sourceSets {
-        val isDebug: String by project
         getByName("main").apply {
             res.srcDirs(*FeatureRes.dirs)
-            manifest.srcFile(file(if (isDebug.toBoolean()) FeatureRes.manifestDebug else FeatureRes.manifestRelease))
+            manifest.srcFile(file(if (Configuration.isFeature) FeatureRes.MANIFEST_FEATURE else FeatureRes.MANIFEST_APP))
         }
     }
     dexOptions {
@@ -89,9 +100,11 @@ android {
     viewBinding.isEnabled = true
 }
 
-//androidExtensions {
-//    isExperimental = true
-//    defaultCacheImplementation = org.jetbrains.kotlin.gradle.internal.CacheImplementation.SPARSE_ARRAY
+//if (!isFeature.toBoolean()) {
+//    androidExtensions {
+//        isExperimental = true
+//        defaultCacheImplementation = CacheImplementation.SPARSE_ARRAY
+//    }
 //}
 
 kapt {

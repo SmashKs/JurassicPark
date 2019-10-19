@@ -29,6 +29,21 @@ import config.LibraryDependency
 import org.jetbrains.kotlin.gradle.internal.CacheImplementation
 import resources.FeatureRes
 
+val isFeature: String by project
+
+plugins {
+    if (!config.Configuration.isFeature) {
+        id("com.android.application")
+    }
+    else {
+        id("com.android.library")
+    }
+    id("kotlin-android")
+    id("androidx.navigation.safeargs.kotlin")
+    id("kotlin-android-extensions")
+    id("org.jetbrains.kotlin.kapt")
+}
+
 android {
     compileSdkVersion(AndroidConfiguration.COMPILE_SDK)
     defaultConfig {
@@ -71,10 +86,9 @@ android {
         }
     }
     sourceSets {
-        val isDebug: String by project
         getByName("main").apply {
             res.srcDirs(*FeatureRes.dirs)
-            manifest.srcFile(file(if (isDebug.toBoolean()) FeatureRes.manifestDebug else FeatureRes.manifestRelease))
+            manifest.srcFile(file(if (isFeature.toBoolean()) FeatureRes.MANIFEST_FEATURE else FeatureRes.MANIFEST_APP))
         }
     }
     dexOptions {
@@ -94,7 +108,9 @@ android {
     lintOptions { isAbortOnError = false }
     kotlinOptions { jvmTarget = JavaVersion.VERSION_1_8.toString() }
     viewBinding.isEnabled = true
-    dynamicFeatures = CommonModuleDependency.getFeatureModuleName()
+    if (!isFeature.toBoolean()) {
+        dynamicFeatures = CommonModuleDependency.getFeatureModuleName()
+    }
 }
 
 androidExtensions {
