@@ -27,7 +27,6 @@ package taiwan.no.one.jurassicpark.presentation.activity
 import android.os.Bundle
 import androidx.navigation.navArgs
 import taiwan.no.one.core.presentation.activity.BaseActivity
-import taiwan.no.one.jurassicpark.SecondActivityArgs
 import taiwan.no.one.jurassicpark.databinding.ActivitySecondBinding
 
 class SecondActivity : BaseActivity<ActivitySecondBinding>() {

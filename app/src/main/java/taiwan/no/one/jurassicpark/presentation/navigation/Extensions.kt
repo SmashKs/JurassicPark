@@ -22,28 +22,21 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark
+package taiwan.no.one.jurassicpark.presentation.navigation
 
-import android.app.Application
-import android.content.Context
-import com.google.android.play.core.splitcompat.SplitCompat
-import org.kodein.di.KodeinAware
-import taiwan.no.one.jurassicpark.di.Dispatcher
+import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.NavGraph
+import taiwan.no.one.jurassicpark.provider.NaviGraphRouteProvider
 
-class JurassicParkApp : Application(), KodeinAware {
-    companion object {
-        lateinit var appContext: Context
-            private set
-    }
-
-    init {
-        appContext = this
-    }
-
-    override val kodein = Dispatcher.importIntoApp(this)
-
-    override fun attachBaseContext(context: Context?) {
-        super.attachBaseContext(context)
-        SplitCompat.install(this)
-    }
+fun Fragment.addNavGraphDestination(
+    navigationGraphRoute: NaviGraphRouteProvider,
+    navController: NavController
+): NavGraph {
+    val navigationId = requireContext().resources.getIdentifier(navigationGraphRoute.graphName,
+                                                                "navigation",
+                                                                navigationGraphRoute.packageName)
+    val newGraph = navController.navInflater.inflate(navigationGraphRoute.resourceId)
+    navController.graph.addDestination(newGraph)
+    return newGraph
 }
