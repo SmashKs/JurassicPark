@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark
+package taiwan.no.one.jurassicpark.presentation.fragment
 
 import android.content.Context
 import android.net.Uri
@@ -35,6 +35,7 @@ import com.google.android.play.core.splitinstall.SplitInstallStateUpdatedListene
 import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus
 import taiwan.no.one.core.presentation.fragment.BaseFragment
 import taiwan.no.one.jurassicpark.databinding.ActivitySecondBinding
+import taiwan.no.one.jurassicpark.presentation.activity.MainActivity
 import taiwan.no.one.jurassicpark.provider.NaviGraphRouteProvider
 
 class MainFragment : BaseFragment<MainActivity, ActivitySecondBinding>() {

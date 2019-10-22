@@ -31,7 +31,7 @@ object GradleDependency {
         const val SAFE_ARGS = NAVIGATION_KTX
         const val GOOGLE_SERVICE = "4.3.2"
         const val DETEKT = "1.1.1"
-        const val VERSION_UPDATER = "0.26.0"
+        const val VERSION_UPDATER = "0.27.0"
     }
 
     const val SAFE_ARGS = "androidx.navigation:navigation-safe-args-gradle-plugin:${Version.SAFE_ARGS}"

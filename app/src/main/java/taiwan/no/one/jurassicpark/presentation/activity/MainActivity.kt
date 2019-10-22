@@ -22,19 +22,20 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.jurassicpark
+package taiwan.no.one.jurassicpark.presentation.activity
 
-import android.os.Bundle
-import androidx.navigation.navArgs
+import android.content.Context
+import android.content.res.Configuration
+import com.google.android.play.core.splitcompat.SplitCompat
 import taiwan.no.one.core.presentation.activity.BaseActivity
-import taiwan.no.one.jurassicpark.databinding.ActivitySecondBinding
+import taiwan.no.one.jurassicpark.databinding.ActivityMainBinding
+import java.util.Locale
 
-class SecondActivity : BaseActivity<ActivitySecondBinding>() {
-    private val args by navArgs<SecondActivityArgs>()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        binding.tvMsg.text = "This is second Activity ${args.id}"
+class MainActivity : BaseActivity<ActivityMainBinding>() {
+    override fun attachBaseContext(newBase: Context?) {
+        val config = Configuration().apply { setLocale(Locale.getDefault()) }
+        val ctx = newBase?.createConfigurationContext(config)
+        super.attachBaseContext(ctx)
+        SplitCompat.install(this)
     }
 }
