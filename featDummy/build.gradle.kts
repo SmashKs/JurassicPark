@@ -34,8 +34,9 @@ plugins {
     else {
         id("com.android.dynamic-feature")
     }
-    id("kotlin-android")
-    id("kotlin-kapt")
+    kotlin("android")
+    kotlin("android.extensions")
+    kotlin("kapt")
     id("androidx.navigation.safeargs.kotlin")
 }
 

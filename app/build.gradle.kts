@@ -37,10 +37,10 @@ plugins {
     else {
         id("com.android.library")
     }
-    id("kotlin-android")
+    kotlin("android")
+    kotlin("android.extensions")
+    kotlin("kapt")
     id("androidx.navigation.safeargs.kotlin")
-    id("kotlin-android-extensions")
-    id("org.jetbrains.kotlin.kapt")
 }
 
 android {
