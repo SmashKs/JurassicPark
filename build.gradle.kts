@@ -29,12 +29,12 @@ buildscript {
         google()
         jcenter()
         maven {
-            url = uri("http://dl.bintray.com/kotlin/kotlin-eap")
+            url = uri("https://dl.bintray.com/kotlin/kotlin-eap")
             url = uri("https://maven.fabric.io/public")
         }
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:3.6.0-beta01")
+        classpath("com.android.tools.build:gradle:4.0.0-alpha01")
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
         classpath(config.GradleDependency.SAFE_ARGS)
@@ -128,7 +128,7 @@ allprojects {
         mavenCentral()
         // required to find the project's artifacts
         maven { url = uri("https://dl.bintray.com/pokk/maven") }
-        maven { url = uri("http://dl.bintray.com/kotlin/kotlin-eap") }
+        maven { url = uri("https://dl.bintray.com/kotlin/kotlin-eap") }
         maven { url = uri("https://dl.bintray.com/kodein-framework/Kodein-DI") }
     }
     tasks {

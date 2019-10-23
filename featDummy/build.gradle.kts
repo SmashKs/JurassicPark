@@ -49,7 +49,6 @@ android {
         versionName = "1.0"
         if (Configuration.isFeature) {
             applicationId = "taiwan.no.one.featureDummy"
-            multiDexEnabled = true
         }
         vectorDrawables.useSupportLibrary = true
         renderscriptTargetApi = AndroidConfiguration.MIN_SDK

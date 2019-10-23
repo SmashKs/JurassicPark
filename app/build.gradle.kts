@@ -53,7 +53,6 @@ android {
         targetSdkVersion(AndroidConfiguration.TARGET_SDK)
         versionCode = 1
         versionName = "1.0"
-        multiDexEnabled = true
         vectorDrawables.useSupportLibrary = true
         renderscriptTargetApi = AndroidConfiguration.MIN_SDK
         renderscriptSupportModeEnabled = true
