@@ -79,6 +79,14 @@ android {
             isCrunchPngs = false // Enabled by default for RELEASE build type
         }
     }
+    sourceSets {
+        getByName("main").apply {
+            if (Configuration.isFeature) {
+                java.srcDirs("src/main/java", "src/main/alone")
+                manifest.srcFile("src/main/alone/AndroidManifest.xml")
+            }
+        }
+    }
     dexOptions {
         jumboMode = true
         preDexLibraries = true

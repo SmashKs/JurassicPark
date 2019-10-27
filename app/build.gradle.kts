@@ -23,7 +23,6 @@
  */
 
 import config.AndroidConfiguration
-import config.CommonModuleDependency
 import config.Configuration
 import config.Dependencies
 import config.LibraryDependency
@@ -109,7 +108,7 @@ android {
     kotlinOptions { jvmTarget = JavaVersion.VERSION_1_8.toString() }
     viewBinding.isEnabled = true
     if (!Configuration.isFeature) {
-        dynamicFeatures = CommonModuleDependency.getFeatureModuleName()
+//        dynamicFeatures = CommonModuleDependency.getFeatureModuleName()
     }
 }
 
