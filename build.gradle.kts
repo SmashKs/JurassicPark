@@ -69,7 +69,7 @@ subprojects {
 //            "app" -> {
 //                plugin("kotlin-android")
 //                plugin("androidx.navigation.safeargs.kotlin")
-////                plugin("io.fabric")
+// //                plugin("io.fabric")
 //            }
         }
         if (name == "core") {
@@ -119,6 +119,8 @@ subprojects {
 //            enabled = false
 //        }
 //    }
+}
+fun com.android.build.gradle.BaseExtension.applyCommons() {
 }
 
 allprojects {
