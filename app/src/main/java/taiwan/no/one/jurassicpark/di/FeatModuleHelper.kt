@@ -28,14 +28,15 @@ import taiwan.no.one.jurassicpark.BuildConfig
 import taiwan.no.one.jurassicpark.provider.ModuleProvider
 
 object FeatModuleHelper {
-    private val featurePackagePrefix by lazy {
+    // Will get the string "taiwan.no.one.".
+    val featurePackagePrefix by lazy {
         BuildConfig.APPLICATION_ID
             .split(".")
             .dropLast(1)
             .joinToString(".")
     }
 
-    val kodeinModules = listOf("featDummy")
+    val kodeinModules = BuildConfig.FEATURE_MODULE_NAMES
         .map { "$featurePackagePrefix.$it.FeatModules" }
         .map {
             try {

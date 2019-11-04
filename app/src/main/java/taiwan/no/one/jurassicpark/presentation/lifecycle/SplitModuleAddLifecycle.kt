@@ -32,6 +32,7 @@ import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
 import com.google.android.play.core.splitinstall.SplitInstallRequest
 import com.google.android.play.core.splitinstall.SplitInstallStateUpdatedListener
 import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus
+import taiwan.no.one.jurassicpark.di.FeatModuleHelper
 import taiwan.no.one.jurassicpark.provider.NaviGraphRouteProvider
 
 class SplitModuleAddLifecycle(
@@ -43,11 +44,12 @@ class SplitModuleAddLifecycle(
         SplitInstallRequest.newBuilder().apply { modules.forEach { addModule(it) } }.build()
     }
     private val listener by lazy {
+        val dummyRoute = "${FeatModuleHelper.featurePackagePrefix}.featDummy.FeatureARoute"
         SplitInstallStateUpdatedListener {
             when (it.status()) {
                 SplitInstallSessionStatus.INSTALLED -> {
                     val route =
-                        Class.forName("taiwan.no.one.featDummy.FeatureARoute").kotlin.objectInstance as? NaviGraphRouteProvider
+                        Class.forName(dummyRoute).kotlin.objectInstance as? NaviGraphRouteProvider
                 }
             }
         }

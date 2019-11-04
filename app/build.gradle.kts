@@ -23,6 +23,7 @@
  */
 
 import config.AndroidConfiguration
+import config.CommonModuleDependency
 import config.Configuration
 import config.Dependencies
 import config.LibraryDependency
@@ -66,6 +67,8 @@ android {
                 )
             }
         }
+        buildConfigField("FEATURE_MODULE_NAMES",
+                         CommonModuleDependency.getFeatureModuleName().map { it.replace(":", "") }.toSet())
     }
     buildTypes {
         getByName("release") {
@@ -140,4 +143,10 @@ dependencies {
      Dependencies.uiDeps.values).forEach(::api)
     kapt(LibraryDependency.ROOM_ANNOTATION)
     kapt(LibraryDependency.LIFECYCLE_COMPILER)
+}
+
+fun com.android.build.gradle.internal.dsl.DefaultConfig.buildConfigField(name: String, value: Set<String>) {
+    // Generates String that holds Java String Array code
+    val strValue = value.joinToString(prefix = "{", separator = ",", postfix = "}", transform = { "\"$it\"" })
+    buildConfigField("String[]", name, strValue)
 }
