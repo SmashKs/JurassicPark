@@ -111,7 +111,6 @@ android {
         options.jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
     viewBinding.isEnabled = true
-    buildFeatures.compose = true
 }
 
 kapt {

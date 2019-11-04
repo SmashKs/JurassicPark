@@ -27,7 +27,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/navApp"
-    app:startDestination="@id/navSecond">
+    app:startDestination="@id/navFeatDummy">
 
     <include app:graph="@navigation/nav_feat_dummy"/>
     <include app:graph="@navigation/nav_second"/>

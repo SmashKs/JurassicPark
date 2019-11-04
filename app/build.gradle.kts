@@ -116,7 +116,7 @@ android {
     }
     viewBinding.isEnabled = true
     if (!Configuration.isFeature) {
-//        dynamicFeatures = CommonModuleDependency.getFeatureModuleName()
+        dynamicFeatures = CommonModuleDependency.getFeatureModuleName()
     }
 }
 

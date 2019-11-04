@@ -29,11 +29,17 @@ import android.content.res.Configuration
 import android.os.Bundle
 import com.google.android.play.core.splitcompat.SplitCompat
 import taiwan.no.one.core.presentation.activity.BaseActivity
+import taiwan.no.one.jurassicpark.JurassicParkApp
 import taiwan.no.one.jurassicpark.R
 import taiwan.no.one.jurassicpark.databinding.ActivityMainBinding
+import taiwan.no.one.jurassicpark.presentation.lifecycle.SplitModuleAddLifecycle
 import java.util.Locale
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
+    init {
+        SplitModuleAddLifecycle(JurassicParkApp.appContext, listOf("featDummy"))
+    }
+
     override fun attachBaseContext(newBase: Context?) {
         val config = Configuration().apply { setLocale(Locale.getDefault()) }
         val ctx = newBase?.createConfigurationContext(config)

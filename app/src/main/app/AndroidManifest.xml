@@ -38,7 +38,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.DayNight"
         android:usesCleartextTraffic="true"
-        tools:replace="android:label">
+        tools:replace="android:label"
+        tools:targetApi="M">
         <activity android:name=".presentation.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

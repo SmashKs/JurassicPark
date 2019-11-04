@@ -48,8 +48,7 @@ class SplitModuleAddLifecycle(
         SplitInstallStateUpdatedListener {
             when (it.status()) {
                 SplitInstallSessionStatus.INSTALLED -> {
-                    val route =
-                        Class.forName(dummyRoute).kotlin.objectInstance as? NaviGraphRouteProvider
+                    val route = Class.forName(dummyRoute).kotlin.objectInstance as? NaviGraphRouteProvider
                 }
             }
         }

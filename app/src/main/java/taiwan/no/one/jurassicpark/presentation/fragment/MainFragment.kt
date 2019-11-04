@@ -27,16 +27,10 @@ package taiwan.no.one.jurassicpark.presentation.fragment
 import android.net.Uri
 import androidx.navigation.fragment.findNavController
 import taiwan.no.one.core.presentation.fragment.BaseFragment
-import taiwan.no.one.jurassicpark.JurassicParkApp
 import taiwan.no.one.jurassicpark.databinding.ActivitySecondBinding
 import taiwan.no.one.jurassicpark.presentation.activity.MainActivity
-import taiwan.no.one.jurassicpark.presentation.lifecycle.SplitModuleAddLifecycle
 
 class MainFragment : BaseFragment<MainActivity, ActivitySecondBinding>() {
-    init {
-        SplitModuleAddLifecycle(JurassicParkApp.appContext, listOf("featDummy"))
-    }
-
     /**
      * For separating the huge function code in [rendered]. Initialize all view components here.
      */
