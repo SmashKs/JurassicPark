@@ -86,7 +86,6 @@ object LibraryDependency {
     //endregion
     //region Android Jetpack
     const val MATERIAL_DESIGN = "com.google.android.material:material:${Version.MATERIAL}"
-    const val DEX_TOOL = "androidx.multidex:multidex:${Version.DEX_TOOL}"
     const val APPCOMPAT = "androidx.appcompat:appcompat:${Version.APPCOMPAT}"
     const val ANNOT = "androidx.annotation:annotation:${Version.ANNOTATION}"
     const val RECYCLERVIEW = "androidx.recyclerview:recyclerview:${Version.RECYCLERVIEW}"
@@ -106,10 +105,8 @@ object LibraryDependency {
     const val VIEWMODEL_KTX = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Version.VIEWMODEL_KTX}"
     const val LIVEDATA_KTX = "androidx.lifecycle:lifecycle-livedata-ktx:${Version.VIEWMODEL_KTX}"
     const val RUNTIME_KTX = "androidx.lifecycle:lifecycle-runtime-ktx:${Version.VIEWMODEL_KTX}"
-    const val NAVIGATION_COMMON_KTX =
-        "androidx.navigation:navigation-common-ktx:${Version.NAVIGATION_KTX}"
-    const val NAVIGATION_FRAGMENT_KTX =
-        "androidx.navigation:navigation-fragment-ktx:${Version.NAVIGATION_KTX}"
+    const val NAVIGATION_COMMON_KTX = "androidx.navigation:navigation-common-ktx:${Version.NAVIGATION_KTX}"
+    const val NAVIGATION_FRAGMENT_KTX = "androidx.navigation:navigation-fragment-ktx:${Version.NAVIGATION_KTX}"
     const val NAVIGATION_UI_KTX = "androidx.navigation:navigation-ui-ktx:${Version.NAVIGATION_KTX}"
     const val WORKER_KTX = "androidx.work:work-runtime-ktx:${Version.WORK_KTX}"
     const val DYN_ANIM_KTX = "androidx.dynamicanimation-ktx:${Version.DYN_ANIM_KTX}"

@@ -26,11 +26,9 @@ package taiwan.no.one.jurassicpark.presentation.activity
 
 import android.content.Context
 import android.content.res.Configuration
-import android.os.Bundle
 import com.google.android.play.core.splitcompat.SplitCompat
 import taiwan.no.one.core.presentation.activity.BaseActivity
 import taiwan.no.one.jurassicpark.JurassicParkApp
-import taiwan.no.one.jurassicpark.R
 import taiwan.no.one.jurassicpark.databinding.ActivityMainBinding
 import taiwan.no.one.jurassicpark.presentation.lifecycle.SplitModuleAddLifecycle
 import java.util.Locale
@@ -45,10 +43,5 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         val ctx = newBase?.createConfigurationContext(config)
         super.attachBaseContext(ctx)
         SplitCompat.install(this)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
     }
 }
