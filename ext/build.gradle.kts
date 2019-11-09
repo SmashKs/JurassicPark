@@ -25,7 +25,7 @@
 import config.Dependencies
 
 dependencies {
-    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    //    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     Dependencies.kotlinDeps.values.forEach(::implementation)
 }
 

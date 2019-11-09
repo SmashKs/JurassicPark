@@ -59,7 +59,7 @@ android {
 }
 
 dependencies {
-    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    //    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     listOf(project(":widget"), project(":ext")).forEach(::api)
     (Dependencies.androidxDeps.values + Dependencies.androidxKtxDeps.values).forEach(::implementation)
     implementation(LibraryDependency.KNIFER)

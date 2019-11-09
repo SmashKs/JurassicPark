@@ -101,7 +101,7 @@ kapt {
 }
 
 dependencies {
-    api(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    //    api(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     listOf(project(":ktx"), project(":device")).forEach(::api)
     (Dependencies.kotlinDeps.values +
      Dependencies.kotlinAndroidDeps.values +

@@ -25,7 +25,7 @@
 package taiwan.no.one.core.data.remote
 
 import android.content.Context
-import com.itkacher.okhttpprofiler.OkHttpProfilerInterceptor
+//import com.itkacher.okhttpprofiler.OkHttpProfilerInterceptor
 import taiwan.no.one.core.data.remote.interceptor.ConnectInterceptor
 import taiwan.no.one.core.data.remote.provider.OkHttpClientProvider
 import taiwan.no.one.core.data.remote.provider.RetrofitProvider
@@ -58,7 +58,7 @@ abstract class BaseRetrofitConfig(
     override fun provideRetrofitBuilder() = retrofitProvider.provideBuilder(baseUrl)
 
     override fun provideOkHttpClientBuilder() = clientProvider.provideClientBuilder(
-        OkHttpProfilerInterceptor(),
+//        OkHttpProfilerInterceptor(),
         ConnectInterceptor(context)
     )
 }

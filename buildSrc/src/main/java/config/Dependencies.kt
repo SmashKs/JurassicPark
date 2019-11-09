@@ -97,7 +97,7 @@ object Dependencies {
     val debugDeps = hashMapOf(
         "steho" to DebugLibraryDependency.STEHO,
         "stehoInterceptor" to DebugLibraryDependency.STEHO_INTERCEPTOR,
-        "database" to DebugLibraryDependency.DEBUG_DB,
-        "okhttpInterceptor" to DebugLibraryDependency.OK_HTTP_PROFILER
+        "database" to DebugLibraryDependency.DEBUG_DB
+//        "okhttpInterceptor" to DebugLibraryDependency.OK_HTTP_PROFILER
     )
 }

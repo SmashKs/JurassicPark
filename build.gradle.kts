@@ -34,7 +34,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:3.6.0-beta03")
+        classpath("com.android.tools.build:gradle:4.0.0-alpha02")
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
         classpath(config.GradleDependency.SAFE_ARGS)
@@ -47,6 +47,34 @@ buildscript {
 plugins {
     id(config.GradleDependency.DETEKT).version(config.GradleDependency.Version.DETEKT)
     id(config.GradleDependency.GRADLE_VERSION_UPDATER).version(config.GradleDependency.Version.VERSION_UPDATER)
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        // required to find the project's artifacts
+        maven { url = uri("https://dl.bintray.com/pokk/maven") }
+        maven { url = uri("https://dl.bintray.com/kotlin/kotlin-eap") }
+        maven { url = uri("https://dl.bintray.com/kodein-framework/Kodein-DI") }
+    }
+
+    tasks {
+        withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+            kotlinOptions {
+                jvmTarget = "1.8"
+                suppressWarnings = false
+                freeCompilerArgs = listOf(
+                    "-Xuse-experimental=kotlin.Experimental",
+                    "-Xuse-experimental=kotlin.ExperimentalStdlibApi",
+                    "-Xuse-experimental=kotlin.ExperimentalContracts",
+                    "-Xuse-experimental=org.mylibrary.ExperimentalMarker",
+                    "-Xallow-result-return-type"
+                )
+            }
+        }
+    }
 }
 
 subprojects {
@@ -119,35 +147,6 @@ subprojects {
 //            enabled = false
 //        }
 //    }
-}
-fun com.android.build.gradle.BaseExtension.applyCommons() {
-}
-
-allprojects {
-    repositories {
-        google()
-        jcenter()
-        mavenCentral()
-        // required to find the project's artifacts
-        maven { url = uri("https://dl.bintray.com/pokk/maven") }
-        maven { url = uri("https://dl.bintray.com/kotlin/kotlin-eap") }
-        maven { url = uri("https://dl.bintray.com/kodein-framework/Kodein-DI") }
-    }
-    tasks {
-        withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-            kotlinOptions {
-                jvmTarget = "1.8"
-                suppressWarnings = false
-                freeCompilerArgs = listOf(
-                    "-Xuse-experimental=kotlin.Experimental",
-                    "-Xuse-experimental=kotlin.ExperimentalStdlibApi",
-                    "-Xuse-experimental=kotlin.ExperimentalContracts",
-                    "-Xuse-experimental=org.mylibrary.ExperimentalMarker",
-                    "-Xallow-result-return-type"
-                )
-            }
-        }
-    }
 }
 
 tasks.register("clean", Delete::class) {
