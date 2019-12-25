@@ -34,6 +34,9 @@ import androidx.annotation.StyleRes
 import androidx.annotation.UiThread
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import kotlinx.coroutines.CoroutineScope
@@ -60,19 +63,9 @@ abstract class BaseFragment<out A : BaseActivity<*>, out V : ViewBinding> : Load
 //            .changeColor(getColor(R.color.colorPrimaryTextV1))
         android.R.drawable.arrow_down_float
     }
-    //region ViewBinding Reflection
-    /** Using reflection to get dynamic view binding name. */
-    @Suppress("UNCHECKED_CAST")
-    protected val binding by lazy { inflateMethod.invoke(null, localInflater) as V }
+    protected val binding by viewBinding()
     private lateinit var localInflater: LayoutInflater
-    /** [ViewBinding] is the second (index: 1) in the generic declare. */
-    private val viewBindingConcreteClass
-        get() = (this::class.java.genericSuperclass as ParameterizedType).actualTypeArguments[1] as Class<*>
-    private val inflateMethod by lazy {
-        viewBindingConcreteClass.getMethod("inflate", LayoutInflater::class.java)
-    }
-    //endregion
-//        private val actionTitle by extra<String>(COMMON_TITLE)
+    //        private val actionTitle by extra<String>(COMMON_TITLE)
     private val actionTitle = ""
 
     //region Lifecycle
@@ -222,4 +215,21 @@ abstract class BaseFragment<out A : BaseActivity<*>, out V : ViewBinding> : Load
 
     @UiThread
     open fun onBackPressed() = Unit
+
+    @UiThread
+    protected inline fun <reified VM : ViewModel> viewModel() = viewModels<VM> { vmFactory }
+
+    @UiThread
+    protected inline fun <reified VM : ViewModel> activityViewModel() = activityViewModels<VM> { vmFactory }
+
+    @Suppress("UNCHECKED_CAST")
+    @UiThread
+    /** Using reflection to get dynamic view binding name. */
+    private fun viewBinding() = lazy {
+        /** [ViewBinding] is the second (index: 1) in the generic declare. */
+        val viewBindingConcreteClass =
+            (this::class.java.genericSuperclass as ParameterizedType).actualTypeArguments[1] as Class<*>
+        val inflateMethod = viewBindingConcreteClass.getMethod("inflate", LayoutInflater::class.java)
+        inflateMethod.invoke(null, layoutInflater) as V
+    }
 }

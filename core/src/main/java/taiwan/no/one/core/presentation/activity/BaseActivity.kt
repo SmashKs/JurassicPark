@@ -26,28 +26,23 @@ package taiwan.no.one.core.presentation.activity
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import androidx.activity.viewModels
 import androidx.annotation.UiThread
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
+import org.kodein.di.generic.instance
 import java.lang.reflect.ParameterizedType
 
 /**
  * The basic activity is for the normal activity that prepares all necessary variables or functions.
  */
 abstract class BaseActivity<out V : ViewBinding> : LoadableActivity(), CoroutineScope by MainScope() {
-    //region ViewBinding Reflection
-    /** Using reflection to get dynamic view binding name. */
-    @Suppress("UNCHECKED_CAST")
-    protected val binding by lazy { inflateMethod.invoke(null, layoutInflater) as V }
-    /** [ViewBinding] is the first (index: 0) in the generic declare. */
-    private val viewBindingConcreteClass
-        get() = ((this::class.java.genericSuperclass as ParameterizedType).actualTypeArguments[0]) as Class<*>
-    private val inflateMethod by lazy {
-        viewBindingConcreteClass.getMethod("inflate", LayoutInflater::class.java)
-    }
-    //endregion
+    protected val vmFactory: ViewModelProvider.Factory by instance()
+    protected val binding by viewBinding()
 
     //region Activity lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -99,4 +94,18 @@ abstract class BaseActivity<out V : ViewBinding> : LoadableActivity(), Coroutine
      */
     @UiThread
     protected open fun uninit() = Unit
+
+    @UiThread
+    protected inline fun <reified VM : ViewModel> viewModel() = viewModels<VM> { vmFactory }
+
+    @Suppress("UNCHECKED_CAST")
+    @UiThread
+    /** Using reflection to get dynamic view binding name. */
+    private fun viewBinding() = lazy {
+        /** [ViewBinding] is the first (index: 0) in the generic declare. */
+        val viewBindingConcreteClass =
+            (this::class.java.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<*>
+        val inflateMethod = viewBindingConcreteClass.getMethod("inflate", LayoutInflater::class.java)
+        inflateMethod.invoke(null, layoutInflater) as V
+    }
 }
