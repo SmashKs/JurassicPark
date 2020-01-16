@@ -27,17 +27,16 @@ package config
 import kotlin.reflect.KProperty1
 import kotlin.reflect.full.memberProperties
 
-private const val FEATURE_PREFIX = ":feature_"
+private const val FEATURE_PREFIX = ":feature:"
 
-@Suppress("unused")
 object CommonModuleDependency {
     const val APP = ":app"
-    const val LIB_PURE_EXT = ":library_ext"
-    const val LIB_KTX = ":library_ktx"
-    const val LIB_WIDGET = ":library_widget"
-    const val LIB_DEVICE = ":library_device"
-    const val LIB_CORE = ":library_core"
-    const val FEAT_DUMMY = ":feature_featDummy"
+    const val LIB_PURE_EXT = ":ext"
+    const val LIB_KTX = ":ktx"
+    const val LIB_WIDGET = ":widget"
+    const val LIB_DEVICE = ":device"
+    const val LIB_CORE = ":core"
+    const val FEAT_DUMMY = "${FEATURE_PREFIX}featDummy"
 
     fun getAllModules() = CommonModuleDependency::class.memberProperties
         .asSequence()
@@ -48,10 +47,11 @@ object CommonModuleDependency {
     fun getDynamicFeatureModules() = getAllModules()
         .asSequence()
         .filter { it.startsWith(FEATURE_PREFIX) }
-        .toSet()
+        .toMutableSet()
 
     fun getFeatureModuleName() = getDynamicFeatureModules()
-        .asSequence()
-        .map { it.replace("feature_", "") }
+        .filter { it == FEAT_DUMMY } // Only one will be imported
+        .map { it.replace(":feature", "") }
         .toMutableSet()
 }
+

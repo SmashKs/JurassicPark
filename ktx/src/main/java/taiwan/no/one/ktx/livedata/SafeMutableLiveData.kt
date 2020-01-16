@@ -22,21 +22,10 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.ktx.internet
+package taiwan.no.one.ktx.livedata
 
-import android.annotation.SuppressLint
-import android.content.Context
-import android.content.Context.CONNECTIVITY_SERVICE
-import android.net.ConnectivityManager
-import com.devrapid.kotlinshaver.cast
+class SafeMutableLiveData<T>(value: T) : SafeLiveData<T>(value) {
+    public override fun postValue(value: T) = super.postValue(value)
 
-@SuppressLint("MissingPermission")
-fun hasNetwork(context: Context): Boolean {
-    var isConnected = false // Initial Value
-    val connectivityManager = cast<ConnectivityManager>(context.getSystemService(CONNECTIVITY_SERVICE))
-    val activeNetwork = connectivityManager.activeNetworkInfo
-    if (activeNetwork != null && activeNetwork.isConnected) {
-        isConnected = true
-    }
-    return isConnected
+    public override fun setValue(value: T) = super.setValue(value)
 }

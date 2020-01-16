@@ -22,21 +22,19 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.ktx.internet
+package taiwan.no.one.core.presentation.viewmodel
 
-import android.annotation.SuppressLint
-import android.content.Context
-import android.content.Context.CONNECTIVITY_SERVICE
-import android.net.ConnectivityManager
-import com.devrapid.kotlinshaver.cast
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-@SuppressLint("MissingPermission")
-fun hasNetwork(context: Context): Boolean {
-    var isConnected = false // Initial Value
-    val connectivityManager = cast<ConnectivityManager>(context.getSystemService(CONNECTIVITY_SERVICE))
-    val activeNetwork = connectivityManager.activeNetworkInfo
-    if (activeNetwork != null && activeNetwork.isConnected) {
-        isConnected = true
-    }
-    return isConnected
+abstract class BehindAndroidViewModel(application: Application) : AndroidViewModel(application) {
+    inline fun launchBehind(
+        context: CoroutineContext = Dispatchers.Default,
+        crossinline block: suspend CoroutineScope.() -> Unit
+    ) = viewModelScope.launch(context) { block() }
 }

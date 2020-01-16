@@ -120,7 +120,6 @@ kapt {
 }
 
 dependencies {
-    //    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(project(CommonModuleDependency.APP))
     kapt(LibraryDependency.ROOM_ANNOTATION)
     kapt(LibraryDependency.LIFECYCLE_COMPILER)

@@ -22,21 +22,23 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.ktx.internet
+package taiwan.no.one.ktx.context
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Context.CONNECTIVITY_SERVICE
-import android.net.ConnectivityManager
-import com.devrapid.kotlinshaver.cast
+import android.content.pm.PackageManager
+import androidx.annotation.UiThread
+import androidx.core.content.ContextCompat
 
-@SuppressLint("MissingPermission")
-fun hasNetwork(context: Context): Boolean {
-    var isConnected = false // Initial Value
-    val connectivityManager = cast<ConnectivityManager>(context.getSystemService(CONNECTIVITY_SERVICE))
-    val activeNetwork = connectivityManager.activeNetworkInfo
-    if (activeNetwork != null && activeNetwork.isConnected) {
-        isConnected = true
-    }
-    return isConnected
+/**
+ * Check if all permission specified in the manifest have been granted.
+ *
+ * @receiver Context
+ *
+ * @param permissions Array<String>
+ *
+ * @return Boolean
+ */
+@UiThread
+fun Context.allPermissionsGranted(permissions: Array<String>) = permissions.all {
+    ContextCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_GRANTED
 }

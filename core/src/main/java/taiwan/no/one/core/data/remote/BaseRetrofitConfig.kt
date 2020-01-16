@@ -24,9 +24,11 @@
 
 package taiwan.no.one.core.data.remote
 
+// import com.itkacher.okhttpprofiler.OkHttpProfilerInterceptor
 import android.content.Context
-//import com.itkacher.okhttpprofiler.OkHttpProfilerInterceptor
+import okhttp3.logging.HttpLoggingInterceptor
 import taiwan.no.one.core.data.remote.interceptor.ConnectInterceptor
+import taiwan.no.one.core.data.remote.interceptor.OfflineCacheInterceptor
 import taiwan.no.one.core.data.remote.provider.OkHttpClientProvider
 import taiwan.no.one.core.data.remote.provider.RetrofitProvider
 
@@ -56,9 +58,12 @@ abstract class BaseRetrofitConfig(
     override val connectTimeOut = TIME_OUT
 
     override fun provideRetrofitBuilder() = retrofitProvider.provideBuilder(baseUrl)
+        .client(provideOkHttpClientBuilder().build())
 
-    override fun provideOkHttpClientBuilder() = clientProvider.provideClientBuilder(
+    protected open fun provideOkHttpClientBuilder() = clientProvider.provideClientBuilder(
 //        OkHttpProfilerInterceptor(),
-        ConnectInterceptor(context)
+        OfflineCacheInterceptor(context),
+        ConnectInterceptor(context),
+        HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
     )
 }

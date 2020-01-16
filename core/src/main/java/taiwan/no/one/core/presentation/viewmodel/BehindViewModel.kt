@@ -29,8 +29,11 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
 abstract class BehindViewModel : ViewModel() {
-    inline fun launchBehind(crossinline block: suspend CoroutineScope.() -> Unit) =
-        viewModelScope.launch(Dispatchers.IO) { block() }
+    inline fun launchBehind(
+        context: CoroutineContext = Dispatchers.Default,
+        crossinline block: suspend CoroutineScope.() -> Unit
+    ) = viewModelScope.launch(context) { block() }
 }

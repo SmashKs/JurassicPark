@@ -61,7 +61,6 @@ object Dependencies {
     }
 
     val androidxDeps = commonAndroidDeps.apply {
-        //        put("dexTool", LibraryDependency.DEX_TOOL)
         put("lifecycle", LibraryDependency.LIFECYCLE)
         put("materialDesign", LibraryDependency.MATERIAL_DESIGN)
         put("recyclerview", LibraryDependency.RECYCLERVIEW)
@@ -84,6 +83,7 @@ object Dependencies {
 
     val internetDeps = hashMapOf(
         "okhttp3" to LibraryDependency.OKHTTP,
+        "okhttp_interceptor" to LibraryDependency.OKHTTP_INTERCEPTOR,
         "retrofit2" to LibraryDependency.RETROFIT2,
         "retrofit2_converter" to LibraryDependency.RETROFIT2_CONVERTER_GSON
     )

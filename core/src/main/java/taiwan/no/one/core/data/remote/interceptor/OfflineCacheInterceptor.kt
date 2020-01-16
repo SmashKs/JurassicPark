@@ -22,14 +22,31 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.core.domain.usecase
+package taiwan.no.one.core.data.remote.interceptor
 
-/**
- * A base abstract class for wrapping a coroutine [DeferredUsecase] object and do the
- * error handling when an error or cancellation happened.
- */
-abstract class DeferredUsecase<out T : Any, in R : Usecase.RequestValues> : Usecase<R> {
-    abstract suspend fun acquireCase(parameter: R? = null): T
+import android.content.Context
+import okhttp3.CacheControl
+import okhttp3.Interceptor
+import okhttp3.Response
+import taiwan.no.one.ktx.internet.hasNetwork
+import java.util.concurrent.TimeUnit
 
-    open suspend fun execute(parameter: R? = null) = runCatching { acquireCase(parameter) }
+class OfflineCacheInterceptor(
+    private val context: Context
+) : Interceptor {
+    override fun intercept(chain: Interceptor.Chain): Response {
+        var request = chain.request()
+
+        if (!hasNetwork(context)) {
+            val cacheControl = CacheControl.Builder()
+                .maxStale(Constant.CACHE_DAY, TimeUnit.DAYS)
+                .build()
+            request = request.newBuilder()
+                .removeHeader(Constant.HEADER_CACHE_CONTROL)
+                .cacheControl(cacheControl)
+                .build()
+        }
+
+        return chain.proceed(request)
+    }
 }

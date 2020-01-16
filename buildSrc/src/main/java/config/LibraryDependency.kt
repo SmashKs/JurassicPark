@@ -30,51 +30,51 @@ object LibraryDependency {
         const val QUICK_DIALOG = "1.0.7"
         const val KINFER = "2.1.17"
 
-        const val DEX_TOOL = "2.0.1"
-        const val MATERIAL = "1.2.0-alpha01"
+        const val MATERIAL = "1.2.0-alpha03"
         const val ANDROIDX = "1.0.0"
         const val ANNOTATION = "1.1.0"
-        const val APPCOMPAT = "1.1.0"
+        const val APPCOMPAT = "1.2.0-alpha01"
         const val CARDVIEW = ANDROIDX
-        const val RECYCLERVIEW = "1.1.0-rc01"
-        const val CONSTRAINTLAYOUT = "2.0.0-beta3"
-        const val COORDINATORLAYOUT = "1.1.0-rc01"
+        const val RECYCLERVIEW = "1.1.0"
+        const val CONSTRAINTLAYOUT = "2.0.0-beta4"
+        const val COORDINATORLAYOUT = "1.1.0"
 
-        const val AAC_LIFECYCLE = "2.2.0-rc01"
+        const val AAC_LIFECYCLE = "2.2.0-rc03"
 
-        const val KODEIN = "6.4.1"
+        const val KODEIN = "6.5.1"
 
-        const val KTX = "1.2.0-beta01"
-        const val FRAGMENT_KTX = "1.2.0-rc01"
+        const val KTX = "1.2.0-rc01"
+        const val FRAGMENT_KTX = "1.2.0-rc05"
         const val PALETTE_KTX = "1.0.0"
         const val COLLECTION_KTX = "1.1.0"
         const val VIEWMODEL_KTX = AAC_LIFECYCLE
-        const val NAVIGATION_KTX = "2.2.0-rc01"
-        const val WORK_KTX = "2.3.0-alpha03"
+        const val NAVIGATION_KTX = "2.2.0-rc04"
+        const val WORK_KTX = "2.3.0-rc01"
         const val DYN_ANIM_KTX = "1.0.0-alpha01"
 
-        const val ROOM = "2.2.1"
+        const val ROOM = "2.2.3"
         const val MMKV = "1.0.23"
         const val GSON = "2.8.6"
         const val PLAY_CORE = "1.6.4"
 
-        const val COIL = "0.8.0"
-        const val RETROFIT2 = "2.6.2"
-        const val OKHTTP3 = "4.2.2"
+        const val COIL = "0.9.1"
+        const val RETROFIT2 = "2.7.1"
+        const val OKHTTP3 = "4.3.1"
         const val JSOUP = "1.12.1"
 
-        const val FIREBASE_CORE = "16.0.8"
+        const val FIREBASE_CORE = "17.2.1"
         const val FIREBASE_DATABASE = "16.1.0"
         const val FIREBASE_AUTH = "16.0.3"
         const val FIREBASE_MESSAGING = "17.5.0"
-        const val FIREBASE_ANALYTICS = "17.2.0"
+        const val FIREBASE_ANALYTICS = "17.2.1"
         const val FIREBASE_CRASHLYTICS = "2.10.1"
+        const val FIREBASE_ML = "24.0.1"
 
         const val GOOGLE_SERVICE = "4.3.2"
 
         const val SHAPE_OF_VIEW = "1.4.7"
         const val REALTIME_BLUR = "1.2.1"
-        const val LOTTIE = "3.1.0"
+        const val LOTTIE = "3.3.1"
     }
 
     const val ANDROID_COROUTINE =
@@ -120,6 +120,7 @@ object LibraryDependency {
     const val PLAY_CORE = "com.google.android.play:core:${Version.PLAY_CORE}"
     //region Internet
     const val OKHTTP = "com.squareup.okhttp3:okhttp:${Version.OKHTTP3}"
+    const val OKHTTP_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor:${Version.OKHTTP3}"
     const val RETROFIT2 = "com.squareup.retrofit2:retrofit:${Version.RETROFIT2}"
     const val RETROFIT2_CONVERTER_GSON = "com.squareup.retrofit2:converter-gson:${Version.RETROFIT2}"
     //endregion
@@ -141,8 +142,10 @@ object LibraryDependency {
     const val FIREBASE_CORE = "com.google.firebase:firebase-core:${Version.FIREBASE_CORE}"
     const val FIREBASE_DB = "com.google.firebase:firebase-database:${Version.FIREBASE_DATABASE}"
     const val FIREBASE_AUTH = "com.google.firebase:firebase-auth:${Version.FIREBASE_AUTH}"
+    const val FIREBASE_MESSAGING = "com.google.firebase:firebase-messaging:${Version.FIREBASE_MESSAGING}"
     const val FIREBASE_ANALYTICS = "com.google.firebase:firebase-analytics:${Version.FIREBASE_ANALYTICS}"
     const val FIREBASE_CRASHLYTICS = "com.crashlytics.sdk.android:crashlytics:${Version.FIREBASE_CRASHLYTICS}"
+    const val FIREBASE_ML = "com.google.firebase:firebase-ml-vision:${Version.FIREBASE_ML}"
     //endregion
 //    const val CLOUDINARY = "com.cloudinary:cloudinary-android:${Version.cloudinary}"
 
