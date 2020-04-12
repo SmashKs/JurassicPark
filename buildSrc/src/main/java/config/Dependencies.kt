@@ -32,66 +32,66 @@ object Dependencies {
     )
 
     val kotlinAndroidDeps = kotlinDeps.apply {
-        put("coroutineForAndroid", LibraryDependency.ANDROID_COROUTINE)
+        put("coroutineForAndroid", CoreDependency.ANDROID_COROUTINE)
     }
 
     private val commonAndroidDeps = hashMapOf(
-        "appcompat" to LibraryDependency.APPCOMPAT,
-        "lifecycle" to LibraryDependency.LIFECYCLE
+        "appcompat" to LibraryDependency.JetPack.APPCOMPAT,
+        "lifecycleService" to LibraryDependency.JetPack.LIFECYCLE_SERVICE,
+        "lifecycleProcess" to LibraryDependency.JetPack.LIFECYCLE_PROCESS
     )
-
     private val commonKtxDeps = hashMapOf(
-        "ktx" to LibraryDependency.KTX,
-        "fragmentKtx" to LibraryDependency.FRAGMENT_KTX,
-        "viewmodelKtx" to LibraryDependency.VIEWMODEL_KTX,
-        "livedataKtx" to LibraryDependency.LIVEDATA_KTX,
-        "runtimeKtx" to LibraryDependency.RUNTIME_KTX
+        "ktx" to LibraryDependency.AndroidKtx.KTX,
+        "activityKtx" to LibraryDependency.AndroidKtx.ACTIVITY_KTX,
+        "fragmentKtx" to LibraryDependency.AndroidKtx.FRAGMENT_KTX,
+        "viewmodelKtx" to LibraryDependency.AndroidKtx.VIEWMODEL_KTX,
+        "livedataKtx" to LibraryDependency.AndroidKtx.LIVEDATA_KTX,
+        "runtimeKtx" to LibraryDependency.AndroidKtx.RUNTIME_KTX
     )
 
     val commonAndroidxDeps = commonAndroidDeps + commonKtxDeps
 
     val androidxKtxDeps = commonKtxDeps.apply {
-        put("paletteKtx", LibraryDependency.PALETTE_KTX)
-        put("collectionKtx", LibraryDependency.COLLECTION_KTX)
-        put("navigationCommonKtx", LibraryDependency.NAVIGATION_COMMON_KTX)
-        put("navigationFragmentKtx", LibraryDependency.NAVIGATION_FRAGMENT_KTX)
-        put("navigationUiKtx", LibraryDependency.NAVIGATION_UI_KTX)
-        put("workerKtx", LibraryDependency.WORKER_KTX)
+        put("paletteKtx", LibraryDependency.AndroidKtx.PALETTE_KTX)
+        put("collectionKtx", LibraryDependency.AndroidKtx.COLLECTION_KTX)
+        put("navigationCommonKtx", LibraryDependency.AndroidKtx.NAVIGATION_COMMON_KTX)
+        put("navigationFragmentKtx", LibraryDependency.AndroidKtx.NAVIGATION_FRAGMENT_KTX)
+        put("navigationUiKtx", LibraryDependency.AndroidKtx.NAVIGATION_UI_KTX)
+        put("workerKtx", LibraryDependency.AndroidKtx.WORKER_KTX)
 //        "dynAnimKtx" to Deps.Presentation.dynAnimKtx
     }
 
     val androidxDeps = commonAndroidDeps.apply {
-        put("lifecycle", LibraryDependency.LIFECYCLE)
-        put("materialDesign", LibraryDependency.MATERIAL_DESIGN)
-        put("recyclerview", LibraryDependency.RECYCLERVIEW)
-        put("cardview", LibraryDependency.CARDVIEW)
-        put("coordinatorLayout", LibraryDependency.COORDINATOR_LAYOUT)
-        put("constraintLayout", LibraryDependency.CONSTRAINT_LAYOUT)
-        put("annot", LibraryDependency.ANNOT)
+        put("materialDesign", LibraryDependency.JetPack.MATERIAL_DESIGN)
+        put("recyclerview", LibraryDependency.JetPack.RECYCLERVIEW)
+        put("cardview", LibraryDependency.JetPack.CARDVIEW)
+        put("coordinatorLayout", LibraryDependency.JetPack.COORDINATOR_LAYOUT)
+        put("constraintLayout", LibraryDependency.JetPack.CONSTRAINT_LAYOUT)
+        put("annot", LibraryDependency.JetPack.ANNOT)
     }
 
     val diDeps = hashMapOf(
-        "kodeinJvm" to LibraryDependency.KODEIN_JVM,
-        "kodeinCore" to LibraryDependency.KODEIN_CORE,
-        "kodeinAndroid" to LibraryDependency.KODEIN_ANDROID_X
+        "kodeinJvm" to LibraryDependency.Di.KODEIN_JVM,
+        "kodeinCore" to LibraryDependency.Di.KODEIN_CORE,
+        "kodeinAndroid" to LibraryDependency.Di.KODEIN_ANDROID_X
     )
 
     val localDeps = hashMapOf(
-        "room" to LibraryDependency.ROOM,
-        "roomKtx" to LibraryDependency.ROOM_KTX
+        "room" to LibraryDependency.Database.ROOM,
+        "roomKtx" to LibraryDependency.Database.ROOM_KTX
     )
 
     val internetDeps = hashMapOf(
-        "okhttp3" to LibraryDependency.OKHTTP,
-        "okhttp_interceptor" to LibraryDependency.OKHTTP_INTERCEPTOR,
-        "retrofit2" to LibraryDependency.RETROFIT2,
-        "retrofit2_converter" to LibraryDependency.RETROFIT2_CONVERTER_GSON
+        "okhttp3" to LibraryDependency.Internet.OKHTTP,
+        "okhttp_interceptor" to LibraryDependency.Internet.OKHTTP_INTERCEPTOR,
+        "retrofit2" to LibraryDependency.Internet.RETROFIT2,
+        "retrofit2_converter" to LibraryDependency.Internet.RETROFIT2_CONVERTER_GSON
     )
 
     val uiDeps = hashMapOf(
-        "lottie" to LibraryDependency.LOTTIE,
-        "adaptiveRecyclerView" to LibraryDependency.ARV,
-        "quickDialog" to LibraryDependency.QUICK_DIALOG
+        "lottie" to LibraryDependency.Ui.LOTTIE,
+        "adaptiveRecyclerView" to LibraryDependency.Jieyi.ARV,
+        "quickDialog" to LibraryDependency.Jieyi.QUICK_DIALOG
     )
 
     val debugDeps = hashMapOf(

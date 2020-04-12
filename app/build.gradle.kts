@@ -113,8 +113,11 @@ android {
         // If we don't, it does not work: "unresolved reference: jvmTarget"
         val options = this as org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
         options.jvmTarget = JavaVersion.VERSION_1_8.toString()
+        languageVersion = "1.4"
     }
-    viewBinding.isEnabled = true
+    buildFeatures {
+        viewBinding = true
+    }
     if (!Configuration.isFeature) {
         dynamicFeatures = CommonModuleDependency.getFeatureModuleName()
     }
@@ -134,15 +137,15 @@ kapt {
 dependencies {
     //    api(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     api(project(":core"))
-    api(LibraryDependency.PLAY_CORE)
-    api(LibraryDependency.KNIFER)
-    api(LibraryDependency.MMKV)
-    api(LibraryDependency.COIL)
+    api(LibraryDependency.Firebase.PLAY_CORE)
+    api(LibraryDependency.Jieyi.KNIFER)
+    api(LibraryDependency.Database.MMKV)
+    api(LibraryDependency.Internet.COIL)
     (Dependencies.androidxKtxDeps.values +
      Dependencies.androidxDeps.values +
      Dependencies.uiDeps.values).forEach(::api)
-    kapt(LibraryDependency.ROOM_ANNOTATION)
-    kapt(LibraryDependency.LIFECYCLE_COMPILER)
+    kapt(LibraryDependency.Database.ROOM_ANNOTATION)
+    kapt(LibraryDependency.JetPack.LIFECYCLE_COMPILER)
 }
 
 fun com.android.build.gradle.internal.dsl.DefaultConfig.buildConfigField(name: String, value: Set<String>) {

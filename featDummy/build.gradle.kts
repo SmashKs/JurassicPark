@@ -109,6 +109,7 @@ android {
         // If we don't, it does not work: "unresolved reference: jvmTarget"
         val options = this as org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
         options.jvmTarget = JavaVersion.VERSION_1_8.toString()
+        languageVersion = "1.4"
     }
     viewBinding.isEnabled = true
 }
@@ -121,6 +122,6 @@ kapt {
 
 dependencies {
     implementation(project(CommonModuleDependency.APP))
-    kapt(LibraryDependency.ROOM_ANNOTATION)
-    kapt(LibraryDependency.LIFECYCLE_COMPILER)
+    kapt(LibraryDependency.Database.ROOM_ANNOTATION)
+    kapt(LibraryDependency.JetPack.LIFECYCLE_COMPILER)
 }

@@ -85,8 +85,11 @@ android {
         // If we don't, it does not work: "unresolved reference: jvmTarget"
         val options = this as org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
         options.jvmTarget = JavaVersion.VERSION_1_8.toString()
+        languageVersion = "1.4"
     }
-    viewBinding.isEnabled = true
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 androidExtensions {
@@ -109,8 +112,8 @@ dependencies {
      Dependencies.diDeps.values +
      Dependencies.internetDeps.values +
      Dependencies.localDeps.values).forEach(::api)
-    api(LibraryDependency.GSON)
-    kapt(LibraryDependency.ROOM_ANNOTATION)
-    kapt(LibraryDependency.LIFECYCLE_COMPILER)
+    api(LibraryDependency.Tool.GSON)
+    kapt(LibraryDependency.Database.ROOM_ANNOTATION)
+    kapt(LibraryDependency.JetPack.LIFECYCLE_COMPILER)
     Dependencies.debugDeps.values.forEach(::debugApi)
 }

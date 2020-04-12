@@ -43,25 +43,26 @@ object TestLibraryDependency {
     const val JUNIT = "androidx.test.ext:junit:${Version.JUNIT}"
     const val KOTLIN = "org.jetbrains.kotlin:kotlin-test-junit:${CoreDependency.Version.KOTLIN}"
 
+    // Assert
     const val ASSERTK = "com.willowtreeapps.assertk:assertk-jvm:${Version.ASSERT_K}"
 
+    // Mockito
     const val MOCKITO = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Version.MOCKITO_KOTLIN}"
     const val POWER_MOCK_JUNIT = "org.powermock:powermock-module-junit4:${Version.POWER_MOCKITO}"
     const val POWER_MOCKITO = "org.powermock:powermock-api-mockito2:${Version.POWER_MOCKITO}"
 
+    // Buddy
     const val BYTE_BUDDY = "net.bytebuddy:byte-buddy:${Version.BYTE_BUDDY}"
     const val BYTE_BUDDY_AGENT = "net.bytebuddy:byte-buddy-agent:${Version.BYTE_BUDDY}"
     const val BYTE_BUDDY_ANDROID = "net.bytebuddy:byte-buddy-android:${Version.BYTE_BUDDY}"
 
-    //region Android Related
+    // Android Related
     const val MOCKITO_ANDROID = "org.mockito:mockito-android:${Version.MOCKITO_ANDROID}"
     const val MOCKK_ANDROID = "io.mockk:mockk-android:${Version.MOCKK}"
     const val KAKAO = "com.agoda.kakao:kakao:${Version.KAKAO}"
     const val RUNNER = "androidx.test:runner:${Version.RUNNER}"
     const val ESPRESSO_CORE = "androidx.test.espresso:espresso-core:${Version.ESPRESSO}"
-    //endregion
 
-    //region Testing stub
+    // Testing stub
     const val IDLING_ESPRESSO = "androidx.test.espresso:espresso-idling-resource:${Version.ESPRESSO}"
-    //endregion
 }

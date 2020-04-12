@@ -56,11 +56,18 @@ android {
     }
     testOptions { unitTests.apply { isReturnDefaultValues = true } }
     lintOptions { isAbortOnError = false }
+    kotlinOptions {
+        // We have to add the explicit cast before accessing the options itself.
+        // If we don't, it does not work: "unresolved reference: jvmTarget"
+        val options = this as org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
+        options.jvmTarget = JavaVersion.VERSION_1_8.toString()
+        languageVersion = "1.4"
+    }
 }
 
 dependencies {
     //    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     listOf(project(":widget"), project(":ext")).forEach(::api)
     (Dependencies.androidxDeps.values + Dependencies.androidxKtxDeps.values).forEach(::implementation)
-    implementation(LibraryDependency.KNIFER)
+    implementation(LibraryDependency.Jieyi.KNIFER)
 }
