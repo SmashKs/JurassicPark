@@ -25,8 +25,8 @@
 import config.AndroidConfiguration
 import config.CommonModuleDependency
 import config.Configuration
-import config.Dependencies
-import config.LibraryDependency
+import config.annotationDependencies
+import config.appDependencies
 import org.jetbrains.kotlin.gradle.internal.CacheImplementation
 import resources.FeatureRes
 
@@ -136,16 +136,9 @@ kapt {
 
 dependencies {
     //    api(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    api(project(":core"))
-    api(LibraryDependency.Firebase.PLAY_CORE)
-    api(LibraryDependency.Jieyi.KNIFER)
-    api(LibraryDependency.Database.MMKV)
-    api(LibraryDependency.Internet.COIL)
-    (Dependencies.androidxKtxDeps.values +
-     Dependencies.androidxDeps.values +
-     Dependencies.uiDeps.values).forEach(::api)
-    kapt(LibraryDependency.Database.ROOM_ANNOTATION)
-    kapt(LibraryDependency.JetPack.LIFECYCLE_COMPILER)
+    api(project(CommonModuleDependency.LIB_CORE))
+    appDependencies()
+    annotationDependencies()
 }
 
 fun com.android.build.gradle.internal.dsl.DefaultConfig.buildConfigField(name: String, value: Set<String>) {

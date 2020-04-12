@@ -23,8 +23,9 @@
  */
 
 import config.AndroidConfiguration
-import config.Dependencies
-import config.LibraryDependency
+import config.annotationDependencies
+import config.coreDependencies
+import config.debugDependencies
 import org.jetbrains.kotlin.gradle.internal.CacheImplementation
 import resources.FeatureRes
 
@@ -106,14 +107,7 @@ kapt {
 dependencies {
     //    api(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     listOf(project(":ktx"), project(":device")).forEach(::api)
-    (Dependencies.kotlinDeps.values +
-     Dependencies.kotlinAndroidDeps.values +
-     Dependencies.commonAndroidxDeps.values +
-     Dependencies.diDeps.values +
-     Dependencies.internetDeps.values +
-     Dependencies.localDeps.values).forEach(::api)
-    api(LibraryDependency.Tool.GSON)
-    kapt(LibraryDependency.Database.ROOM_ANNOTATION)
-    kapt(LibraryDependency.JetPack.LIFECYCLE_COMPILER)
-    Dependencies.debugDeps.values.forEach(::debugApi)
+    coreDependencies()
+    annotationDependencies()
+    debugDependencies(config.DepEnvDebugApi)
 }

@@ -23,8 +23,8 @@
  */
 
 import config.AndroidConfiguration
-import config.Dependencies
 import config.LibraryDependency
+import config.ktxDependencies
 
 android {
     compileSdkVersion(AndroidConfiguration.COMPILE_SDK)
@@ -68,6 +68,6 @@ android {
 dependencies {
     //    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     listOf(project(":widget"), project(":ext")).forEach(::api)
-    (Dependencies.androidxDeps.values + Dependencies.androidxKtxDeps.values).forEach(::implementation)
+    ktxDependencies()
     implementation(LibraryDependency.Jieyi.KNIFER)
 }

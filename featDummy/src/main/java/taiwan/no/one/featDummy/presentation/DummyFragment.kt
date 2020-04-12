@@ -25,7 +25,7 @@
 package taiwan.no.one.featDummy.presentation
 
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.observe
+import androidx.lifecycle.observe as obs
 import com.devrapid.kotlinknifer.logw
 import taiwan.no.one.core.presentation.activity.BaseActivity
 import taiwan.no.one.core.presentation.fragment.BaseFragment
@@ -37,7 +37,7 @@ class DummyFragment : BaseFragment<BaseActivity<*>, FragmentDummyBinding>() {
 
     /** The block of binding to [androidx.lifecycle.ViewModel]'s [androidx.lifecycle.LiveData]. */
     override fun bindLiveData() {
-        vm.dummy.observe(viewLifecycleOwner) {
+        vm.dummy.obs(this) {
             logw(it)
         }
     }

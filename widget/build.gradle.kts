@@ -23,8 +23,7 @@
  */
 
 import config.AndroidConfiguration
-import config.Dependencies
-import config.LibraryDependency
+import config.widgetDependencies
 
 android {
     compileSdkVersion(AndroidConfiguration.COMPILE_SDK)
@@ -68,11 +67,5 @@ android {
 dependencies {
     //    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(project(":ext"))
-    (Dependencies.commonAndroidxDeps.values + Dependencies.kotlinAndroidDeps.values).forEach(::implementation)
-    implementation(LibraryDependency.JetPack.MATERIAL_DESIGN)
-    implementation(LibraryDependency.JetPack.CARDVIEW)
-    implementation(LibraryDependency.JetPack.CONSTRAINT_LAYOUT)
-    implementation(LibraryDependency.Ui.LOTTIE)
-//    implementation(Deps.Presentation.arv)
-//    implementation(Deps.Widget.quickDialog)
+    widgetDependencies()
 }

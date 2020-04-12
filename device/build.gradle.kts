@@ -23,7 +23,7 @@
  */
 
 import config.AndroidConfiguration
-import config.Dependencies
+import config.kotlinDependencies
 
 android {
     compileSdkVersion(AndroidConfiguration.COMPILE_SDK)
@@ -67,5 +67,5 @@ android {
 dependencies {
     //    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(project(":ext"))
-    Dependencies.kotlinDeps.values.forEach(::implementation)
+    kotlinDependencies(config.DepEnvImpl)
 }

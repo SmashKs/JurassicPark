@@ -22,12 +22,12 @@
  * SOFTWARE.
  */
 
-import config.Dependencies
+import config.kotlinDependencies
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 dependencies {
     //    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    Dependencies.kotlinDeps.values.forEach(::implementation)
+    kotlinDependencies(config.DepEnvImpl)
 }
 
 java {

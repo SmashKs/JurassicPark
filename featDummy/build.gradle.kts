@@ -25,7 +25,7 @@
 import config.AndroidConfiguration
 import config.CommonModuleDependency
 import config.Configuration
-import config.LibraryDependency
+import config.annotationDependencies
 
 plugins {
     if (config.Configuration.isFeature) {
@@ -122,6 +122,5 @@ kapt {
 
 dependencies {
     implementation(project(CommonModuleDependency.APP))
-    kapt(LibraryDependency.Database.ROOM_ANNOTATION)
-    kapt(LibraryDependency.JetPack.LIFECYCLE_COMPILER)
+    annotationDependencies()
 }
