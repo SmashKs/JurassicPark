@@ -89,23 +89,12 @@ subprojects {
                 plugin("com.android.library")
                 plugin("kotlin-android")
             }
-//            "featDummy" -> {
-//                plugin("kotlin-android")
-//                plugin("kotlin-kapt")
-//                plugin("androidx.navigation.safeargs.kotlin")
-//            }
-//            "app" -> {
-//                plugin("kotlin-android")
-//                plugin("androidx.navigation.safeargs.kotlin")
-// //                plugin("io.fabric")
-//            }
         }
         if (name == "core") {
             plugin("kotlin-android-extensions")
             plugin("org.jetbrains.kotlin.kapt")
         }
         plugin(config.GradleDependency.DETEKT)
-//        plugin("org.jlleitschuh.gradle.ktlint")
     }
     //endregion
 
