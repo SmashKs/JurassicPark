@@ -56,7 +56,7 @@ android {
         consumerProguardFiles(file("consumer-rules.pro"))
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = mapOf(
+                arguments = mutableMapOf(
                     "room.schemaLocation" to "$projectDir/schemas",
                     "room.incremental" to "true",
                     "room.expandProjection" to "true"
