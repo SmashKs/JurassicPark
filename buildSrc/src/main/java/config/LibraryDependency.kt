@@ -35,7 +35,7 @@ object LibraryDependency {
         const val APPCOMPAT = "1.2.0-beta01"
         const val CARDVIEW = ANDROIDX
         const val RECYCLERVIEW = "1.2.0-alpha03"
-        const val CONSTRAINTLAYOUT = "2.0.0-beta4"
+        const val CONSTRAINTLAYOUT = "2.0.0-beta5"
         const val COORDINATORLAYOUT = "1.1.0"
         const val AAC_LIFECYCLE = "2.3.0-alpha02"
         const val KODEIN = "6.5.5"
