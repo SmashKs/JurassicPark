@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2019 SmashKs
+ * Copyright (c) 2020 SmashKs
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,15 +26,20 @@ package taiwan.no.one.core.domain.usecase
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import taiwan.no.one.core.exceptions.internet.InternetException.ParameterNotMatchException
+import taiwan.no.one.ext.DEFAULT_STR
 
 /**
  * A base abstract class for wrapping a coroutine [OneShotUsecase] object and do the
  * error handling when an error or cancellation happened.
  */
-abstract class OneShotUsecase<out T : Any, in R : Usecase.RequestValues> : Usecase<R> {
-    abstract suspend fun acquireCase(parameter: R? = null): T
+abstract class OneShotUsecase<T : Any, R : Usecase.RequestValues> : Usecase<R> {
+    protected abstract suspend fun acquireCase(parameter: R? = null): T
 
     open suspend fun execute(parameter: R? = null) = withContext(Dispatchers.Default) {
         runCatching { acquireCase(parameter) }
     }
+
+    protected suspend fun R?.ensure(errorMessage: String = DEFAULT_STR, block: suspend R.() -> T) =
+        this?.run { block() } ?: throw ParameterNotMatchException(errorMessage)
 }

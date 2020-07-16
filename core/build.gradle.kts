@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2019 SmashKs
+ * Copyright (c) 2020 SmashKs
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,6 +23,7 @@
  */
 
 import config.AndroidConfiguration
+import config.CommonModuleDependency
 import config.annotationDependencies
 import config.coreDependencies
 import config.debugDependencies
@@ -38,11 +39,9 @@ android {
         consumerProguardFiles(file("consumer-rules.pro"))
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = mapOf(
-                    "room.schemaLocation" to "$projectDir/schemas".toString(),
-                    "room.incremental" to "true",
-                    "room.expandProjection" to "true"
-                )
+                arguments["room.schemaLocation"] = "$projectDir/schemas"
+                arguments["room.incremental"] = "true"
+                arguments["room.expandProjection"] = "true"
             }
         }
     }
@@ -106,7 +105,7 @@ kapt {
 
 dependencies {
     //    api(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    listOf(project(":ktx"), project(":device")).forEach(::api)
+    listOf(project(CommonModuleDependency.LIB_KTX), project(CommonModuleDependency.LIB_DEVICE)).forEach(::api)
     coreDependencies()
     annotationDependencies()
     debugDependencies(config.DepEnvDebugApi)

@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2019 SmashKs
+ * Copyright (c) 2020 SmashKs
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ package taiwan.no.one.core.data.remote.provider
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-abstract class RetrofitProvider {
+open class RetrofitProvider {
     open fun provideBuilder(domainUrl: String) = Retrofit.Builder()
         .baseUrl(domainUrl)
         .addConverterFactory(provideJsonConverter())

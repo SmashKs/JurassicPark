@@ -2,7 +2,7 @@
 <!--
   ~ MIT License
   ~
-  ~ Copyright (c) 2019 SmashKs
+  ~ Copyright (c) 2020 SmashKs
   ~
   ~ Permission is hereby granted, free of charge, to any person obtaining a copy
   ~ of this software and associated documentation files (the "Software"), to deal
@@ -28,28 +28,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navSecond"
-    app:startDestination="@id/fragmentSecond">
+    app:startDestination="@id/activitySecond">
 
-    <fragment
-        android:id="@+id/fragmentSecond"
-        android:name="taiwan.no.one.jurassicpark.presentation.fragment.MainFragment"
-        android:label="MainFragment"
-        tools:layout="@layout/activity_second">
-        <action
-            android:id="@+id/action_fragmentSecond_to_activitySecond"
-            app:destination="@id/activitySecond">
-            <argument
-                android:name="id"
-                android:defaultValue="0"
-                app:argType="integer"/>
-        </action>
-        <deepLink
-            android:id="@+id/deepLink"
-            app:uri="main.park.com/{id}"/>
-    </fragment>
     <activity
         android:id="@+id/activitySecond"
-        android:name="taiwan.no.one.jurassicpark.presentation.activity.SecondActivity"
+        android:name="taiwan.no.one.jurassicpark.presentation.activity.MainActivity"
         android:label="Second"
         tools:layout="@layout/activity_second">
         <argument

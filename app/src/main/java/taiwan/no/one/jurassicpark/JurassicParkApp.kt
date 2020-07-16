@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2019 SmashKs
+ * Copyright (c) 2020 SmashKs
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,11 +26,10 @@ package taiwan.no.one.jurassicpark
 
 import android.app.Application
 import android.content.Context
-import com.google.android.play.core.splitcompat.SplitCompat
-import org.kodein.di.KodeinAware
+import org.kodein.di.DIAware
 import taiwan.no.one.jurassicpark.di.Dispatcher
 
-class JurassicParkApp : Application(), KodeinAware {
+class JurassicParkApp : Application(), DIAware {
     companion object {
         lateinit var appContext: Context
             private set
@@ -40,10 +39,5 @@ class JurassicParkApp : Application(), KodeinAware {
         appContext = this
     }
 
-    override val kodein = Dispatcher.importIntoApp(this)
-
-    override fun attachBaseContext(context: Context?) {
-        super.attachBaseContext(context)
-        SplitCompat.install(this)
-    }
+    override val di = Dispatcher.importIntoApp(this)
 }

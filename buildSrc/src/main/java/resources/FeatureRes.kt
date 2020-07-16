@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2019 SmashKs
+ * Copyright (c) 2020 SmashKs
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -35,7 +35,4 @@ object FeatureRes {
         "src/main/res-theme",
         "src/main/res-main"
     )
-
-    const val MANIFEST_APP = "src/main/app/AndroidManifest.xml"
-    const val MANIFEST_FEATURE = "src/main/feature/AndroidManifest.xml"
 }

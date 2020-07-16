@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2019 SmashKs
+ * Copyright (c) 2020 SmashKs
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,12 +26,14 @@ package config
 
 object CoreDependency {
     object Version {
-        const val KOTLIN = "1.4-M1"
-        const val KOTLIN_COROUTINE = "1.3.5-2-native-mt-1.4-M1"
+        const val KOTLIN = "1.4-M3"
+        const val KOTLIN_COROUTINE = "1.3.7-1.4-M3"
     }
 
-    const val KOTLIN = "org.jetbrains.kotlin:kotlin-stdlib:${Version.KOTLIN}"
+    const val KOTLIN = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Version.KOTLIN}"
     const val KOTLIN_REFLECT = "org.jetbrains.kotlin:kotlin-reflect:${Version.KOTLIN}"
     const val KOTLIN_COROUTINE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Version.KOTLIN_COROUTINE}"
     const val ANDROID_COROUTINE = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Version.KOTLIN_COROUTINE}"
+    const val GOOGLE_PLAY_COROUTINE =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:${Version.KOTLIN_COROUTINE}"
 }

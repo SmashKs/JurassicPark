@@ -2,7 +2,7 @@
 <!--
   ~ MIT License
   ~
-  ~ Copyright (c) 2019 SmashKs
+  ~ Copyright (c) 2020 SmashKs
   ~
   ~ Permission is hereby granted, free of charge, to any person obtaining a copy
   ~ of this software and associated documentation files (the "Software"), to deal
@@ -27,8 +27,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/navApp"
-    app:startDestination="@id/navFeatDummy">
+    app:startDestination="@id/navDummy">
 
-    <include app:graph="@navigation/nav_feat_dummy"/>
-    <include app:graph="@navigation/nav_second"/>
+    <include-dynamic
+        android:id="@+id/navDummy"
+        app:graphPackage="taiwan.no.one.feat.dummy"
+        app:graphResName="nav_dummy"
+        app:moduleName="dummy"/>
 </navigation>

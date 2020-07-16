@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2019 SmashKs
+ * Copyright (c) 2020 SmashKs
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,12 +30,15 @@ object GradleDependency {
     object Version {
         const val SAFE_ARGS = NAVIGATION_KTX
         const val GOOGLE_SERVICE = "4.3.3"
-        const val DETEKT = "1.7.4"
+        const val CRASHLYTICS = "2.2.0"
+        const val DETEKT = "1.10.0"
         const val VERSION_UPDATER = "0.28.0"
     }
 
     const val SAFE_ARGS = "androidx.navigation:navigation-safe-args-gradle-plugin:${Version.SAFE_ARGS}"
     const val GOOGLE_SERVICE = "com.google.gms:google-services:${Version.GOOGLE_SERVICE}"
+    const val CRASHLYTICS = "com.google.firebase:firebase-crashlytics-gradle:${Version.CRASHLYTICS}"
     const val DETEKT = "io.gitlab.arturbosch.detekt"
+    const val DETEKT_FORMAT = "io.gitlab.arturbosch.detekt:detekt-formatting:${Version.DETEKT}"
     const val GRADLE_VERSION_UPDATER = "com.github.ben-manes.versions"
 }

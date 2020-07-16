@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2019 SmashKs
+ * Copyright (c) 2020 SmashKs
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,11 +34,12 @@ buildscript {
         }
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:4.0.0-beta04")
+        classpath("com.android.tools.build:gradle:4.0.0")
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
         classpath(config.GradleDependency.SAFE_ARGS)
-        classpath(config.GradleDependency.GOOGLE_SERVICE)
+//        classpath(config.GradleDependency.GOOGLE_SERVICE)
+//        classpath(config.GradleDependency.CRASHLYTICS)
 //        classpath "org.jacoco:org.jacoco.core:0.8.4"
 //        classpath("io.fabric.tools:gradle:1.31.1")
     }
@@ -47,6 +48,10 @@ buildscript {
 plugins {
     id(config.GradleDependency.DETEKT).version(config.GradleDependency.Version.DETEKT)
     id(config.GradleDependency.GRADLE_VERSION_UPDATER).version(config.GradleDependency.Version.VERSION_UPDATER)
+}
+
+dependencies {
+    detektPlugins(config.GradleDependency.DETEKT_FORMAT)
 }
 
 allprojects {
@@ -89,23 +94,12 @@ subprojects {
                 plugin("com.android.library")
                 plugin("kotlin-android")
             }
-//            "featDummy" -> {
-//                plugin("kotlin-android")
-//                plugin("kotlin-kapt")
-//                plugin("androidx.navigation.safeargs.kotlin")
-//            }
-//            "app" -> {
-//                plugin("kotlin-android")
-//                plugin("androidx.navigation.safeargs.kotlin")
-// //                plugin("io.fabric")
-//            }
         }
         if (name == "core") {
             plugin("kotlin-android-extensions")
             plugin("org.jetbrains.kotlin.kapt")
         }
         plugin(config.GradleDependency.DETEKT)
-//        plugin("org.jlleitschuh.gradle.ktlint")
     }
     //endregion
 
@@ -113,20 +107,17 @@ subprojects {
     val detektVersion = config.GradleDependency.Version.DETEKT
     detekt {
         toolVersion = detektVersion
+        failFast = true
         debug = true
         parallel = true
-        input = files("src/main/java")
-        config = files("$rootDir/detekt.yml")
-
-        idea {
-            path = "$rootDir/.idea"
-            codeStyleScheme = "$rootDir/.idea/idea-code-style.xml"
-            inspectionsProfile = "$rootDir/.idea/inspect.xml"
-            mask = "*.kt"
-        }
+        input = files("src/main/java", "src/main/kotlin")
+        config = files("$rootDir/config/detekt/detekt.yml")
+        baseline = file("$rootDir/config/detekt/baseline.xml")
+        buildUponDefaultConfig = true
     }
 
     tasks.withType<io.gitlab.arturbosch.detekt.Detekt> {
+        jvmTarget = "1.8"
         exclude(".*/resources/.*", ".*/build/.*") // but exclude our legacy internal package
     }
     //endregion

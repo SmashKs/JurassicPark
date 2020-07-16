@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2019 SmashKs
+ * Copyright (c) 2020 SmashKs
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,29 +34,23 @@ import androidx.annotation.StyleRes
 import androidx.annotation.UiThread
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
+import java.lang.reflect.ParameterizedType
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
-import org.kodein.di.generic.instance
 import taiwan.no.one.core.presentation.activity.BaseActivity
-import java.lang.reflect.ParameterizedType
 
 /**
  * The basic fragment is for the normal activity that prepares all necessary variables or functions.
  */
 abstract class BaseFragment<out A : BaseActivity<*>, out V : ViewBinding> : LoadableFragment(),
                                                                             CoroutineScope by MainScope() {
-    /** Provide the viewmodel factory to create a viewmodel */
-    val vmFactory: ViewModelProvider.Factory by instance()
     @Suppress("UNCHECKED_CAST")
     protected val parent
         // If there's no parent, forcing crashing the app.
         get() = requireActivity() as A
+
     // Set action bar's back icon color into all fragments are inheriting advFragment.
     protected open val backDrawable by lazy {
         //                android.R.drawable.arrow_down_float
@@ -66,6 +60,7 @@ abstract class BaseFragment<out A : BaseActivity<*>, out V : ViewBinding> : Load
     }
     protected val binding by viewBinding()
     private lateinit var localInflater: LayoutInflater
+
     //        private val actionTitle by extra<String>(COMMON_TITLE)
     private val actionTitle = ""
 
@@ -220,12 +215,6 @@ abstract class BaseFragment<out A : BaseActivity<*>, out V : ViewBinding> : Load
 
     @UiThread
     open fun onBackPressed() = Unit
-
-    @UiThread
-    protected inline fun <reified VM : ViewModel> viewModel() = viewModels<VM> { vmFactory }
-
-    @UiThread
-    protected inline fun <reified VM : ViewModel> activityViewModel() = activityViewModels<VM> { vmFactory }
 
     @Suppress("UNCHECKED_CAST")
     @UiThread

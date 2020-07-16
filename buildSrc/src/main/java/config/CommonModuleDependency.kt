@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2019 SmashKs
+ * Copyright (c) 2020 SmashKs
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -36,7 +36,9 @@ object CommonModuleDependency {
     const val LIB_WIDGET = ":widget"
     const val LIB_DEVICE = ":device"
     const val LIB_CORE = ":core"
-    const val FEAT_DUMMY = "${FEATURE_PREFIX}featDummy"
+
+    // feature module name
+    const val FEAT_DUMMY_MUSIC = "${FEATURE_PREFIX}dummy"
 
     fun getAllModules() = CommonModuleDependency::class.memberProperties
         .asSequence()
@@ -50,8 +52,5 @@ object CommonModuleDependency {
         .toMutableSet()
 
     fun getFeatureModuleName() = getDynamicFeatureModules()
-        .filter { it == FEAT_DUMMY } // Only one will be imported
-        .map { it.replace(":feature", "") }
         .toMutableSet()
 }
-

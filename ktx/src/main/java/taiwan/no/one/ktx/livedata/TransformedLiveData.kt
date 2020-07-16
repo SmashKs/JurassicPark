@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2019 SmashKs
+ * Copyright (c) 2020 SmashKs
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -44,8 +44,9 @@ abstract class TransformedLiveData<S, T> : LiveData<T>(), Observer<S>, SilentHoo
             beSilent(observer)
         }
         catch (e: Exception) {
-            if (BuildConfig.DEBUG)
+            if (BuildConfig.DEBUG) {
                 e.printStackTrace()
+            }
         }
     }
 
@@ -59,11 +60,11 @@ abstract class TransformedLiveData<S, T> : LiveData<T>(), Observer<S>, SilentHoo
         val objectWrapperEntry = methodGet.invoke(objectObservers, observer)
         lateinit var objectWrapper: Any
         if (objectWrapperEntry is Map.Entry<*, *>) {
-            objectWrapper = requireNotNull(objectWrapperEntry.value)
+            objectWrapper = objectWrapperEntry.value ?: throw NullPointerException()
         }
         val classObserverWrapper = objectWrapper.javaClass.superclass
         val fieldLastVersion =
-            requireNotNull(classObserverWrapper?.getDeclaredField("mLastVersion")).accessible()
+            (classObserverWrapper?.getDeclaredField("mLastVersion") ?: throw NullPointerException()).accessible()
         // Get LiveData's version.
         val fieldVersion = classLiveData.getDeclaredField("mVersion").accessible()
         val objectVersion = fieldVersion.get(this)

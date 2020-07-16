@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2019 SmashKs
+ * Copyright (c) 2020 SmashKs
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,19 +24,13 @@
 
 import config.AndroidConfiguration
 import config.CommonModuleDependency
-import config.Configuration
 import config.annotationDependencies
 import config.appDependencies
 import org.jetbrains.kotlin.gradle.internal.CacheImplementation
 import resources.FeatureRes
 
 plugins {
-    if (!config.Configuration.isFeature) {
-        id("com.android.application")
-    }
-    else {
-        id("com.android.library")
-    }
+    id("com.android.application")
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
@@ -46,9 +40,7 @@ plugins {
 android {
     compileSdkVersion(AndroidConfiguration.COMPILE_SDK)
     defaultConfig {
-        if (!Configuration.isFeature) {
-            applicationId = AndroidConfiguration.ID
-        }
+        applicationId = AndroidConfiguration.ID
         minSdkVersion(AndroidConfiguration.MIN_SDK)
         targetSdkVersion(AndroidConfiguration.TARGET_SDK)
         versionCode = 1
@@ -60,15 +52,11 @@ android {
         consumerProguardFiles(file("consumer-rules.pro"))
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = mapOf(
-                    "room.schemaLocation" to "$projectDir/schemas",
-                    "room.incremental" to "true",
-                    "room.expandProjection" to "true"
-                )
+                arguments["room.schemaLocation"] = "$projectDir/schemas"
+                arguments["room.incremental"] = "true"
+                arguments["room.expandProjection"] = "true"
             }
         }
-        buildConfigField("FEATURE_MODULE_NAMES",
-                         CommonModuleDependency.getFeatureModuleName().map { it.replace(":", "") }.toSet())
     }
     buildTypes {
         getByName("release") {
@@ -90,7 +78,6 @@ android {
     sourceSets {
         getByName("main").apply {
             res.srcDirs(*FeatureRes.dirs)
-            manifest.srcFile(file(if (Configuration.isFeature) FeatureRes.MANIFEST_FEATURE else FeatureRes.MANIFEST_APP))
         }
     }
     dexOptions {
@@ -118,9 +105,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
-    if (!Configuration.isFeature) {
-        dynamicFeatures = CommonModuleDependency.getFeatureModuleName()
-    }
+    dynamicFeatures = CommonModuleDependency.getFeatureModuleName()
 }
 
 androidExtensions {
@@ -136,13 +121,13 @@ kapt {
 
 dependencies {
     //    api(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    api(project(CommonModuleDependency.LIB_CORE))
+    listOf(project(CommonModuleDependency.LIB_CORE)).forEach(::api)
     appDependencies()
     annotationDependencies()
 }
 
 fun com.android.build.gradle.internal.dsl.DefaultConfig.buildConfigField(name: String, value: Set<String>) {
     // Generates String that holds Java String Array code
-    val strValue = value.joinToString(prefix = "{", separator = ",", postfix = "}", transform = { "\"$it\"" })
-    buildConfigField("String[]", name, strValue)
+    val strValue = value.joinToString(separator = ",", prefix = "\"", postfix = "\"")
+    buildConfigField("String", name, strValue)
 }

@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2019 SmashKs
+ * Copyright (c) 2020 SmashKs
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,13 +25,17 @@
 package taiwan.no.one.jurassicpark.di
 
 import android.app.Application
-import org.kodein.di.Kodein
+import com.tencent.mmkv.MMKV
+import org.kodein.di.DI
 import org.kodein.di.android.x.androidXModule
+import org.kodein.di.bind
+import org.kodein.di.singleton
 
 object Dispatcher {
-    fun importIntoApp(app: Application) = Kodein.lazy {
+    fun importIntoApp(app: Application) = DI.lazy {
+        bind<MMKV>() with singleton { MMKV.defaultMMKV() }
         import(androidXModule(app))
-        import(ContainerModule.provide())
-        importAll(FeatModuleHelper.kodeinModules)
+        import(CacheModule.provide())
+        importAll(FeatModuleHelper.kodeinModules(app))
     }
 }

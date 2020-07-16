@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2019 SmashKs
+ * Copyright (c) 2020 SmashKs
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,43 +28,49 @@ object LibraryDependency {
     object Version {
         const val ARV = "1.0.16"
         const val QUICK_DIALOG = "1.0.7"
-        const val KINFER = "2.1.18"
-        const val MATERIAL = "1.2.0-alpha05"
+        const val KINFER = "2.1.19"
+        const val MATERIAL = "1.3.0-alpha01"
         const val ANDROIDX = "1.0.0"
-        const val ANNOTATION = "1.1.0"
-        const val APPCOMPAT = "1.2.0-beta01"
+        const val ANNOTATION = "1.2.0-alpha01"
+        const val APPCOMPAT = "1.3.0-alpha01"
+        const val APP_STARTUP = "1.0.0-alpha01"
         const val CARDVIEW = ANDROIDX
-        const val RECYCLERVIEW = "1.2.0-alpha02"
-        const val CONSTRAINTLAYOUT = "2.0.0-beta4"
+        const val RECYCLERVIEW = "1.2.0-alpha04"
+        const val CONSTRAINTLAYOUT = "2.0.0-beta8"
         const val COORDINATORLAYOUT = "1.1.0"
-        const val AAC_LIFECYCLE = "2.3.0-alpha01"
-        const val KODEIN = "6.5.3"
-        const val KTX = "1.3.0-beta01"
-        const val ACTIVITY_KTX = "1.2.0-alpha03"
-        const val FRAGMENT_KTX = "1.3.0-alpha03"
+        const val AAC_LIFECYCLE = "2.3.0-alpha05"
+        const val KODEIN = "7.0.0"
+        const val KTX = "1.5.0-alpha01"
+        const val ACTIVITY_KTX = "1.2.0-alpha06"
+        const val FRAGMENT_KTX = "1.3.0-alpha06"
         const val PALETTE_KTX = "1.0.0"
         const val COLLECTION_KTX = "1.1.0"
-        const val NAVIGATION_KTX = "2.3.0-alpha04"
-        const val WORK_KTX = "2.4.0-alpha02"
+        const val NAVIGATION_KTX = "2.3.0"
+        const val WORK_KTX = "2.4.0-rc01"
         const val DYN_ANIM_KTX = "1.0.0-alpha01"
-        const val ROOM = "2.2.5"
-        const val MMKV = "1.1.0"
+        const val ROOM = "2.3.0-alpha01"
+        const val MMKV = "1.2.1"
         const val GSON = "2.8.6"
-        const val PLAY_CORE = "1.7.2"
-        const val COIL = "0.9.5"
-        const val RETROFIT2 = "2.8.1"
-        const val OKHTTP3 = "4.5.0"
-        const val JSOUP = "1.12.1"
-        const val FIREBASE_CORE = "17.2.2"
-        const val FIREBASE_DATABASE = "16.1.0"
-        const val FIREBASE_AUTH = "16.0.3"
-        const val FIREBASE_MESSAGING = "17.5.0"
-        const val FIREBASE_ANALYTICS = "17.2.2"
-        const val FIREBASE_CRASHLYTICS = "2.10.1"
-        const val FIREBASE_ML = "24.0.1"
+        const val PLAY_CORE = "1.7.3"
+        const val COIL = "0.11.0"
+        const val RETROFIT2 = "2.9.0"
+        const val OKHTTP3 = "4.7.2"
+        const val JSOUP = "1.13.1"
+        const val AUTO_SERVICE = "1.0-rc7"
+        const val FIREBASE_ANALYTICS = "17.4.4"
+        const val FIREBASE_AUTH = "19.3.2"
+        const val FIREBASE_CONFIG = "19.2.0"
+        const val FIREBASE_CRASHLYTICS = "17.1.1"
+        const val FIREBASE_FIRESTORE = "21.5.0"
+        const val FIREBASE_DATABASE = "19.3.1"
+        const val FIREBASE_MESSAGING = "20.2.3"
+        const val FIREBASE_ML = "24.0.3"
+        const val FIREBASE_AUTH_GOOGLE = "18.0.0"
+        const val FIREBASE_AUTH_FACEBOOK = "7.1.0"
+        const val EXOPLAYER = "2.11.7"
         const val SHAPE_OF_VIEW = "1.4.7"
         const val REALTIME_BLUR = "1.2.1"
-        const val LOTTIE = "3.4.0"
+        const val LOTTIE = "3.4.1"
     }
 
     object Jieyi {
@@ -76,20 +82,26 @@ object LibraryDependency {
     object Tool {
         const val GSON = "com.google.code.gson:gson:${Version.GSON}"
         const val JSOUP = "org.jsoup:jsoup:${Version.JSOUP}"
-//    const val CLOUDINARY = "com.cloudinary:cloudinary-android:${Version.cloudinary}"
+
+        //    const val CLOUDINARY = "com.cloudinary:cloudinary-android:${Version.cloudinary}"
+        const val AUTO_SERVICE = "com.google.auto.service:auto-service:${Version.AUTO_SERVICE}"
     }
 
     object JetPack {
         const val MATERIAL_DESIGN = "com.google.android.material:material:${Version.MATERIAL}"
         const val APPCOMPAT = "androidx.appcompat:appcompat:${Version.APPCOMPAT}"
+        const val APP_STARTUP = "androidx.startup:startup-runtime:${Version.APP_STARTUP}"
         const val ANNOT = "androidx.annotation:annotation:${Version.ANNOTATION}"
         const val RECYCLERVIEW = "androidx.recyclerview:recyclerview:${Version.RECYCLERVIEW}"
         const val CARDVIEW = "androidx.cardview:cardview:${Version.CARDVIEW}"
         const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:${Version.CONSTRAINTLAYOUT}"
         const val COORDINATOR_LAYOUT = "androidx.coordinatorlayout:coordinatorlayout:${Version.COORDINATORLAYOUT}"
-        const val LIFECYCLE_COMPILER = "androidx.lifecycle:lifecycle-compiler:${Version.AAC_LIFECYCLE}"
+        const val LIFECYCLE_SAVEDSTATE = "androidx.lifecycle:lifecycle-viewmodel-savedstate:${Version.AAC_LIFECYCLE}"
+        const val LIFECYCLE_COMPILER = "androidx.lifecycle:lifecycle-common-java8:${Version.AAC_LIFECYCLE}"
         const val LIFECYCLE_SERVICE = "androidx.lifecycle:lifecycle-service:${Version.AAC_LIFECYCLE}"
         const val LIFECYCLE_PROCESS = "androidx.lifecycle:lifecycle-process:${Version.AAC_LIFECYCLE}"
+        const val NAVIGATION_DYNAMIC_FEATURE =
+            "androidx.navigation:navigation-dynamic-features-fragment:${Version.NAVIGATION_KTX}"
     }
 
     object AndroidKtx {
@@ -116,8 +128,6 @@ object LibraryDependency {
     }
 
     object Di {
-        const val KODEIN_JVM = "org.kodein.di:kodein-di-generic-jvm:${Version.KODEIN}"
-        const val KODEIN_CORE = "org.kodein.di:kodein-di-core-jvm:${Version.KODEIN}"
         const val KODEIN_ANDROID_X = "org.kodein.di:kodein-di-framework-android-x:${Version.KODEIN}"
     }
 
@@ -131,13 +141,20 @@ object LibraryDependency {
 
     object Firebase {
         const val PLAY_CORE = "com.google.android.play:core:${Version.PLAY_CORE}"
-        const val FIREBASE_CORE = "com.google.firebase:firebase-core:${Version.FIREBASE_CORE}"
-        const val FIREBASE_DB = "com.google.firebase:firebase-database:${Version.FIREBASE_DATABASE}"
-        const val FIREBASE_AUTH = "com.google.firebase:firebase-auth:${Version.FIREBASE_AUTH}"
+        const val FIREBASE_ANALYTICS = "com.google.firebase:firebase-analytics-ktx:${Version.FIREBASE_ANALYTICS}"
+        const val FIREBASE_AUTH = "com.google.firebase:firebase-auth-ktx:${Version.FIREBASE_AUTH}"
+        const val FIREBASE_AUTH_GOOGLE = "com.google.android.gms:play-services-auth:${Version.FIREBASE_AUTH_GOOGLE}"
+        const val FIREBASE_AUTH_FACEBOOK = "com.facebook.android:facebook-android-sdk:${Version.FIREBASE_AUTH_FACEBOOK}"
+        const val FIREBASE_DB = "com.google.firebase:firebase-database-ktx:${Version.FIREBASE_DATABASE}"
+        const val FIREBASE_FIRESTORE = "com.google.firebase:firebase-firestore-ktx:${Version.FIREBASE_FIRESTORE}"
         const val FIREBASE_MESSAGING = "com.google.firebase:firebase-messaging:${Version.FIREBASE_MESSAGING}"
-        const val FIREBASE_ANALYTICS = "com.google.firebase:firebase-analytics:${Version.FIREBASE_ANALYTICS}"
-        const val FIREBASE_CRASHLYTICS = "com.crashlytics.sdk.android:crashlytics:${Version.FIREBASE_CRASHLYTICS}"
+        const val FIREBASE_CRASHLYTICS = "com.google.firebase:firebase-crashlytics:${Version.FIREBASE_CRASHLYTICS}"
+        const val FIREBASE_CONFIG = "com.google.firebase:firebase-config-ktx:${Version.FIREBASE_CONFIG}"
         const val FIREBASE_ML = "com.google.firebase:firebase-ml-vision:${Version.FIREBASE_ML}"
+    }
+
+    object Media {
+        const val EXOPLAYER_CORE = "com.google.android.exoplayer:exoplayer-core:${Version.EXOPLAYER}"
     }
 
     object Ui {

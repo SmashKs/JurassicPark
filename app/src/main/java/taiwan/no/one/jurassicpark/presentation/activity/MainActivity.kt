@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2019 SmashKs
+ * Copyright (c) 2020 SmashKs
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,15 +27,15 @@ package taiwan.no.one.jurassicpark.presentation.activity
 import android.content.Context
 import android.content.res.Configuration
 import com.google.android.play.core.splitcompat.SplitCompat
+import java.util.Locale
 import taiwan.no.one.core.presentation.activity.BaseActivity
 import taiwan.no.one.jurassicpark.JurassicParkApp
 import taiwan.no.one.jurassicpark.databinding.ActivityMainBinding
 import taiwan.no.one.jurassicpark.presentation.lifecycle.SplitModuleAddLifecycle
-import java.util.Locale
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
     init {
-        SplitModuleAddLifecycle(JurassicParkApp.appContext, listOf("featDummy"))
+        SplitModuleAddLifecycle(JurassicParkApp.appContext, listOf(""))
     }
 
     override fun attachBaseContext(newBase: Context?) {

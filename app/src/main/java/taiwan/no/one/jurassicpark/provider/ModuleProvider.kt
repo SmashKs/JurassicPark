@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2019 SmashKs
+ * Copyright (c) 2020 SmashKs
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,8 +24,9 @@
 
 package taiwan.no.one.jurassicpark.provider
 
-import org.kodein.di.Kodein
+import android.content.Context
+import org.kodein.di.DI
 
 interface ModuleProvider {
-    fun provide(): Kodein.Module
+    fun provide(context: Context): DI.Module
 }

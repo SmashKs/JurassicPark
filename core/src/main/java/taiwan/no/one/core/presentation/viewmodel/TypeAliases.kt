@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2019 SmashKs
+ * Copyright (c) 2020 SmashKs
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,8 +25,9 @@
 package taiwan.no.one.core.presentation.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import taiwan.no.one.ktx.livedata.SafeMutableLiveData
+import taiwan.no.one.ktx.livedata.SilentMutableLiveData
 
 typealias ResultLiveData<T> = MutableLiveData<Result<T>>
-
-typealias LookUpViewModel = MutableMap<Class<out ViewModel>, ViewModel>
+typealias ResultSafeLiveData<T> = SafeMutableLiveData<Result<T>>
+typealias ResultSilentLiveData<T> = SilentMutableLiveData<Result<T>>
