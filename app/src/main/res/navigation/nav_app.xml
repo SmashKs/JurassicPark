@@ -31,7 +31,6 @@
 
     <include-dynamic
         android:id="@+id/navDummy"
-        app:graphPackage="taiwan.no.one.feat.dummy"
         app:graphResName="nav_dummy"
         app:moduleName="dummy"/>
 </navigation>

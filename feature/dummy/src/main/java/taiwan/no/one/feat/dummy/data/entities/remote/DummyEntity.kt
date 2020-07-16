@@ -22,18 +22,11 @@
  * SOFTWARE.
  */
 
-package taiwan.no.one.feat.dummy.presentation.recyclerviews.viewholders
+package taiwan.no.one.feat.dummy.data.entities.remote
 
-import taiwan.no.one.feat.dummy.data.entities.local.SearchHistoryEntity
-import taiwan.no.one.feat.dummy.databinding.ItemRencentSearchBinding
-import taiwan.no.one.feat.dummy.presentation.recyclerviews.adapters.HistoryAdapter
-import taiwan.no.one.widget.recyclerviews.ViewHolderBinding
+import taiwan.no.one.ext.DEFAULT_STR
 
-internal class HistoryViewHolder(
-    private val binding: ItemRencentSearchBinding
-) : ViewHolderBinding<SearchHistoryEntity, HistoryAdapter>(binding.root) {
-    override fun initView(entity: SearchHistoryEntity, position: Int, adapter: HistoryAdapter) {
-        binding.mtvHistory.text = entity.keyword
-        binding.clItem.setOnClickListener { adapter.onClickListener?.invoke(entity.keyword) }
-    }
-}
+internal data class DummyEntity(
+    val id: String = DEFAULT_STR,
+    val content: String = DEFAULT_STR
+)

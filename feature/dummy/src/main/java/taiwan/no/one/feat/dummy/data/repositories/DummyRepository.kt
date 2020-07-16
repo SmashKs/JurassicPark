@@ -26,22 +26,23 @@ package taiwan.no.one.feat.dummy.data.repositories
 
 import taiwan.no.one.core.data.repostory.cache.LayerCaching
 import taiwan.no.one.feat.dummy.data.contracts.DataStore
-import taiwan.no.one.feat.dummy.data.entities.remote.MusicInfoEntity
+import taiwan.no.one.feat.dummy.data.entities.remote.DummyEntity
 import taiwan.no.one.feat.dummy.domain.repositories.DummyRepo
 
 internal class DummyRepository(
     private val remote: DataStore,
     private val local: DataStore
 ) : DummyRepo {
-    override suspend fun fetchMusic(keyword: String, page: Int) = object : LayerCaching<MusicInfoEntity>() {
-        override suspend fun saveCallResult(data: MusicInfoEntity) {
-            local.createDummy(keyword, page, data)
-        }
+    override suspend fun fetchMusic(keyword: String, page: Int): List<DummyEntity> =
+        object : LayerCaching<List<DummyEntity>>() {
+            override suspend fun saveCallResult(data: List<DummyEntity>) {
+                local.createDummy(keyword, page, data)
+            }
 
-        override suspend fun shouldFetch(data: MusicInfoEntity) = false
+            override suspend fun shouldFetch(data: List<DummyEntity>) = false
 
-        override suspend fun loadFromLocal() = local.getDummy(keyword, page)
+            override suspend fun loadFromLocal() = local.getDummy(keyword, page)
 
-        override suspend fun createCall() = remote.getDummy(keyword, page)
-    }.value().entity.items
+            override suspend fun createCall() = remote.getDummy(keyword, page)
+        }.value()
 }

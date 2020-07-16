@@ -28,13 +28,13 @@ import kotlinx.coroutines.flow.Flow
 import taiwan.no.one.core.domain.usecase.ObservableUsecase
 import taiwan.no.one.core.domain.usecase.OneShotUsecase
 import taiwan.no.one.feat.dummy.data.entities.local.SearchHistoryEntity
-import taiwan.no.one.feat.dummy.data.entities.remote.CommonMusicEntity.SongEntity
+import taiwan.no.one.feat.dummy.data.entities.remote.DummyEntity
 import taiwan.no.one.feat.dummy.domain.usecases.history.AddOrUpdateHistoryOneShotCase
 import taiwan.no.one.feat.dummy.domain.usecases.history.DeleteHistoryOneShotCase
 import taiwan.no.one.feat.dummy.domain.usecases.history.FetchHistoryObservableCase
 import taiwan.no.one.feat.dummy.domain.usecases.music.FetchDummyOneShotCase
 
-internal typealias FetchDummyCase = OneShotUsecase<List<SongEntity>, FetchDummyReq>
+internal typealias FetchDummyCase = OneShotUsecase<List<DummyEntity>, FetchDummyReq>
 internal typealias FetchDummyReq = FetchDummyOneShotCase.Request
 
 internal typealias FetchHistoryCase = ObservableUsecase<Flow<List<SearchHistoryEntity>>, FetchHistoryReq>

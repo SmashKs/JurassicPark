@@ -24,8 +24,6 @@
 
 package taiwan.no.one.feat.dummy.domain.usecases.music
 
-import android.media.MediaMetadataRetriever
-import android.media.MediaMetadataRetriever.METADATA_KEY_DURATION
 import taiwan.no.one.core.domain.usecase.Usecase
 import taiwan.no.one.feat.dummy.domain.repositories.DummyRepo
 import taiwan.no.one.feat.dummy.domain.usecases.FetchDummyCase
@@ -34,19 +32,7 @@ internal class FetchDummyOneShotCase(
     private val dummyRepo: DummyRepo
 ) : FetchDummyCase() {
     override suspend fun acquireCase(parameter: Request?) = parameter.ensure {
-        dummyRepo.fetchMusic(keyword, page).map {
-            // Fix the track with 0 duration.
-            if (it.length == 0) {
-                val retriever = MediaMetadataRetriever().apply {
-                    setDataSource(it.url, hashMapOf())
-                }
-                val time = retriever.extractMetadata(METADATA_KEY_DURATION).toLong() / 1000
-                it.copy(length = time.toInt())
-            }
-            else {
-                it
-            }
-        }
+        dummyRepo.fetchMusic(keyword, page)
     }
 
     class Request(val keyword: String, val page: Int) : Usecase.RequestValues

@@ -26,16 +26,16 @@ package taiwan.no.one.feat.dummy.data.contracts
 
 import kotlinx.coroutines.flow.Flow
 import taiwan.no.one.feat.dummy.data.entities.local.SearchHistoryEntity
-import taiwan.no.one.feat.dummy.data.entities.remote.MusicInfoEntity
+import taiwan.no.one.feat.dummy.data.entities.remote.DummyEntity
 
 /**
  * This interface will common the all data stores.
  * Using prefix name (get), (create), (modify), (remove), (store)
  */
 internal interface DataStore {
-    suspend fun getDummy(keyword: String, page: Int): MusicInfoEntity
+    suspend fun getDummy(keyword: String, page: Int): List<DummyEntity>
 
-    suspend fun createDummy(keyword: String, page: Int, music: MusicInfoEntity): Boolean
+    suspend fun createDummy(keyword: String, page: Int, dummy: List<DummyEntity>): Boolean
 
     fun getSearchHistories(count: Int): Flow<List<SearchHistoryEntity>>
 

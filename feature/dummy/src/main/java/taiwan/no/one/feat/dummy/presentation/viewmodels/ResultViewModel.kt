@@ -28,7 +28,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import org.kodein.di.instance
 import taiwan.no.one.core.presentation.viewmodel.ResultLiveData
-import taiwan.no.one.feat.dummy.data.entities.remote.CommonMusicEntity.SongEntity
+import taiwan.no.one.feat.dummy.data.entities.remote.DummyEntity
 import taiwan.no.one.feat.dummy.domain.usecases.AddOrUpdateHistoryCase
 import taiwan.no.one.feat.dummy.domain.usecases.AddOrUpdateHistoryReq
 import taiwan.no.one.feat.dummy.domain.usecases.FetchDummyCase
@@ -39,7 +39,7 @@ import taiwan.no.one.ktx.livedata.toLiveData
 internal class ResultViewModel : BehindViewModel() {
     private val fetchMusicCase by instance<FetchDummyCase>()
     private val addOrUpdateHistoryCase by instance<AddOrUpdateHistoryCase>()
-    private val _dummies by lazy { ResultLiveData<List<SongEntity>>() }
+    private val _dummies by lazy { ResultLiveData<List<DummyEntity>>() }
     val dummies = _dummies.toLiveData()
     private val _addOrUpdateResult by lazy { ResultLiveData<Boolean>() }
     val addOrUpdateResult = _addOrUpdateResult.toLiveData()

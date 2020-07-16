@@ -43,7 +43,7 @@ import taiwan.no.one.feat.dummy.data.local.services.database.v1.SearchHistoryDao
 internal abstract class DummyDatabase : RoomDatabase() {
     companion object {
         @Volatile private var INSTANCE: DummyDatabase? = null
-        private const val DATABASE_NAME = "music_bank.db"
+        private const val DATABASE_NAME = "dummy.db"
 
         fun getDatabase(context: Context): DummyDatabase {
             val tempInstance = INSTANCE

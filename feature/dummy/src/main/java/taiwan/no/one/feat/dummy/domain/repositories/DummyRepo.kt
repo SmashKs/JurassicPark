@@ -25,12 +25,12 @@
 package taiwan.no.one.feat.dummy.domain.repositories
 
 import taiwan.no.one.core.domain.repository.Repository
-import taiwan.no.one.feat.dummy.data.entities.remote.CommonMusicEntity.SongEntity
+import taiwan.no.one.feat.dummy.data.entities.remote.DummyEntity
 
 /**
  * This interface will be the similar to [taiwan.no.one.feat.dummy.data.contracts.DataStore].
  * Using prefix name (fetch), (add), (update), (delete), (keep)
  */
 internal interface DummyRepo : Repository {
-    suspend fun fetchMusic(keyword: String, page: Int): List<SongEntity>
+    suspend fun fetchMusic(keyword: String, page: Int): List<DummyEntity>
 }

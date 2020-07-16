@@ -32,7 +32,7 @@ import taiwan.no.one.core.data.repostory.cache.local.convertToKey
 import taiwan.no.one.feat.dummy.BuildConfig
 import taiwan.no.one.feat.dummy.data.contracts.DataStore
 import taiwan.no.one.feat.dummy.data.entities.local.SearchHistoryEntity
-import taiwan.no.one.feat.dummy.data.entities.remote.MusicInfoEntity
+import taiwan.no.one.feat.dummy.data.entities.remote.DummyEntity
 import taiwan.no.one.feat.dummy.data.local.services.database.v1.SearchHistoryDao
 
 /**
@@ -45,13 +45,13 @@ internal class LocalStore(
     private val lruMemoryCache: MemoryCache,
 ) : DataStore {
     override suspend fun getDummy(keyword: String, page: Int) =
-        object : LocalCaching<MusicInfoEntity>(lruMemoryCache, mmkvCache) {
+        object : LocalCaching<List<DummyEntity>>(lruMemoryCache, mmkvCache) {
             override val key get() = convertToKey(keyword, page)
         }.value()
 
-    override suspend fun createDummy(keyword: String, page: Int, music: MusicInfoEntity): Boolean {
-        mmkvCache.put(convertToKey(keyword, page), music)
-        lruMemoryCache.put(convertToKey(keyword, page), music)
+    override suspend fun createDummy(keyword: String, page: Int, dummy: List<DummyEntity>): Boolean {
+        mmkvCache.put(convertToKey(keyword, page), dummy)
+        lruMemoryCache.put(convertToKey(keyword, page), dummy)
         return true
     }
 

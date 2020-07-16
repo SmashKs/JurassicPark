@@ -35,7 +35,7 @@ import taiwan.no.one.jurassicpark.presentation.lifecycle.SplitModuleAddLifecycle
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
     init {
-        SplitModuleAddLifecycle(JurassicParkApp.appContext, listOf(""))
+        SplitModuleAddLifecycle(JurassicParkApp.appContext, listOf("dummy"))
     }
 
     override fun attachBaseContext(newBase: Context?) {

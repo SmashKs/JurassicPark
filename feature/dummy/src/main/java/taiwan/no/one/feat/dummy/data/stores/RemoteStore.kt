@@ -27,7 +27,7 @@ package taiwan.no.one.feat.dummy.data.stores
 import taiwan.no.one.ext.exceptions.UnsupportedOperation
 import taiwan.no.one.feat.dummy.data.contracts.DataStore
 import taiwan.no.one.feat.dummy.data.entities.local.SearchHistoryEntity
-import taiwan.no.one.feat.dummy.data.entities.remote.MusicInfoEntity
+import taiwan.no.one.feat.dummy.data.entities.remote.DummyEntity
 import taiwan.no.one.feat.dummy.data.remote.parameters.DummyBank
 import taiwan.no.one.feat.dummy.data.remote.services.retrofit.v1.DummyService
 
@@ -38,15 +38,15 @@ import taiwan.no.one.feat.dummy.data.remote.services.retrofit.v1.DummyService
 internal class RemoteStore(
     private val dummyService: DummyService
 ) : DataStore {
-    override suspend fun getDummy(keyword: String, page: Int): MusicInfoEntity {
+    override suspend fun getDummy(keyword: String, page: Int): List<DummyEntity> {
         val queries = hashMapOf(
             DummyBank.PARAM_NAME_QUERY to keyword,
             DummyBank.PARAM_NAME_PAGE_NO to page.toString(),
         )
-        return dummyService.retrieveSearchMusic(queries)
+        return dummyService.retrieveDummy(queries)
     }
 
-    override suspend fun createDummy(keyword: String, page: Int, music: MusicInfoEntity) = UnsupportedOperation()
+    override suspend fun createDummy(keyword: String, page: Int, dummy: List<DummyEntity>) = UnsupportedOperation()
 
     override fun getSearchHistories(count: Int) = UnsupportedOperation()
 

@@ -28,7 +28,7 @@ import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.QueryMap
 import taiwan.no.one.core.data.remote.interceptor.Constant
-import taiwan.no.one.feat.dummy.data.entities.remote.MusicInfoEntity
+import taiwan.no.one.feat.dummy.data.entities.remote.DummyEntity
 import taiwan.no.one.feat.dummy.data.remote.configs.DummyConfig
 
 /**
@@ -38,5 +38,5 @@ import taiwan.no.one.feat.dummy.data.remote.configs.DummyConfig
 internal interface DummyService {
     @Headers(Constant.HEADER_MOCK_DATA)
     @GET(DummyConfig.API_REQUEST)
-    suspend fun retrieveSearchMusic(@QueryMap queries: Map<String, String>): MusicInfoEntity
+    suspend fun retrieveDummy(@QueryMap queries: Map<String, String>): List<DummyEntity>
 }
