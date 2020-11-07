@@ -22,7 +22,6 @@
  * SOFTWARE.
  */
 
-import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import config.AndroidConfiguration
 import config.CommonModuleDependency
 import config.annotationDependencies
@@ -80,13 +79,6 @@ android {
     }
     testOptions { unitTests.apply { isReturnDefaultValues = true } }
     lintOptions { isAbortOnError = false }
-    kotlinOptions {
-        // We have to add the explicit cast before accessing the options itself.
-        // If we don't, it does not work: "unresolved reference: jvmTarget"
-        val options = this as org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
-        options.jvmTarget = JavaVersion.VERSION_1_8.toString()
-        languageVersion = "1.4"
-    }
     buildFeatures.viewBinding = true
 }
 

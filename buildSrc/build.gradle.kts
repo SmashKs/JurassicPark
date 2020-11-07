@@ -22,10 +22,8 @@
  * SOFTWARE.
  */
 
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
-    id("org.gradle.kotlin.kotlin-dsl").version("1.3.5")
+    `kotlin-dsl`
 }
 
 // gradle versions above 4.10.
@@ -34,9 +32,4 @@ repositories {
     // where to download the Kotlin compiler dependencies from.
     jcenter()
     mavenCentral()
-}
-
-val compileKotlin: KotlinCompile by tasks
-compileKotlin.kotlinOptions {
-    languageVersion = "1.4"
 }

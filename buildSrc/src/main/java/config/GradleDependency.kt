@@ -31,10 +31,11 @@ object GradleDependency {
         const val SAFE_ARGS = NAVIGATION_KTX
         const val GOOGLE_SERVICE = "4.3.3"
         const val CRASHLYTICS = "2.2.0"
-        const val DETEKT = "1.10.0"
-        const val VERSION_UPDATER = "0.28.0"
+        const val DETEKT = "1.14.2"
+        const val VERSION_UPDATER = "0.34.0"
     }
 
+    const val KOTLIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:${CoreDependency.Version.KOTLIN}"
     const val SAFE_ARGS = "androidx.navigation:navigation-safe-args-gradle-plugin:${Version.SAFE_ARGS}"
     const val GOOGLE_SERVICE = "com.google.gms:google-services:${Version.GOOGLE_SERVICE}"
     const val CRASHLYTICS = "com.google.firebase:firebase-crashlytics-gradle:${Version.CRASHLYTICS}"

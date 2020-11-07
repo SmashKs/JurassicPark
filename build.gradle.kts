@@ -34,9 +34,10 @@ buildscript {
         }
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:4.0.0")
+        classpath("com.android.tools.build:gradle:4.0.2")
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+        classpath(config.GradleDependency.KOTLIN)
         classpath(config.GradleDependency.SAFE_ARGS)
 //        classpath(config.GradleDependency.GOOGLE_SERVICE)
 //        classpath(config.GradleDependency.CRASHLYTICS)
@@ -63,22 +64,6 @@ allprojects {
         maven { url = uri("https://dl.bintray.com/pokk/maven") }
         maven { url = uri("https://dl.bintray.com/kotlin/kotlin-eap") }
         maven { url = uri("https://dl.bintray.com/kodein-framework/Kodein-DI") }
-    }
-
-    tasks {
-        withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-            kotlinOptions {
-                jvmTarget = "1.8"
-                suppressWarnings = false
-                freeCompilerArgs = listOf(
-                    "-Xuse-experimental=kotlin.Experimental",
-                    "-Xuse-experimental=kotlin.ExperimentalStdlibApi",
-                    "-Xuse-experimental=kotlin.ExperimentalContracts",
-                    "-Xuse-experimental=org.mylibrary.ExperimentalMarker",
-                    "-Xallow-result-return-type"
-                )
-            }
-        }
     }
 }
 
@@ -115,12 +100,28 @@ subprojects {
         baseline = file("$rootDir/config/detekt/baseline.xml")
         buildUponDefaultConfig = true
     }
-
-    tasks.withType<io.gitlab.arturbosch.detekt.Detekt> {
-        jvmTarget = "1.8"
-        exclude(".*/resources/.*", ".*/build/.*") // but exclude our legacy internal package
-    }
     //endregion
+
+    tasks {
+        withType<io.gitlab.arturbosch.detekt.Detekt> {
+            jvmTarget = JavaVersion.VERSION_1_8.toString()
+            exclude(".*/resources/.*", ".*/build/.*") // but exclude our legacy internal package
+        }
+        withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+            kotlinOptions {
+                jvmTarget = JavaVersion.VERSION_1_8.toString()
+                suppressWarnings = false
+                freeCompilerArgs = listOf(
+                    "-Xuse-experimental=kotlin.Experimental",
+                    "-Xuse-experimental=kotlin.ExperimentalStdlibApi",
+                    "-Xuse-experimental=kotlin.ExperimentalContracts",
+                    "-Xuse-experimental=org.mylibrary.ExperimentalMarker",
+                    "-Xallow-result-return-type",
+                    "-Xjvm-default=all"
+                )
+            }
+        }
+    }
 
 //    tasks.whenObjectAdded {
 //        if (

@@ -169,7 +169,7 @@ fun DependencyHandlerScope.firebaseDependencies(env: String) {
     env(LibraryDependency.Firebase.FIREBASE_MESSAGING)
     env(LibraryDependency.Firebase.FIREBASE_DB)
     env(LibraryDependency.Firebase.FIREBASE_FIRESTORE)
-    env("com.google.guava:guava:27.0.1-android") // For fixing firestore dependency error
+//    env("com.google.guava:guava:30.0-jre") // For fixing firestore dependency error
     env(LibraryDependency.Firebase.FIREBASE_AUTH)
     env(LibraryDependency.Firebase.FIREBASE_AUTH_FACEBOOK)
 }
