@@ -146,12 +146,12 @@ subprojects {
                         isIgnoreWarnings = true
                         isQuiet = true
                     }
-                    //                    testOptions {
-                    //                        unitTests {
-                    //                            isReturnDefaultValues = true
-                    //                            isIncludeAndroidResources = true
-                    //                        }
-                    //                    }
+                    testOptions {
+                        unitTests {
+                            it.isReturnDefaultValues = true
+                            it.isIncludeAndroidResources = true
+                        }
+                    }
                 }
             }
         }
