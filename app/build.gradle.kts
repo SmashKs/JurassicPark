@@ -26,7 +26,6 @@ import config.AndroidConfiguration
 import config.CommonModuleDependency
 import config.annotationDependencies
 import config.appDependencies
-import org.jetbrains.kotlin.gradle.internal.CacheImplementation
 
 plugins {
     id("com.android.application")
@@ -49,17 +48,6 @@ android {
         viewBinding = true
     }
     dynamicFeatures = CommonModuleDependency.getDynamicFeatureModules()
-}
-
-androidExtensions {
-    isExperimental = true
-    defaultCacheImplementation = CacheImplementation.SPARSE_ARRAY
-}
-
-kapt {
-    useBuildCache = true
-    correctErrorTypes = true
-    mapDiagnosticLocations = true
 }
 
 dependencies {

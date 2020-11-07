@@ -26,23 +26,11 @@ import config.CommonModuleDependency
 import config.annotationDependencies
 import config.coreDependencies
 import config.debugDependencies
-import org.jetbrains.kotlin.gradle.internal.CacheImplementation
 
 android {
     buildFeatures {
         viewBinding = true
     }
-}
-
-androidExtensions {
-    isExperimental = true
-    defaultCacheImplementation = CacheImplementation.SPARSE_ARRAY
-}
-
-kapt {
-    useBuildCache = true
-    correctErrorTypes = true
-    mapDiagnosticLocations = true
 }
 
 dependencies {

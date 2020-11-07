@@ -92,7 +92,7 @@ subprojects {
         afterEvaluate {
             if (this@subprojects.name !in listOf("ext", "feature")) {
                 // BaseExtension is common parent for application, library and test modules
-                extensions.configure(com.android.build.gradle.BaseExtension::class.java) {
+                extensions.configure<com.android.build.gradle.BaseExtension> {
                     compileSdkVersion(config.AndroidConfiguration.COMPILE_SDK)
                     defaultConfig {
                         minSdkVersion(config.AndroidConfiguration.MIN_SDK)
@@ -152,6 +152,17 @@ subprojects {
                             it.isIncludeAndroidResources = true
                         }
                     }
+                }
+            }
+            if (this@subprojects.name in features + listOf("app", "core")) {
+                extensions.configure<org.jetbrains.kotlin.gradle.internal.AndroidExtensionsExtension> {
+                    isExperimental = true
+                    defaultCacheImplementation = org.jetbrains.kotlin.gradle.internal.CacheImplementation.SPARSE_ARRAY
+                }
+                extensions.configure<org.jetbrains.kotlin.gradle.plugin.KaptExtension> {
+                    useBuildCache = true
+                    correctErrorTypes = true
+                    mapDiagnosticLocations = true
                 }
             }
         }
