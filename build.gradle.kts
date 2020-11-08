@@ -73,17 +73,24 @@ val features = config.CommonModuleDependency.getFeatureModuleSimpleName()
 subprojects {
     //region Apply plugin
     apply {
-        when (name) {
-            "domain", "ext" -> {
+        when (this@subprojects.name) {
+            "ext" -> {
                 plugin("java-library")
                 plugin("kotlin")
             }
-            "widget", "ktx", "device", "core" -> {
+            in modules -> {
                 plugin("com.android.library")
                 plugin("kotlin-android")
             }
+            in features -> {
+                plugin("com.android.dynamic-feature")
+                plugin("kotlin-android")
+                plugin("kotlin-android-extensions")
+                plugin("kotlin-kapt")
+                plugin("androidx.navigation.safeargs.kotlin")
+            }
         }
-        if (name == "core") {
+        if (this@subprojects.name == "core") {
             plugin("kotlin-android-extensions")
             plugin("org.jetbrains.kotlin.kapt")
         }

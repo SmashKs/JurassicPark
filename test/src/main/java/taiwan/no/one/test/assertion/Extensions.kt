@@ -22,25 +22,20 @@
  * SOFTWARE.
  */
 
-import config.CommonModuleDependency
-import config.androidTestDependencies
-import config.annotationDependencies
-import config.coreDependencies
-import config.debugDependencies
-import config.unitTestDependencies
+package taiwan.no.one.test.assertion
 
-android {
-    buildFeatures {
-        viewBinding = true
-    }
-}
+import androidx.test.espresso.ViewInteraction
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.Visibility
+import androidx.test.espresso.matcher.ViewMatchers.Visibility.GONE
+import androidx.test.espresso.matcher.ViewMatchers.Visibility.INVISIBLE
+import androidx.test.espresso.matcher.ViewMatchers.Visibility.VISIBLE
+import androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility
 
-dependencies {
-    //    api(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    listOf(project(CommonModuleDependency.LIB_KTX), project(CommonModuleDependency.LIB_DEVICE)).forEach(::api)
-    coreDependencies()
-    annotationDependencies()
-    debugDependencies(config.DepEnvDebugApi)
-    unitTestDependencies()
-    androidTestDependencies()
-}
+fun ViewInteraction.isGone() = getViewAssertion(GONE)
+
+fun ViewInteraction.isVisible() = getViewAssertion(VISIBLE)
+
+fun ViewInteraction.isInvisible() = getViewAssertion(INVISIBLE)
+
+private fun getViewAssertion(visibility: Visibility) = matches(withEffectiveVisibility(visibility))

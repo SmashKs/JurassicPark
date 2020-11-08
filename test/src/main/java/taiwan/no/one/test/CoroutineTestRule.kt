@@ -22,25 +22,26 @@
  * SOFTWARE.
  */
 
-import config.CommonModuleDependency
-import config.androidTestDependencies
-import config.annotationDependencies
-import config.coreDependencies
-import config.debugDependencies
-import config.unitTestDependencies
+package taiwan.no.one.test
 
-android {
-    buildFeatures {
-        viewBinding = true
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.setMain
+import org.junit.rules.TestWatcher
+import org.junit.runner.Description
+
+class CoroutineTestRule(
+    private val testDispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher(),
+) : TestWatcher() {
+    override fun starting(description: Description?) {
+        super.starting(description)
+        Dispatchers.setMain(testDispatcher)
     }
-}
 
-dependencies {
-    //    api(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    listOf(project(CommonModuleDependency.LIB_KTX), project(CommonModuleDependency.LIB_DEVICE)).forEach(::api)
-    coreDependencies()
-    annotationDependencies()
-    debugDependencies(config.DepEnvDebugApi)
-    unitTestDependencies()
-    androidTestDependencies()
+    override fun finished(description: Description?) {
+        super.finished(description)
+        Dispatchers.resetMain()
+        testDispatcher.cleanupTestCoroutines()
+    }
 }

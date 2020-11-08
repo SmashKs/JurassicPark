@@ -22,25 +22,26 @@
  * SOFTWARE.
  */
 
-import config.CommonModuleDependency
-import config.androidTestDependencies
-import config.annotationDependencies
-import config.coreDependencies
-import config.debugDependencies
-import config.unitTestDependencies
+package taiwan.no.one.test
 
-android {
-    buildFeatures {
-        viewBinding = true
-    }
-}
+import android.view.View
+import android.widget.TextView
+import androidx.test.espresso.UiController
+import androidx.test.espresso.ViewAction
+import androidx.test.espresso.ViewInteraction
+import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
 
-dependencies {
-    //    api(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    listOf(project(CommonModuleDependency.LIB_KTX), project(CommonModuleDependency.LIB_DEVICE)).forEach(::api)
-    coreDependencies()
-    annotationDependencies()
-    debugDependencies(config.DepEnvDebugApi)
-    unitTestDependencies()
-    androidTestDependencies()
+fun getText(matcher: ViewInteraction): String {
+    var text = String()
+    matcher.perform(object : ViewAction {
+        override fun getConstraints() = isAssignableFrom(TextView::class.java)
+
+        override fun getDescription() = "Text of the view"
+
+        override fun perform(uiController: UiController, view: View) {
+            val tv = view as TextView
+            text = tv.text.toString()
+        }
+    })
+    return text
 }

@@ -25,10 +25,12 @@
 import config.CommonModuleDependency
 import config.LibraryDependency
 import config.ktxDependencies
+import config.unitTestDependencies
 
 dependencies {
     //    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     listOf(project(CommonModuleDependency.LIB_WIDGET), project(CommonModuleDependency.LIB_PURE_EXT)).forEach(::api)
     ktxDependencies()
     implementation(LibraryDependency.Jieyi.KNIFER)
+    unitTestDependencies()
 }

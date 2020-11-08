@@ -24,8 +24,10 @@
 
 import config.AndroidConfiguration
 import config.CommonModuleDependency
+import config.androidTestDependencies
 import config.annotationDependencies
 import config.appDependencies
+import config.unitTestDependencies
 
 plugins {
     id("com.android.application")
@@ -55,6 +57,8 @@ dependencies {
     listOf(project(CommonModuleDependency.LIB_CORE)).forEach(::api)
     appDependencies()
     annotationDependencies()
+    unitTestDependencies()
+    androidTestDependencies()
 }
 
 fun com.android.build.gradle.internal.dsl.DefaultConfig.buildConfigField(name: String, value: Set<String>) {

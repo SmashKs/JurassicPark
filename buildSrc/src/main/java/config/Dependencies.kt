@@ -30,6 +30,8 @@ const val DepEnvImpl = "implementation"
 const val DepEnvApi = "api"
 const val DepEnvDebugApi = "debugApi"
 const val DepEnvKapt = "kapt"
+const val DepEnvTest = "testImplementation"
+const val DepEnvAndroidTest = "androidTestImplementation"
 
 /**********************************************************
  * Below functions will be used in each Gradles directly. *
@@ -91,6 +93,15 @@ fun DependencyHandlerScope.mediaDependencies() {
 fun DependencyHandlerScope.firebaseAuthDependencies() {
     DepEnvImpl(LibraryDependency.Firebase.FIREBASE_AUTH_GOOGLE)
     DepEnvImpl(LibraryDependency.Firebase.FIREBASE_AUTH_FACEBOOK)
+}
+
+fun DependencyHandlerScope.testDependencies() {
+    kotlinDependencies(DepEnvImpl)
+    DepEnvImpl(TestLibraryDependency.JUNIT)
+    DepEnvImpl(TestLibraryDependency.COROUTINE)
+    DepEnvImpl(TestLibraryDependency.ESPRESSO_CORE)
+
+    DepEnvImpl(LibraryDependency.JetPack.MATERIAL_DESIGN)
 }
 
 /************************************
@@ -190,4 +201,26 @@ fun DependencyHandlerScope.debugDependencies(env: String) {
     env(DebugDependency.STEHO_INTERCEPTOR)
     env(DebugDependency.DEBUG_DB)
 //    env(DebugDependency.OK_HTTP_PROFILER)
+}
+
+fun DependencyHandlerScope.unitTestDependencies(env: String = DepEnvTest) {
+    env(TestLibraryDependency.JUNIT)
+    env(TestLibraryDependency.COROUTINE)
+    env(TestLibraryDependency.ASSERTK)
+    env(TestLibraryDependency.MOCKK)
+    env(TestLibraryDependency.OKHTTP_SERVER)
+}
+
+fun DependencyHandlerScope.androidTestDependencies(env: String = DepEnvAndroidTest) {
+    env(TestLibraryDependency.ANDROID_JUNIT)
+    env(TestLibraryDependency.ESPRESSO_CORE)
+    env(TestLibraryDependency.ESPRESSO_INTENT)
+    env(TestLibraryDependency.ESPRESSO_IDLING)
+    env(TestLibraryDependency.CORE_KTX)
+    env(TestLibraryDependency.ARCH_CORE)
+    env(TestLibraryDependency.NAVIGATION)
+    env(TestLibraryDependency.FRAGMENT)
+    env(TestLibraryDependency.ASSERTK)
+    env(TestLibraryDependency.MOCKK_ANDROID)
+    env(TestLibraryDependency.ANDROID_JUNIT)
 }

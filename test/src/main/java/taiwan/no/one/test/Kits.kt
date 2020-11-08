@@ -22,25 +22,20 @@
  * SOFTWARE.
  */
 
-import config.CommonModuleDependency
-import config.androidTestDependencies
-import config.annotationDependencies
-import config.coreDependencies
-import config.debugDependencies
-import config.unitTestDependencies
+package taiwan.no.one.test
 
-android {
-    buildFeatures {
-        viewBinding = true
-    }
-}
+import kotlin.random.Random
 
-dependencies {
-    //    api(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    listOf(project(CommonModuleDependency.LIB_KTX), project(CommonModuleDependency.LIB_DEVICE)).forEach(::api)
-    coreDependencies()
-    annotationDependencies()
-    debugDependencies(config.DepEnvDebugApi)
-    unitTestDependencies()
-    androidTestDependencies()
+object Kits {
+    private val charPool = ('a'..'z') + ('A'..'Z') + ('0'..'9') + ' '
+
+    fun openJsonFile(path: String) = javaClass.classLoader
+        ?.getResourceAsStream(path)
+        ?.bufferedReader()
+        ?.use { it.readText() }
+
+    fun getRandomString(length: Int, charPool: List<Char> = Kits.charPool) = (0..length)
+        .map { Random.nextInt(0, charPool.size) }
+        .map(charPool::get)
+        .joinToString("")
 }

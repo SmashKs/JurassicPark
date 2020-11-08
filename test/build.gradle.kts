@@ -22,25 +22,9 @@
  * SOFTWARE.
  */
 
-import config.CommonModuleDependency
-import config.androidTestDependencies
-import config.annotationDependencies
-import config.coreDependencies
-import config.debugDependencies
-import config.unitTestDependencies
-
-android {
-    buildFeatures {
-        viewBinding = true
-    }
-}
+import config.testDependencies
 
 dependencies {
-    //    api(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    listOf(project(CommonModuleDependency.LIB_KTX), project(CommonModuleDependency.LIB_DEVICE)).forEach(::api)
-    coreDependencies()
-    annotationDependencies()
-    debugDependencies(config.DepEnvDebugApi)
-    unitTestDependencies()
-    androidTestDependencies()
+    //    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    testDependencies()
 }

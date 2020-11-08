@@ -23,7 +23,9 @@
  */
 
 import config.CommonModuleDependency
+import config.androidTestDependencies
 import config.annotationDependencies
+import config.unitTestDependencies
 
 plugins {
     id("com.android.dynamic-feature")
@@ -40,4 +42,6 @@ android {
 dependencies {
     implementation(project(CommonModuleDependency.APP))
     annotationDependencies()
+    unitTestDependencies()
+    androidTestDependencies()
 }

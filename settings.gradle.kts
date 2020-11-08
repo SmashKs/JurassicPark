@@ -21,5 +21,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-include(":app", ":ktx", ":ext", ":widget", ":device", ":core")
+include(":app", ":ktx", ":ext", ":widget", ":device", ":core", ":test")
 include(":feature:dummy")
