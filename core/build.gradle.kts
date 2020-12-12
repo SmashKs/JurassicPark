@@ -29,12 +29,6 @@ import config.coreDependencies
 import config.debugDependencies
 import config.unitTestDependencies
 
-android {
-    buildFeatures {
-        viewBinding = true
-    }
-}
-
 dependencies {
     //    api(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     listOf(project(CommonModuleDependency.LIB_KTX), project(CommonModuleDependency.LIB_DEVICE)).forEach(::api)

@@ -34,7 +34,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:4.0.2")
+        classpath("com.android.tools.build:gradle:4.1.1")
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
         classpath(config.GradleDependency.KOTLIN)
@@ -71,106 +71,106 @@ val modules = config.CommonModuleDependency.getLibraryModuleSimpleName()
 val features = config.CommonModuleDependency.getFeatureModuleSimpleName()
 
 subprojects {
-    //region Apply plugin
-    apply {
-        when (this@subprojects.name) {
-            "ext" -> {
-                plugin("java-library")
-                plugin("kotlin")
+    beforeEvaluate {
+        //region Apply plugin
+        apply {
+            when (this@subprojects.name) {
+                "ext" -> {
+                    plugin("java-library")
+                    plugin("kotlin")
+                }
+                in modules -> {
+                    plugin("com.android.library")
+                    plugin("kotlin-android")
+                }
+                in features -> {
+                    plugin("com.android.dynamic-feature")
+                    plugin("kotlin-android")
+                    plugin("kotlin-parcelize")
+                    plugin("kotlin-kapt")
+                    plugin("androidx.navigation.safeargs.kotlin")
+                }
             }
-            in modules -> {
-                plugin("com.android.library")
-                plugin("kotlin-android")
+            if (this@subprojects.name == "core") {
+                plugin("org.jetbrains.kotlin.kapt")
             }
-            in features -> {
-                plugin("com.android.dynamic-feature")
-                plugin("kotlin-android")
-                plugin("kotlin-android-extensions")
-                plugin("kotlin-kapt")
-                plugin("androidx.navigation.safeargs.kotlin")
-            }
+            plugin(config.GradleDependency.DETEKT)
         }
-        if (this@subprojects.name == "core") {
-            plugin("kotlin-android-extensions")
-            plugin("org.jetbrains.kotlin.kapt")
-        }
-        plugin(config.GradleDependency.DETEKT)
+    }
 
-        afterEvaluate {
-            if (this@subprojects.name !in listOf("ext", "feature")) {
-                // BaseExtension is common parent for application, library and test modules
-                extensions.configure<com.android.build.gradle.BaseExtension> {
-                    compileSdkVersion(config.AndroidConfiguration.COMPILE_SDK)
-                    defaultConfig {
-                        minSdkVersion(config.AndroidConfiguration.MIN_SDK)
-                        targetSdkVersion(config.AndroidConfiguration.TARGET_SDK)
-                        testInstrumentationRunner = config.AndroidConfiguration.TEST_INSTRUMENTATION_RUNNER
-                        consumerProguardFiles(file("consumer-rules.pro"))
-                        //region NOTE: This is exceptions, only the library is using room.
-                        if (this@subprojects.name in listOf("library", "search", "ranking")) {
-                            javaCompileOptions {
-                                annotationProcessorOptions {
-                                    arguments["room.schemaLocation"] = "$projectDir/schemas"
-                                    arguments["room.incremental"] = "true"
-                                    arguments["room.expandProjection"] = "true"
-                                }
+    afterEvaluate {
+        if (this@subprojects.name !in listOf("ext", "feature")) {
+            // BaseExtension is common parent for application, library and test modules
+            extensions.configure<com.android.build.gradle.BaseExtension> {
+                compileSdkVersion(config.AndroidConfiguration.COMPILE_SDK)
+                defaultConfig {
+                    minSdkVersion(config.AndroidConfiguration.MIN_SDK)
+                    targetSdkVersion(config.AndroidConfiguration.TARGET_SDK)
+                    testInstrumentationRunner = config.AndroidConfiguration.TEST_INSTRUMENTATION_RUNNER
+                    consumerProguardFiles(file("consumer-rules.pro"))
+                    //region NOTE: This is exceptions, only the library is using room.
+                    if (this@subprojects.name in listOf("library", "search", "ranking")) {
+                        javaCompileOptions {
+                            annotationProcessorOptions {
+                                arguments["room.schemaLocation"] = "$projectDir/schemas"
+                                arguments["room.incremental"] = "true"
+                                arguments["room.expandProjection"] = "true"
                             }
                         }
-                        //endregion
                     }
-                    buildTypes {
-                        getByName("release") {
-                            // This is exceptions.
-                            if (this@subprojects.name !in features) {
-                                isMinifyEnabled = true
-                            }
-                            proguardFiles(
-                                getDefaultProguardFile("proguard-android-optimize.txt"),
-                                file("proguard-rules.pro")
-                            )
+                    //endregion
+                }
+                buildTypes {
+                    getByName("release") {
+                        // This is exceptions.
+                        if (this@subprojects.name !in features) {
+                            isMinifyEnabled = true
                         }
-                        getByName("debug") {
-                            splits.abi.isEnable = false
-                            splits.density.isEnable = false
-                            aaptOptions.cruncherEnabled = false
-                            isTestCoverageEnabled = true
-                            // Only use this flag on builds you don't proguard or upload to beta-by-crashlytics.
-                            ext.set("alwaysUpdateBuildId", false)
-                            isCrunchPngs = false // Enabled by default for RELEASE build type
-                        }
+                        proguardFiles(
+                            getDefaultProguardFile("proguard-android-optimize.txt"),
+                            file("proguard-rules.pro")
+                        )
                     }
-                    dexOptions {
-                        jumboMode = true
-                        preDexLibraries = true
-                        threadCount = 8
+                    getByName("debug") {
+                        splits.abi.isEnable = false
+                        splits.density.isEnable = false
+                        aaptOptions.cruncherEnabled = false
+                        isTestCoverageEnabled = true
+                        // Only use this flag on builds you don't proguard or upload to beta-by-crashlytics.
+                        ext.set("alwaysUpdateBuildId", false)
+                        isCrunchPngs = false // Enabled by default for RELEASE build type
                     }
-                    compileOptions {
-                        sourceCompatibility = JavaVersion.VERSION_1_8
-                        targetCompatibility = JavaVersion.VERSION_1_8
+                }
+                dexOptions {
+                    jumboMode = true
+                    preDexLibraries = true
+                    threadCount = 8
+                }
+                compileOptions {
+                    sourceCompatibility = JavaVersion.VERSION_1_8
+                    targetCompatibility = JavaVersion.VERSION_1_8
+                }
+                lintOptions {
+                    isAbortOnError = false
+                    isIgnoreWarnings = true
+                    isQuiet = true
+                }
+                testOptions {
+                    unitTests {
+                        isReturnDefaultValues = true
+                        isIncludeAndroidResources = true
                     }
-                    lintOptions {
-                        isAbortOnError = false
-                        isIgnoreWarnings = true
-                        isQuiet = true
-                    }
-                    testOptions {
-                        unitTests {
-                            it.isReturnDefaultValues = true
-                            it.isIncludeAndroidResources = true
-                        }
-                    }
+                }
+                if (this@subprojects.name !in modules) {
+                    buildFeatures.viewBinding = true
                 }
             }
-            if (this@subprojects.name in features + listOf("app", "core")) {
-                extensions.configure<org.jetbrains.kotlin.gradle.internal.AndroidExtensionsExtension> {
-                    isExperimental = true
-                    defaultCacheImplementation = org.jetbrains.kotlin.gradle.internal.CacheImplementation.SPARSE_ARRAY
-                }
-                extensions.configure<org.jetbrains.kotlin.gradle.plugin.KaptExtension> {
-                    useBuildCache = true
-                    correctErrorTypes = true
-                    mapDiagnosticLocations = true
-                }
+        }
+        if (this@subprojects.name in features + listOf("app", "core")) {
+            extensions.configure<org.jetbrains.kotlin.gradle.plugin.KaptExtension> {
+                useBuildCache = true
+                correctErrorTypes = true
+                mapDiagnosticLocations = true
             }
         }
     }
