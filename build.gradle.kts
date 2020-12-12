@@ -55,6 +55,20 @@ dependencies {
     detektPlugins(config.GradleDependency.DETEKT_FORMAT)
 }
 
+//region Detekt
+val detektVersion = config.GradleDependency.Version.DETEKT
+detekt {
+    toolVersion = detektVersion
+    failFast = true
+    debug = true
+    parallel = true
+    input = files("src/main/java", "src/main/kotlin")
+    config = files("$rootDir/config/detekt/detekt.yml")
+    baseline = file("$rootDir/config/detekt/baseline.xml")
+    buildUponDefaultConfig = true
+}
+//endregion
+
 allprojects {
     repositories {
         google()
@@ -173,20 +187,6 @@ subprojects {
                 mapDiagnosticLocations = true
             }
         }
-    }
-    //endregion
-
-    //region Detekt
-    val detektVersion = config.GradleDependency.Version.DETEKT
-    detekt {
-        toolVersion = detektVersion
-        failFast = true
-        debug = true
-        parallel = true
-        input = files("src/main/java", "src/main/kotlin")
-        config = files("$rootDir/config/detekt/detekt.yml")
-        baseline = file("$rootDir/config/detekt/baseline.xml")
-        buildUponDefaultConfig = true
     }
     //endregion
 

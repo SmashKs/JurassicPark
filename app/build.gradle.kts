@@ -32,8 +32,8 @@ import config.unitTestDependencies
 plugins {
     id("com.android.application")
     kotlin("android")
-    kotlin("android.extensions")
     kotlin("kapt")
+    id("kotlin-parcelize")
     id("androidx.navigation.safeargs.kotlin")
 }
 

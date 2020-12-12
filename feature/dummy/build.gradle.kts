@@ -27,18 +27,6 @@ import config.androidTestDependencies
 import config.annotationDependencies
 import config.unitTestDependencies
 
-plugins {
-    id("com.android.dynamic-feature")
-    kotlin("android")
-    kotlin("android.extensions")
-    kotlin("kapt")
-    id("androidx.navigation.safeargs.kotlin")
-}
-
-android {
-    buildFeatures.viewBinding = true
-}
-
 dependencies {
     implementation(project(CommonModuleDependency.APP))
     annotationDependencies()
